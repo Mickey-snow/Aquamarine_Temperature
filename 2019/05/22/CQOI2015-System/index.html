@@ -435,8 +435,8 @@
         <p><a href="https://www.luogu.org/problemnew/show/P3168" target="_blank" rel="noopener">题目链接</a></p>
 <p>大致意思是有 $n$ 个任务，第 $i$ 个用三元组 $(s_i,e_i,p_i)$ 表示，代表时间从 $s_i$ 开始到 $e_i$ 结束，优先级为 $p_i$. 有 $n$ 组询问，在第 $x_i$ 秒时优先级最小的 $k_i$ 个任务优先级总和。强制在线。</p>
 <hr>
-<p>首先考虑只有一个时间节点的情况，我们对优先级的建立值域线段树，如果这一时间有某个优先级为 $x$ 的任务正在执行，那么在代表 $[x,x]$ 这个区间的叶结点 $cnt$ 变量加一，同时对于一个代表 $[a,b]$ 区间的结点，记录两个变量 $cnt<em>{[a,b]}=\sum</em>{i\in[a,b]}cnt<em>{[i,i]}\quad sum</em>{[a,b]}=\sum<em>{i\in[a,b]}i\times cnt</em>{[i,i]}$. 这两个变量都满足区间加法。这样，利用线段树上二分处理询问。</p>
-<p>对所有的时间都建立这样一个线段树，然后对于一个任务 $(s<em>i,e_i,p_i)$. 在第 $s_i$ 秒的线段树上让 $cnt</em>{p<em>i,p_i}+=1$, 在第 $e_i+1$ 秒的线段树上让 $cnt</em>{p_i,p_i}-=1$. 这么做保证了处理询问 $O(N\log P)$ 的时间复杂度，但是要耗费大量时间建立多颗线段树，以及 $O(NP)$ 的巨大空间复杂度。</p>
+<p>首先考虑只有一个时间节点的情况，我们对优先级的建立值域线段树，如果这一时间有某个优先级为 $x$ 的任务正在执行，那么在代表 $[x,x]$ 这个区间的叶结点 $cnt$ 变量加一，同时对于一个代表 $[a,b]$ 区间的结点，记录两个变量 $cnt_{[a,b]}=\sum_{i\in[a,b]}cnt_{[i,i]}\quad sum_{[a,b]}=\sum_{i\in[a,b]}i\times cnt_{[i,i]}$. 这两个变量都满足区间加法。这样，利用线段树上二分处理询问。</p>
+<p>对所有的时间都建立这样一个线段树，然后对于一个任务 $(s_i,e_i,p_i)$. 在第 $s_i$ 秒的线段树上让 $cnt_{p_i,p_i}+=1$, 在第 $e_i+1$ 秒的线段树上让 $cnt_{p_i,p_i}-=1$. 这么做保证了处理询问 $O(N\log P)$ 的时间复杂度，但是要耗费大量时间建立多颗线段树，以及 $O(NP)$ 的巨大空间复杂度。</p>
 <p>由于每两个相邻时间的线段树在很大程度上都是相似的，所以使用可持久化线段树节省空间，只开一颗线段树保存所有版本作为时间结点对应的线段树。而值域 $P$ 也相对较大，可以动态开点省去一些不必要的结点。优化之后每次修改时空复杂度都最多 $O(\log P)$. </p>
 <a id="more"></a>
 <hr>
@@ -1296,24 +1296,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

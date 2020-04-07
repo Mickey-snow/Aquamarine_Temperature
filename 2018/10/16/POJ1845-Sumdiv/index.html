@@ -82,12 +82,12 @@
 
 
 
-<meta name="description" content="题目在这里. 大致意思是说，求 $A^B$ 的所有约数之和，模 9901.  首先，我们对任何一个整数 $A$ 唯一分解。得到  A&#x3D;p_1^{k_1}\times p_2^{k_2}\times\cdots\times p_n^{k_n}&#x3D;\prod_{i&#x3D;1}^{n} p_i^{k_i}其中所有的 $pi$ 均为质数，而且假定 $p_i&lt;p{i+1}$. 这样，$A$ 的所有约数和即为">
+<meta name="description" content="题目在这里. 大致意思是说，求 $A^B$ 的所有约数之和，模 9901.  首先，我们对任何一个整数 $A$ 唯一分解。得到  A&#x3D;p_1^{k_1}\times p_2^{k_2}\times\cdots\times p_n^{k_n}&#x3D;\prod_{i&#x3D;1}^{n} p_i^{k_i}其中所有的 $p_i$ 均为质数，而且假定 $p_i&lt;p_{i+1}$. 这样，$A$ 的所有约数和即">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【题解】POJ1845 Sumdiv">
 <meta property="og:url" content="https://mickey-snow.github.io/2018/10/16/POJ1845-Sumdiv/index.html">
 <meta property="og:site_name" content="Mickey-snow&#39;s Blog">
-<meta property="og:description" content="题目在这里. 大致意思是说，求 $A^B$ 的所有约数之和，模 9901.  首先，我们对任何一个整数 $A$ 唯一分解。得到  A&#x3D;p_1^{k_1}\times p_2^{k_2}\times\cdots\times p_n^{k_n}&#x3D;\prod_{i&#x3D;1}^{n} p_i^{k_i}其中所有的 $pi$ 均为质数，而且假定 $p_i&lt;p{i+1}$. 这样，$A$ 的所有约数和即为">
+<meta property="og:description" content="题目在这里. 大致意思是说，求 $A^B$ 的所有约数之和，模 9901.  首先，我们对任何一个整数 $A$ 唯一分解。得到  A&#x3D;p_1^{k_1}\times p_2^{k_2}\times\cdots\times p_n^{k_n}&#x3D;\prod_{i&#x3D;1}^{n} p_i^{k_i}其中所有的 $p_i$ 均为质数，而且假定 $p_i&lt;p_{i+1}$. 这样，$A$ 的所有约数和即">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-10-15T16:00:00.000Z">
 <meta property="article:modified_time" content="2020-04-07T04:00:03.680Z">
@@ -437,7 +437,7 @@
 <hr>
 <p>首先，我们对任何一个整数 $A$ 唯一分解。得到</p>
 <script type="math/tex; mode=display">
-A=p_1^{k_1}\times p_2^{k_2}\times\cdots\times p_n^{k_n}=\prod_{i=1}^{n} p_i^{k_i}</script><p>其中所有的 $p<em>i$ 均为质数，而且假定 $p_i&lt;p</em>{i+1}$.</p>
+A=p_1^{k_1}\times p_2^{k_2}\times\cdots\times p_n^{k_n}=\prod_{i=1}^{n} p_i^{k_i}</script><p>其中所有的 $p_i$ 均为质数，而且假定 $p_i&lt;p_{i+1}$.</p>
 <p>这样，$A$ 的所有约数和即为</p>
 <script type="math/tex; mode=display">
 S=\prod_{i=1}^n \sum_{j=0}^{k_i} p_i^j</script><hr>
@@ -1321,24 +1321,7 @@ S=\prod_{i=1}^n\frac{q^{k_i}-1}{q-1}</script><p>求出 $q-1$ 的逆元之后，�
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

@@ -438,8 +438,8 @@
 <hr>
 <p>先用 Dfs 求出环，记长度为 $n$, 环上的结点依次为 $a_1,a_2,\cdots,a_n$, 两点 $a_i,a_j$ 之间距离为 $a_i\to a_j$.</p>
 <p>然后，我们通过 $n$ 次树上 Dp, 求出以 $a_i$ 为根的树最大深度 $l_i$, 顺便统计不考虑环的答案，记为 $s_0$.</p>
-<p>考虑最长路径经过环的情况。我们人为地断掉 $a<em>1\leftrightarrow a_n$ 这条边，得到一条链，定义 $f_i$ 为仅考虑 $a_i$ 和以前的结点，最大的 $l_j+\sum</em>{k=2}^ja<em>k\to a</em>{k-1}$, $p<em>i$ 为仅考虑 $a_i$ 和以前的结点，最大的 $l_u+l_v+\sum</em>{k=u+1}^va<em>u\to a</em>{u-1}$. 从左到右扫一遍处理出来。同时定义 $b_i$ 和 $n_i$ 与上面类似，但是仅考虑 $a_i$ 和以后的结点，从右到左扫一遍。</p>
-<p>接下来我们枚举 $i$, 断掉 $a<em>{i-1}\leftrightarrow a_i$ 这条边，断完边之后环上最长路径可能是左边的 $p</em>{i-1}$ 或者右边的 $n<em>i$, 也有可能这条路径经过 $a_1\leftrightarrow a_n$ 这条边，长度为 $f</em>{i-1}+a_1\to a_n+b_i$. 在这三个值中取一个最大的，就是断掉这条边之后的最长路径。</p>
+<p>考虑最长路径经过环的情况。我们人为地断掉 $a_1\leftrightarrow a_n$ 这条边，得到一条链，定义 $f_i$ 为仅考虑 $a_i$ 和以前的结点，最大的 $l_j+\sum_{k=2}^ja_k\to a_{k-1}$, $p_i$ 为仅考虑 $a_i$ 和以前的结点，最大的 $l_u+l_v+\sum_{k=u+1}^va_u\to a_{u-1}$. 从左到右扫一遍处理出来。同时定义 $b_i$ 和 $n_i$ 与上面类似，但是仅考虑 $a_i$ 和以后的结点，从右到左扫一遍。</p>
+<p>接下来我们枚举 $i$, 断掉 $a_{i-1}\leftrightarrow a_i$ 这条边，断完边之后环上最长路径可能是左边的 $p_{i-1}$ 或者右边的 $n_i$, 也有可能这条路径经过 $a_1\leftrightarrow a_n$ 这条边，长度为 $f_{i-1}+a_1\to a_n+b_i$. 在这三个值中取一个最大的，就是断掉这条边之后的最长路径。</p>
 <p>由于我们实际上每条边都存在，而最长路径不可能经过整个环上所有的边，所以将断掉每一条边得到的最长路径数值取 $\min$, 然后与 $s_0$ 取 $\max$, 就是最终答案的两倍。</p>
 <a id="more"></a>
 <hr>
@@ -1300,24 +1300,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

@@ -82,12 +82,12 @@
 
 
 
-<meta name="description" content="概念悬线法是一种动态规划的思路。所谓悬线就是一条竖着的线，这条线的两个端点都在边界或者一个障碍点前，对于每一条确定下来的悬线，我们都可以求出一个确定的最大矩阵保证这条悬线在矩阵中。随后，我们左右移动这条悬线，可以得出数个不同得到最大矩阵，从而求出全局的极大矩阵。 思想悬线法需要我们预处理出三个二维数组： $left{i,j},\space right{i,h},\space up{i,j}$ 分别">
+<meta name="description" content="概念悬线法是一种动态规划的思路。所谓悬线就是一条竖着的线，这条线的两个端点都在边界或者一个障碍点前，对于每一条确定下来的悬线，我们都可以求出一个确定的最大矩阵保证这条悬线在矩阵中。随后，我们左右移动这条悬线，可以得出数个不同得到最大矩阵，从而求出全局的极大矩阵。 思想悬线法需要我们预处理出三个二维数组： $left_{i,j},\space right_{i,h},\space up_{i,j}$">
 <meta property="og:type" content="article">
 <meta property="og:title" content="悬线法">
 <meta property="og:url" content="https://mickey-snow.github.io/2018/10/01/%E6%82%AC%E7%BA%BF%E6%B3%95/index.html">
 <meta property="og:site_name" content="Mickey-snow&#39;s Blog">
-<meta property="og:description" content="概念悬线法是一种动态规划的思路。所谓悬线就是一条竖着的线，这条线的两个端点都在边界或者一个障碍点前，对于每一条确定下来的悬线，我们都可以求出一个确定的最大矩阵保证这条悬线在矩阵中。随后，我们左右移动这条悬线，可以得出数个不同得到最大矩阵，从而求出全局的极大矩阵。 思想悬线法需要我们预处理出三个二维数组： $left{i,j},\space right{i,h},\space up{i,j}$ 分别">
+<meta property="og:description" content="概念悬线法是一种动态规划的思路。所谓悬线就是一条竖着的线，这条线的两个端点都在边界或者一个障碍点前，对于每一条确定下来的悬线，我们都可以求出一个确定的最大矩阵保证这条悬线在矩阵中。随后，我们左右移动这条悬线，可以得出数个不同得到最大矩阵，从而求出全局的极大矩阵。 思想悬线法需要我们预处理出三个二维数组： $left_{i,j},\space right_{i,h},\space up_{i,j}$">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-09-30T16:00:00.000Z">
 <meta property="article:modified_time" content="2020-04-07T04:00:03.690Z">
@@ -433,11 +433,11 @@
 
       
         <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>悬线法是一种动态规划的思路。所谓悬线就是一条竖着的线，这条线的两个端点都在边界或者一个障碍点前，对于每一条确定下来的悬线，我们都可以求出一个确定的最大矩阵保证这条悬线在矩阵中。随后，我们左右移动这条悬线，可以得出数个不同得到最大矩阵，从而求出全局的极大矩阵。</p>
-<h1 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h1><p>悬线法需要我们预处理出三个二维数组： $left<em>{i,j},\space right</em>{i,h},\space up<em>{i,j}$ 分别代表在点 $(i,j)$ 这里向左，右，上方扩展直到碰到障碍点，其中 $left</em>{i,j},\space right<em>{i,h}$ 的数值为障碍点前一个点的横坐标，而 $up</em>{i,j}$ 代表在不碰到或者经过障碍点的情况下最多扩展多少步。</p>
+<h1 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h1><p>悬线法需要我们预处理出三个二维数组： $left_{i,j},\space right_{i,h},\space up_{i,j}$ 分别代表在点 $(i,j)$ 这里向左，右，上方扩展直到碰到障碍点，其中 $left_{i,j},\space right_{i,h}$ 的数值为障碍点前一个点的横坐标，而 $up_{i,j}$ 代表在不碰到或者经过障碍点的情况下最多扩展多少步。</p>
 <p>首先，我们需要先预处理出 $left$ 和 $right$.</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; totLine; i++)</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; totList; j++)</span><br><span class="line">		<span class="keyword">if</span> (<span class="literal">true</span>)</span><br><span class="line">			lt[i][j] = lt[i][j - <span class="number">1</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; totLine; i++)</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = totList - <span class="number">2</span>; j &gt;= <span class="number">0</span>; j--)</span><br><span class="line">		<span class="keyword">if</span> (<span class="literal">true</span>)</span><br><span class="line">			rt[i][j] = rt[i][j + <span class="number">1</span>];</span><br></pre></td></tr></table></figure>
 <p>通常情况下，我们都有一个判定障碍点的方法，甚至有时候不存在确定的障碍点，而是只有两个点之间能否兼容，这些可以在 if 的条件下得到体现。</p>
-<p>在正式 DP 时，当我们到达某一个点 $(i,j)$, 首先向上扩展 $t$ 格，并更新 $left<em>{i,j},\space right</em>{i,h}$ 为扩展之后最大矩形的左右边界。这样悬线和最大矩阵都已确定，接下来根据需要统计答案即可。</p>
+<p>在正式 DP 时，当我们到达某一个点 $(i,j)$, 首先向上扩展 $t$ 格，并更新 $left_{i,j},\space right_{i,h}$ 为扩展之后最大矩形的左右边界。这样悬线和最大矩阵都已确定，接下来根据需要统计答案即可。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; totLine; i++)</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; totList; j++)</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">map</span>[i][j]) &#123;</span><br><span class="line">			<span class="keyword">if</span> (i != <span class="number">0</span> &amp;&amp; <span class="literal">true</span>) &#123;</span><br><span class="line">				up[i][j] = up[i - <span class="number">1</span>][j] + <span class="number">1</span>;</span><br><span class="line">				lt[i][j] = <span class="built_in">std</span>::max(lt[i][j], lt[i - <span class="number">1</span>][j]);</span><br><span class="line">				rt[i][j] = <span class="built_in">std</span>::min(rt[i][j], rt[i - <span class="number">1</span>][j]);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">// ans</span></span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
 <p>很容易发现，这么做是正确的。因为对于每一个点，我们都求出了它对应的悬线，得出了关于这条悬线的最大矩阵，也就是说，所有可能成为答案的矩阵都已经被考虑过了。</p>
 <h1 id="题集"><a href="#题集" class="headerlink" title="题集"></a>题集</h1><p><a href="https://www.luogu.org/problemnew/show/P4147" target="_blank" rel="noopener">LG4147</a>. <a href="https://www.luogu.org/problemnew/show/P2701" target="_blank" rel="noopener">USACO Big Barn</a>. <a href="https://www.luogu.org/problemnew/show/P1169" target="_blank" rel="noopener">ZJOI2007棋盘制作</a>. <a href="https://www.luogu.org/problemnew/show/P1387" target="_blank" rel="noopener">LG1387</a>. <a href="https://www.luogu.org/problemnew/show/P1681" target="_blank" rel="noopener">LG1681</a>.</p>
@@ -1320,24 +1320,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

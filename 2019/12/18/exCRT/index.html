@@ -458,9 +458,9 @@ x\equiv a_i\pmod{b_i}
 x+k_1b_i=a_i\\
 x+k_2b_{i-1}=a_{i-1}\end{cases}</script><p>上下相减得到</p>
 <script type="math/tex; mode=display">
-k_1b_i-k_2b_{i-1}=a_i-a_{i-1}</script><p>将等号左右两边同时乘上 $d=\frac{\operatorname{gcd}(b<em>i,b</em>{i-1})}{a<em>i-a</em>{i-1}}$, 同时令 $k_1^\prime=k_1d,\ k_2^\prime=k_2d$. 那么</p>
+k_1b_i-k_2b_{i-1}=a_i-a_{i-1}</script><p>将等号左右两边同时乘上 $d=\frac{\operatorname{gcd}(b_i,b_{i-1})}{a_i-a_{i-1}}$, 同时令 $k_1^\prime=k_1d,\ k_2^\prime=k_2d$. 那么</p>
 <script type="math/tex; mode=display">
-k_1^\prime b_i+k_2^\prime b_{i-1}=\gcd(b_i,b_{i-1})</script><p>利用扩展欧几里德算法求出这个不定方程的一个特解 $k<em>{1_0}^\prime$. 那么 $k_1$ 的一个特解是 $k</em>{1<em>0}^\prime d^{-1}$. 通解是 $k_1=t\frac{b</em>{i-1}}{\gcd(b<em>i,b</em>{i-1})}\quad t\in\mathbb Z$.</p>
+k_1^\prime b_i+k_2^\prime b_{i-1}=\gcd(b_i,b_{i-1})</script><p>利用扩展欧几里德算法求出这个不定方程的一个特解 $k_{1_0}^\prime$. 那么 $k_1$ 的一个特解是 $k_{1_0}^\prime d^{-1}$. 通解是 $k_1=t\frac{b_{i-1}}{\gcd(b_i,b_{i-1})}\quad t\in\mathbb Z$.</p>
 <p>由于</p>
 <script type="math/tex; mode=display">
 x+k_1b_i=a_i</script><p>将 $k_1$ 的值带入得到</p>
@@ -1351,24 +1351,7 @@ x\equiv\left(\frac{p_2}{\gcd(p_1,p_2)}^{-1}\cdot\frac{c_2-c_1}{\gcd(p_1,p_2)}\mo
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

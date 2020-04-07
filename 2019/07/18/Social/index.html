@@ -437,7 +437,7 @@
 <hr>
 <p>可以看出，最终一个合法的方案中选中了的所有区间并在一起是连续的一段，而且不存在任何一个点被三个区间同时覆盖。</p>
 <p>将所有区间以右端点为第一关键字，左端点为第二关键字排序。</p>
-<p>考虑动态规划。定义 $D<em>{i,j}$ 为最后一个区间为 $i$, 倒数第二个区间为 $j$ 所有合法方案总数。当 $l_i&gt;r_j$ 时，$D</em>{i,j}=0$. 否则需要根据 $i,j$ 左端点之间的大小关系进行转移。</p>
+<p>考虑动态规划。定义 $D_{i,j}$ 为最后一个区间为 $i$, 倒数第二个区间为 $j$ 所有合法方案总数。当 $l_i&gt;r_j$ 时，$D_{i,j}=0$. 否则需要根据 $i,j$ 左端点之间的大小关系进行转移。</p>
 <script type="math/tex; mode=display">
 D_{i,j}=\begin{cases}
 0&\mbox{if}\;l_i>r_j\\
@@ -1311,24 +1311,7 @@ f_{i,j}=f_{i,j-1}+\sum_k[r_k=j]D_{i,k}</script><p>$f$ 每一步转移只用考�
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

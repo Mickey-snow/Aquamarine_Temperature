@@ -440,7 +440,7 @@
 <a id="more"></a>
 <hr>
 <p>注意到 $m$ 特别小，考虑状态压缩动态规划。</p>
-<p>定义 $D<em>S$ 为安排完成 $S$ 中字符后的代价。由于后面不在 $S$ 中的字母顺序未定，如果这个代价代表的是所有 $s_i\in S$ 且 $s</em>{i+1}\in S$ 产生的，那么不太容易计算。由于这里 $S$ 中字母已经顺序确定，我们现在考虑新加入一个字母 $a$, 这个 $a$ 放在键盘的最右端，这样所有原先属于 $S$ 中的元素到不属于 $S$ 中的元素的代价就会多 $1$. 因此我们在枚举 $a$ 时，多出的代价就是</p>
+<p>定义 $D_S$ 为安排完成 $S$ 中字符后的代价。由于后面不在 $S$ 中的字母顺序未定，如果这个代价代表的是所有 $s_i\in S$ 且 $s_{i+1}\in S$ 产生的，那么不太容易计算。由于这里 $S$ 中字母已经顺序确定，我们现在考虑新加入一个字母 $a$, 这个 $a$ 放在键盘的最右端，这样所有原先属于 $S$ 中的元素到不属于 $S$ 中的元素的代价就会多 $1$. 因此我们在枚举 $a$ 时，多出的代价就是</p>
 <script type="math/tex; mode=display">
 g_S=\sum_{i\in S}\sum_{j\not\in S}c_{i,j}</script><p>其中 $c_{i,j}$ 代表字符 $i$ 和 $j$ 在文本 $s$ 中相邻的次数。这样，转移方程就是</p>
 <script type="math/tex; mode=display">
@@ -1304,24 +1304,7 @@ D_S=\min\{D_{S-a}+g_S\}</script><p>边界是 $D_\varnothing=0$, 答案是 $D_M$.
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

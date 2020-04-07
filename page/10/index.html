@@ -298,6 +298,224 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2018/10/18/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%E9%80%9A%E9%A1%B9%E5%85%AC%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mickey-snow">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mickey-snow's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/18/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%E9%80%9A%E9%A1%B9%E5%85%AC%E5%BC%8F/" itemprop="url">斐波那契数列通项公式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建时间" itemprop="dateCreated datePublished" datetime="2018-10-18T00:00:00+08:00">
+                2018-10-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">修改时间&#58;</span>
+              
+              <time title="修改时间" itemprop="dateModified" datetime="2020-04-07T12:00:03+08:00">
+                2020-04-07
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  305 character(s)
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  1 minute(s)
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://zh.wikipedia.org/wiki/斐波那契数列" target="_blank" rel="noopener">斐波那契数列</a>, 是一种使用递归方法定义的数列</p>
+<script type="math/tex; mode=display">
+f(n)=\begin{cases}
+0\qquad\qquad\qquad\qquad\qquad n=0\\
+1\qquad\qquad\qquad\qquad\qquad n=1\\
+f(n-1)+f(n-2)\qquad \text{else}
+\end{cases}</script><hr>
+<p>使用待定系数法，可以求得斐波那契数列的通项公式。</p>
+<p>设 $r,s$ 使得</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+-rs=1\\
+r+s=1
+\end{cases}</script><p>解得</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+s=\frac{1+\sqrt 5}{2}\\
+r=\frac{1-\sqrt 5}{2}
+\end{cases}</script><p>这样，</p>
+<script type="math/tex; mode=display">
+\because f(n)=(r+s)f(n-1)-rsf(n-2)\\
+\therefore f(n)-rf(n-1)=s[f(n-1)-rf(n-2)]\\
+f(n-1)-rf(n-2)=s[f(n-2)-rf(n-3)]\\
+\cdots\\
+f(3)-rf(2)=s[f(2)-rf(1)]\\
+\therefore f(n)=rf(n-1)=s^{n-2}[f(2)-f(1)]\\
+f(n)=s^{n-1}+rf(n-1)\\</script><script type="math/tex; mode=display">
+\because f(n)=s^{n-1}+rf(n-1)\\
+\therefore f(n)=s^{n-1}+rs^{n-2}+r^2f(n-2)\\
+\cdots\\
+f(n)=s^{n-1}+rs^{n-2}+r^2s^{n-3}+\cdots+r^{n-1}</script><p>可以发现，这是一个以 $s^{n-1}$ 为首项，$r^{n-1}$ 为末项，$\frac{r}{s}$ 为公比的等比数列。直接使用等比数列求和公式，得到</p>
+<script type="math/tex; mode=display">
+f(n)=\frac{\sqrt 5}{5}\left[\left(\frac{1+\sqrt 5}{2}\right)^n-\left(\frac{1-\sqrt 5}{2}\right)^n\right]</script><p>利用这个公式，可以求解斐波那契数列的任意一项。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+  
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2018/10/18/%E8%9A%AF%E8%9A%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1068,7 +1286,7 @@ S\equiv a_3\mod T_3
 <hr>
 <p>首先，我们对任何一个整数 $A$ 唯一分解。得到</p>
 <script type="math/tex; mode=display">
-A=p_1^{k_1}\times p_2^{k_2}\times\cdots\times p_n^{k_n}=\prod_{i=1}^{n} p_i^{k_i}</script><p>其中所有的 $p<em>i$ 均为质数，而且假定 $p_i&lt;p</em>{i+1}$.</p>
+A=p_1^{k_1}\times p_2^{k_2}\times\cdots\times p_n^{k_n}=\prod_{i=1}^{n} p_i^{k_i}</script><p>其中所有的 $p_i$ 均为质数，而且假定 $p_i&lt;p_{i+1}$.</p>
 <p>这样，$A$ 的所有约数和即为</p>
 <script type="math/tex; mode=display">
 S=\prod_{i=1}^n \sum_{j=0}^{k_i} p_i^j</script><hr>
@@ -1301,7 +1519,7 @@ k=\lfloor\frac{p}{i}\rfloor</script><p>将原式两边同时乘上 $i^{-1}\times
 <script type="math/tex; mode=display">
 kr^{-1}+i^{-1}\equiv0\mod p\\
 \therefore i^{-1}\equiv-kr^{-1}\mod p\\
-\therefore i^{-1}\equiv -\lfloor\frac{p}{i}\rfloor \times p\%i\mod p</script><p>因此，$a<em>i=-(p/i)\times a</em>{p\%i}$.</p>
+\therefore i^{-1}\equiv -\lfloor\frac{p}{i}\rfloor \times p\%i\mod p</script><p>因此，$a_i=-(p/i)\times a_{p\%i}$.</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt; Get_MiM(<span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> size, <span class="keyword">const</span> T p) &#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt; ans&#123; <span class="number">0</span>,<span class="number">1</span> &#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">unsigned</span> <span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= size; i++)&#123;</span><br><span class="line">        ans.push_back(-(p / i)*ans[p%i]);</span><br><span class="line">        ans[ans.size()<span class="number">-1</span>]=(ans[ans.size()<span class="number">-1</span>]%p+p)%p;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <h2 id="费马小定理"><a href="#费马小定理" class="headerlink" title="费马小定理"></a>费马小定理</h2><p>假如 $p$ 是质数，且 $\gcd(a,p)=1$ ，那么 $a^{p−1}\equiv 1 \pmod p$.</p>
@@ -2491,7 +2709,7 @@ x_1=(x\%t+t)\%t</script><p>$x_1$ 即为所求最小正整数解。模板代码�
 <hr>
 <p>大致意思是，一个集合 $H$ 满足 $\forall a\in N$, $4a+1\in H$. 在 $H$ 集合中的一个数为 <strong>H-素数</strong> 的条件是在 $H$ 集合中只有这个数和 1 能够将其整除。特别地，1 不是 H-素数。两个不同的H-素数的乘积是一个 <strong>H-合成数</strong> 。求出不大于 $n$ 的 H-合成数 的个数。</p>
 <hr>
-<p>这题说了这么多新定义，实质上就是找到所有的 H-素数，然后两两相乘，最后打个表 $f<em>i = f</em>{i-1}+isHComposite_i$. 这样 $f_i$ 就是不大于 $i$ 的 H-合成数 的个数。</p>
+<p>这题说了这么多新定义，实质上就是找到所有的 H-素数，然后两两相乘，最后打个表 $f_i = f_{i-1}+isHComposite_i$. 这样 $f_i$ 就是不大于 $i$ 的 H-合成数 的个数。</p>
 <p>筛素数与在整数集合中的做法几乎一样只用特别注意一下筛的时候只考虑 H-数 即可。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 1000002</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> isPrime[MAXN];</span><br><span class="line"><span class="keyword">int</span> prime[MAXN], cnt = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> Sum[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(isPrime, <span class="literal">true</span>, <span class="keyword">sizeof</span>(isPrime));</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">5</span>; i &lt;= MAXN; i += <span class="number">4</span>)</span><br><span class="line">		<span class="keyword">if</span> (isPrime[i]) &#123;</span><br><span class="line">			prime[cnt++] = i;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = i * <span class="number">5</span>; j &lt;= MAXN; j += (i &lt;&lt; <span class="number">2</span>))</span><br><span class="line">				isPrime[j] = <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">memset</span>(isPrime, <span class="literal">false</span>, <span class="keyword">sizeof</span>(isPrime));</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; cnt; i++)</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; cnt &amp;&amp; (<span class="keyword">long</span> <span class="keyword">long</span>)prime[i] * (<span class="keyword">long</span> <span class="keyword">long</span>)prime[j] &lt;= MAXN; j++)</span><br><span class="line">			isPrime[prime[i] * prime[j]] = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= MAXN; i++)</span><br><span class="line">		Sum[i] = Sum[i - <span class="number">1</span>] + isPrime[i];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n) == <span class="number">1</span> &amp;&amp; n)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>, n, Sum[n]);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//system("pause");</span></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -2895,7 +3113,7 @@ f_{i,k,4}=\max(f_{i-1,k-2,0/1/2/3/4},f_{i-1,k,4},f_{i-1,k-1,1/2}) \qquad | \qqua
 <p>这个方法是正确的，但是却 TLE 了。</p>
 <hr>
 <p>所以我们不得不另寻出路。如果使用前缀和，那么假定我们知道位置 $j$ 之前每个数出现的次数，知道 $i-1$ 之前每个数出现的个数，那么将这两个数组相减，再看看有哪些元素依旧不是 0. 就可以得出询问区间 [$i,j$] 的答案。虽然这么做时间复杂度依然难以接受，但是这是一个很好的思路。</p>
-<p>我们定义 $apr<em>i$ 为位置 $i$ 及以前的所有数中有多少个不同的数。记 $appear_i$ 为数字 $i$ 出现的位置，如果目前为止没有出现，那么 $appear_i=-1$. 如果 $appear</em>{num<em>{i}} = -1$ ,那么直接 $apr_j+=1\quad j\ge i$. 如果 $appear</em>{num<em>{i}} \neq -1$ , 那么 $i$ 在此之前出现过，而无论它是在哪里出现的，询问区间 [$i,j$] 的答案都依然包括 $i$. 所以我们直定它此前没有出现过$apr_j-=1\quad j\ge appear</em>{num_i}$ 然后  $apr_j+=1\quad j\ge i$. 这样我们就得到了一个正确而且可以快速计算的前缀和，如果在上面套上树状数组，可以平衡修改和查询的操作。</p>
+<p>我们定义 $apr_i$ 为位置 $i$ 及以前的所有数中有多少个不同的数。记 $appear_i$ 为数字 $i$ 出现的位置，如果目前为止没有出现，那么 $appear_i=-1$. 如果 $appear_{num_{i}} = -1$ ,那么直接 $apr_j+=1\quad j\ge i$. 如果 $appear_{num_{i}} \neq -1$ , 那么 $i$ 在此之前出现过，而无论它是在哪里出现的，询问区间 [$i,j$] 的答案都依然包括 $i$. 所以我们直定它此前没有出现过$apr_j-=1\quad j\ge appear_{num_i}$ 然后  $apr_j+=1\quad j\ge i$. 这样我们就得到了一个正确而且可以快速计算的前缀和，如果在上面套上树状数组，可以平衡修改和查询的操作。</p>
 <p>将所有的询问区间离线，然后按照右端点排序，从前往后扫一遍即可。总时间复杂度为 $O(N\log N)$.</p>
 <p>代码如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">auto</span> MAXN = <span class="number">500005</span>;</span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">auto</span> MAXM = <span class="number">1000005</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Query</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> fr, to, ID, ans;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">operator</span> <span class="params">()</span> <span class="params">(<span class="keyword">const</span> Query &amp;a, <span class="keyword">const</span> Query &amp;comp)</span><span class="keyword">const</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a.to &lt; comp.to;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Query &amp;comp)<span class="keyword">const</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> ID &lt; comp.ID;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;ask[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> arr[MAXN], totNums, appear[MAXM], color[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">lowBit</span><span class="params">(T val)</span> </span>&#123; <span class="keyword">return</span> val &amp; (-val); &#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Edit</span><span class="params">(<span class="keyword">int</span> pos, <span class="keyword">const</span> <span class="keyword">int</span> &amp;delta)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (; pos &lt;= totNums; pos += lowBit(pos))</span><br><span class="line">		arr[pos] += delta;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> pos)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (; pos &gt; <span class="number">0</span>; pos -= lowBit(pos))</span><br><span class="line">		sum += arr[pos];</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(appear, <span class="number">-1</span>, <span class="keyword">sizeof</span>(appear));</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> totQuery, nowAt = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;totNums);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; totNums; i++)<span class="built_in">scanf</span>(<span class="string">"%d"</span>, color + i + <span class="number">1</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;totQuery);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; totQuery; i++) &#123;</span><br><span class="line">		ask[i].ID = i;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;ask[i].fr, &amp;ask[i].to);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">std</span>::sort(ask, ask + totQuery, Query());</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; totQuery; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (; nowAt &lt;= ask[i].to; ++nowAt) &#123;</span><br><span class="line">			<span class="keyword">if</span> (appear[color[nowAt]] != <span class="number">-1</span>) </span><br><span class="line">				Edit(appear[color[nowAt]], <span class="number">-1</span>);</span><br><span class="line">			Edit((appear[color[nowAt]] = nowAt), <span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		ask[i].ans = query(ask[i].to) - query(ask[i].fr - <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">std</span>::sort(ask, ask + totQuery);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; totQuery; i++)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ask[i].ans);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//system("pause");</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -4090,196 +4308,6 @@ g(i)=\text{ToInt}(i,j) \qquad i<j</script><p>这里需要满足 $\text{ToInt}(i,
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mickey-snow">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mickey-snow's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/" itemprop="url">解除网络连接</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建时间" itemprop="dateCreated datePublished" datetime="2018-10-05T00:00:00+08:00">
-                2018-10-05
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">修改时间&#58;</span>
-              
-              <time title="修改时间" itemprop="dateModified" datetime="2020-04-07T12:00:03+08:00">
-                2020-04-07
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9D%82%E9%A1%B9/" itemprop="url" rel="index">
-                    <span itemprop="name">杂项</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  2.8k character(s)
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  9 minute(s)
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>这里我们将讨论如何解除一个设备的互联网无线连接。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/#更多" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-  
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -5024,24 +5052,7 @@ g(i)=\text{ToInt}(i,j) \qquad i<j</script><p>这里需要满足 $\text{ToInt}(i,
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

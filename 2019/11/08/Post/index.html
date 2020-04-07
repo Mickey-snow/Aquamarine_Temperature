@@ -443,7 +443,7 @@ d_{i,j}=\min_{1\leq k\leq i}\{d_{k,j-1}+w_{k+1,i}\}</script><p>这里</p>
 m=\frac{i+j}2\\
 s_i=\sum_{k=1}^ip_i\\
 w_{k+1,i}=\frac{j-i}2p_m-s_{m-1}+s_j-s_m-\frac{j-1}2p_m=s_{i-1}+s_j-s_m-s_{m-1}</script><p>涉及到的所有除法运算都需要向下取整(下同)。</p>
-<p>如果我们能证明 $w$ 满足四边形不等式，那么就可以得到 $d<em>{i,j}$ 最优取值点在 $d</em>{i,j-1}$ 到 $d_{i+1,j}$ 之间。</p>
+<p>如果我们能证明 $w$ 满足四边形不等式，那么就可以得到 $d_{i,j}$ 最优取值点在 $d_{i,j-1}$ 到 $d_{i+1,j}$ 之间。</p>
 <script type="math/tex; mode=display">
 w_{i,j}+w_{i+1,j+1}\leq w_{i+1,j}+w_{i,j+1}\\
 L=s_j+s_{i+1}-s_{\frac{i+j}2}-s_{\frac{i+j}2-1}+s_{j+1}+s_i-s_{\frac{i+j}2+1}-s_{\frac{i+j}2}\\
@@ -1304,24 +1304,7 @@ R-L=s_{\frac{i+j}2-1}+\left(s_{\frac{i+j}2}-s_\frac{i+j+1}2\right)+\left(s_j-s_\
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

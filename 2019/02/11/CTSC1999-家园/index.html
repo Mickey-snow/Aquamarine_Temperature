@@ -435,10 +435,10 @@
         <p>这道题目有一点分层图网络流的意思。</p>
 <p>首先我们还是建立源点 $s$, 汇点就是月球。然后连接 $s$ 和地球，容量为总人数。</p>
 <p>随后，我们枚举需要的时间 $t$, 不断地用 Dinic 算法在残量网络上跑最大流，如果某一个时刻最大流达到了总人数，那么当前的这个 $t$ 就是答案。</p>
-<p>在每一次增加 $t$ 的时候，我们需要对产量网络进行一定的调整。对地球和每一个太空站每过一个正点时刻就新建一个结点，假定编号为 $i$ 的太空站在第 $t<em>0$ 时刻的结点编号为 $T</em>{i,t<em>0}$. 同时假设第 $i$ 艘太空船这一个时刻从 $s</em>{i,t-1}$ 到达 $v_{i,t}$. 那么</p>
+<p>在每一次增加 $t$ 的时候，我们需要对产量网络进行一定的调整。对地球和每一个太空站每过一个正点时刻就新建一个结点，假定编号为 $i$ 的太空站在第 $t_0$ 时刻的结点编号为 $T_{i,t_0}$. 同时假设第 $i$ 艘太空船这一个时刻从 $s_{i,t-1}$ 到达 $v_{i,t}$. 那么</p>
 <ul>
-<li>连接 $T<em>{i,t_0-1}$ 和 $T</em>{i,t_0}$, 容量为 $\infty$. 代表上一个时刻在 $i$ 的人可以在那里等待。</li>
-<li>连接 $s<em>{i,t-1}$ 和 $v</em>{i,t}$, 容量为太空船的容量。</li>
+<li>连接 $T_{i,t_0-1}$ 和 $T_{i,t_0}$, 容量为 $\infty$. 代表上一个时刻在 $i$ 的人可以在那里等待。</li>
+<li>连接 $s_{i,t-1}$ 和 $v_{i,t}$, 容量为太空船的容量。</li>
 </ul>
 <a id="more"></a>
 <p>代码如下：</p>
@@ -1297,24 +1297,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

@@ -436,7 +436,7 @@
         <p>给定一个长度为 $n$ 的文本串 $s$, 有 $q$ 次询问，每一次询问给定一个串 $t$ 和一个区间 $[l,r]$, 需要求出 $t$ 有多少个本质不同的子串是不是 $s_{l\cdots r}$ 的任何一个子串。</p>
 <a id="more"></a>
 <hr>
-<p>将每一次询问串 $t$ 建立成后缀树，如果 $s$ 和 $t$ 没有一个相等的字符，那么 $t$ 所有不同的子串个数就是 $t$ 的后缀树所代表的 trie 的结点树(需要减去最后 <code>$</code> 记号构成的子串)，然后每一次指定一个左端点 $l$, 在仅考虑 $s<em>{l\cdots r}$ 的情况下向右匹配尽可能多的字符，如果匹配到了 $r$, 那么 $t</em>{l\cdots r}$ 对应着 $t$ 后缀树上一个从 $t_0$ 出发的链，将这条链上所有的结点都打上记号，最后一次深搜搜出所有没有记号的结点，答案就是这些结点中不同的结点个数。</p>
+<p>将每一次询问串 $t$ 建立成后缀树，如果 $s$ 和 $t$ 没有一个相等的字符，那么 $t$ 所有不同的子串个数就是 $t$ 的后缀树所代表的 trie 的结点树(需要减去最后 <code>$</code> 记号构成的子串)，然后每一次指定一个左端点 $l$, 在仅考虑 $s_{l\cdots r}$ 的情况下向右匹配尽可能多的字符，如果匹配到了 $r$, 那么 $t_{l\cdots r}$ 对应着 $t$ 后缀树上一个从 $t_0$ 出发的链，将这条链上所有的结点都打上记号，最后一次深搜搜出所有没有记号的结点，答案就是这些结点中不同的结点个数。</p>
 <p>先考虑对于所有询问 $l=1,\,r=|S|$ 的情况，此时我们在 $s$ 整颗后缀树中尽可能多地匹配 $t$, 也就是用两个指针分别指向 $s$ 的后缀树和 $t$ 的后缀树。假定我们现在最多匹配到了 $t_{u\cdots v}$, 那么在下一步我们将开始的位置变成 $u+1$, 只需要将两个指针跳一次所在点的后缀链接。特别地，$t_0$ 的后缀链接指向自己。</p>
 <p>接下来考虑正解，如果我们只考虑 $s_{l\cdots r}$, 那么 $s$ 对应的后缀树中有很多结点就不能访问到，能走到的结点只有开始于 $[l,r]$ 的后缀组成的链上的点。对于后缀树上的每一个结点，从 $t_0$ 到它连成的串是若干个后缀的前缀，这些后缀就是它子树中所有的叶子结点代表的后缀。因此我们可以对于每一个点建立一颗线段树，保存以这个点为根的子树中存在的后缀，在预处理的时候可持久化线段树合并可以快速求出每个点对应的线段树，之后每次走入一个新结点的时候都查询一下是否在那个结点中有符合条件的后缀即可。</p>
 <hr>
@@ -1298,24 +1298,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

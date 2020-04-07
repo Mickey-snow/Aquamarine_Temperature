@@ -438,7 +438,7 @@
 <hr>
 <p>如果我们需要找到正整数区间 $(1,n]$ 内所有的素数，那么就需要使用到所谓的素数的筛选算法。有一种算法可以在 $O(N)$ 的时间复杂度内解决这个问题。</p>
 <p>如果一个数存在一个不等于它本身的质因子，那么它就不是一个素数。这样，我们可以寻找每一个合数最小的质因子，用这个质因子将他们筛掉。记 $f_i = i$ 最小的质因子。我们用一个循环从 2 开始，起初 $\forall f_i=0$, 如果循环到某一个数 $i$ 满足 $f_i = 0$, 那么意味着我们 <strong>在此之前</strong> 没有找到它的任何质因子,直到现在 $f_i = i$ ,因为 $i$ 是一个素数。</p>
-<p>如果目前循环到一个数 $t$, 无论它是不是一个素数我们都可以尝试将 $f<em>t$ 乘上一个之前得到的素数来筛掉 $f_t \times prime_i$ ，此时 $f</em>{f_t \times prime_i} = prime_i$. 特别地，如果 $prime_i &gt; f_t$ ，说明 $f_t \times prime_i$ 的最小质因子已经不是 $prime_i$ 了，这时就不用再去考虑更大的素数了。</p>
+<p>如果目前循环到一个数 $t$, 无论它是不是一个素数我们都可以尝试将 $f_t$ 乘上一个之前得到的素数来筛掉 $f_t \times prime_i$ ，此时 $f_{f_t \times prime_i} = prime_i$. 特别地，如果 $prime_i &gt; f_t$ ，说明 $f_t \times prime_i$ 的最小质因子已经不是 $prime_i$ 了，这时就不用再去考虑更大的素数了。</p>
 <p>执行上述步骤之后，<strong>每一个合数都是被自己最小的质因子筛掉的</strong>，根据唯一分解定理，如果一个合数只可能被自己最小的质因子筛掉，那么 <strong>它一定只被筛掉了一次</strong>。因此，这个算法时间复杂度是 $O(N)$.</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> min_Factor[MAXM]; <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; prime;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_Primes</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> siz)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (siz &lt; <span class="number">2</span>)<span class="keyword">return</span> <span class="number">0</span>; <span class="built_in">memset</span>(min_Factor, <span class="number">0</span>, <span class="keyword">sizeof</span>(min_Factor));</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; siz; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (min_Factor[i] == <span class="number">0</span>) &#123;</span><br><span class="line">			min_Factor[i] = i; prime.push_back(i);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//i*prime[j] 将会被它的最小质因子 prime[i] 筛掉</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; prime.size(); j++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (</span><br><span class="line">				i*prime[j] &gt; siz ||			<span class="comment">//超出范围</span></span><br><span class="line">				prime[j] &gt; min_Factor[i]	<span class="comment">//prime[j]并不是i*prime[j]的最小质因子</span></span><br><span class="line">				)<span class="keyword">break</span>;</span><br><span class="line">			min_Factor[i*prime[j]] = prime[j];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> prime.size();</span><br><span class="line">&#125;	<span class="comment">//返回值为区间内素数的个数</span></span><br></pre></td></tr></table></figure>
 <p>另外一种名为 Eratosthenes 筛法的算法也可以得到这样的素数表，非常好写且时间复杂度为 $O(N\log\log N)$ ,已经非常接近于线性。但是，线性筛法不仅帮助我们得到了素数，还可以告诉我们一些额外的东西。例如 $f_i$ 就是 $i$ 最小的质因子，且区间内所有的 $f_i$ 都是已经完成了计算的。这样有什么用处呢？如果给你一堆正整数，其中第 $i$ 个是 $a_i$ ，你需要将他们唯一分解，这个时候我们就可以先使用线性筛法筛 $(1,\max(a_i)]$ 范围内的素数，然后对于任何一个 $t\in a$,将 $t$ 不断地除去 $f_t$, 这样与使用所谓的试除法相比，节约了大量的计算能力。</p>
@@ -1296,24 +1296,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

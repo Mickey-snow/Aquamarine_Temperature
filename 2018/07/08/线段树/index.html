@@ -448,14 +448,14 @@
 <p>　如果您厌恶指针，使用数组模拟的线段树介绍文章并不少见，而且，它们思路大多都是相通的。</p>
 <hr>
 <h3 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h3><p>　可以用线段树统计的信息非常多，区间的和、最大值只是其中比较常见的两个。但是，这些统计的信息必须符合区间加法，也就是说，两个相邻的区间可以通过一定的计算合并成一整个大区间。举个例子，区间[0,10]的最大值为8，区间[11,20]的最大值为10，那么显而易见，区间[0,20]的最大值就是10，这也是一个符合区间加法信息统计的例子。其它符合区间加法的还有最大公因数GCD、平均数等。但是，众数、最长上升子序列、连续出现次数最多等都是不符合区间加法的。</p>
-<p>　前面已经提到过，<em>线段树将整个序列分为很多大的区间，而每个大区间又分为若干较小的区间</em>。 事实上，一个长度为n的序列可以被看成是n个区间:[0,0],[1,1]…[$n-1$,$n-1$].有了这些区间，我们就可以推到出更大区间的信息:[0,1][2,3]…[$n-2$,$n-1$].不断地重复进行这种序列之间的合并，最终就可以得到一个区间[$0$,$n-1$]，这个区间就是整个线段树的根。</p>
+<p>　前面已经提到过，_线段树将整个序列分为很多大的区间，而每个大区间又分为若干较小的区间_。 事实上，一个长度为n的序列可以被看成是n个区间:[0,0],[1,1]…[$n-1$,$n-1$].有了这些区间，我们就可以推到出更大区间的信息:[0,1][2,3]…[$n-2$,$n-1$].不断地重复进行这种序列之间的合并，最终就可以得到一个区间[$0$,$n-1$]，这个区间就是整个线段树的根。</p>
 <p>　需要查询的时候，我们将很多段区间的信息综合起来，例如，我们想要知道区间[2,7]的所有数之和，可以将区间[2,3]和[4,7]加起来，就得到了答案，这种操作的时间复杂度是对数级别的。</p>
 <hr>
 <h3 id="原理与实现"><a href="#原理与实现" class="headerlink" title="原理与实现"></a>原理与实现</h3><p>　在这里，我们以<a href="https://www.luogu.org/problemnew/show/P3372" target="_blank" rel="noopener">【模板】线段树 1</a>为例，介绍如何使用线段树维护一个区间，并在时间复杂度是线性对数级别的前提下实现</p>
 <p>　　　1.将某区间每一个数加上x </p>
 <p>　　　2.求出某区间每一个数的和</p>
 <p>　这两项操作。</p>
-<h4 id="线段树的建立"><a href="#线段树的建立" class="headerlink" title="线段树的建立"></a>线段树的建立</h4><p>　在建立线段树之前，我们先将所有的数据读入进来。这些数据本质上代表第i个数的值，不过，我们也可以将他们看作：<em>区间[i,i]中所有数的和.</em> 这样，我们就得到了线段数的所有叶子。</p>
+<h4 id="线段树的建立"><a href="#线段树的建立" class="headerlink" title="线段树的建立"></a>线段树的建立</h4><p>　在建立线段树之前，我们先将所有的数据读入进来。这些数据本质上代表第i个数的值，不过，我们也可以将他们看作：_区间[i,i]中所有数的和._ 这样，我们就得到了线段数的所有叶子。</p>
 <p>　在下图中，fr代表区间的开始，to代表区间的终止，val含义为在区间[fr,to]中所有数之和。</p>
 <img src="/2018/07/08/%E7%BA%BF%E6%AE%B5%E6%A0%91/22834%5B1%5D.png" class=""> 
 <p>　接下来，我们要将这些区间逐个合并，由于我们要维护的是区间和，所以两个区间合并在一起，它们val值加起来就是整个区间的所有数之和了。</p>
@@ -470,10 +470,10 @@
 <p>　值得一提的是，我们仅仅只显示地存储了一个根节点的指针，就完整地保存了一整颗树。下面是参考代码<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> size)</span> </span>&#123;	<span class="comment">//建立的线段树叶节点数为size</span></span><br><span class="line">	<span class="keyword">if</span> (size &lt; <span class="number">1</span>)<span class="keyword">return</span>;</span><br><span class="line">	Node *extra, *a, *b; </span><br><span class="line">       <span class="built_in">queue</span>&lt;Node*&gt;dat, add;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">		extra = newNode(); <span class="comment">//后面有对newNode()函数的解释.</span></span><br><span class="line">		extra-&gt;fr = extra-&gt;to = i; <span class="comment">//叶节点代表的区间就是[i,i].</span></span><br><span class="line">           <span class="built_in">cin</span> &gt;&gt; extra-&gt;val;	<span class="comment">//读入</span></span><br><span class="line">		dat.push(extra);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (; dat.size() &gt; <span class="number">1</span>; swap(dat, add)) &#123;</span><br><span class="line">		<span class="keyword">while</span> (dat.size() &gt; <span class="number">1</span>) &#123;</span><br><span class="line">           	<span class="comment">//提取两个待合并的区间</span></span><br><span class="line">			a = dat.front(); dat.pop();</span><br><span class="line">			b = dat.front(); dat.pop();</span><br><span class="line">               <span class="comment">//合并过程</span></span><br><span class="line">			extra = newNode();</span><br><span class="line">			extra-&gt;fr = a-&gt;fr; </span><br><span class="line">               extra-&gt;to = b-&gt;to; </span><br><span class="line">               extra-&gt;val = (a-&gt;val + b-&gt;val);</span><br><span class="line">			extra-&gt;lft = a; extra-&gt;rgt = b;</span><br><span class="line">               </span><br><span class="line">			add.push(extra);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (!dat.empty()) &#123;</span><br><span class="line">			add.push(dat.front()); dat.pop();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	root = dat.front();	<span class="comment">//保存根节点</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>　在这里，newNode()函数可以为我们申请一个Node的内存空间，Node就是这颗线段树中的节点。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> add;	<span class="comment">//懒标记，后面会介绍到</span></span><br><span class="line">	<span class="keyword">int</span> fr, to; <span class="comment">//区间</span></span><br><span class="line">       <span class="keyword">long</span> <span class="keyword">long</span> val;<span class="comment">//和</span></span><br><span class="line"></span><br><span class="line">	Node *lft, *rgt;<span class="comment">//左、右儿子</span></span><br><span class="line">&#125;;</span><br><span class="line">   </span><br><span class="line"><span class="function">Node* <span class="title">newNode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   	<span class="comment">//申请的一块内存空间由creatIt指向</span></span><br><span class="line">	Node* creatIt = (Node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));</span><br><span class="line">       <span class="comment">//为一部分变量赋初值</span></span><br><span class="line">	creatIt-&gt;add = <span class="number">0</span>;</span><br><span class="line">	creatIt-&gt;lft = creatIt-&gt;rgt = <span class="literal">nullptr</span>;</span><br><span class="line">	<span class="keyword">return</span> creatIt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>　调用newNode()与直接使用malloc()申请一块内存是没有任何区别的，只不过是在此基础之上，为一些变量赋了初值，这样，在调用newNode()申请内存空间的同时，一些变量就是已经有初值的了，一定程度上可以简化编程的过程。</p>
-<h4 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h4><p>　前面已经提到过，<em>查询时综合很多有用区间的信息</em>,得出给定区间的结果。在实际操作过程中，这可以递归完成。</p>
+<h4 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h4><p>　前面已经提到过，_查询时综合很多有用区间的信息_,得出给定区间的结果。在实际操作过程中，这可以递归完成。</p>
 <p>　如图。如果我们需要查询区间[1,4]中所有数之和。</p>
 <img src="/2018/07/08/%E7%BA%BF%E6%AE%B5%E6%A0%91/22838%5B1%5D.png" class="">
-<p>　那么红色的区间就是之前提到的<em>有用的区间</em>。</p>
+<p>　那么红色的区间就是之前提到的_有用的区间_。</p>
 <img src="/2018/07/08/%E7%BA%BF%E6%AE%B5%E6%A0%91/23024%5B1%5D.png" class="">
 <p>　将红色区间的val相加，得到的不就是区间[1,4]中所有数之和吗？仔细观察红色区间的fr和to，[1,4]不就是相当于[1,1]+[2,3]+[4,4]吗？在这里线段树的实用之处就在于没有累加[2,2]和[3,3]而是直接由[2,3]就得出了[2,2]+[3,3]，这样，倘若在这里维护的不是5个数而是50000个，那么查询大区间时线段树和朴素算法的时间差距将会相当明显。</p>
 <p>　具体怎么实现呢?我们假设需要查找的区间是[qfr,qto],使用一个指针*nowAt指向当前节点最后累加的和存在一个全局变量ans中。函数原型如下。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">query</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;qfr,<span class="keyword">const</span> <span class="keyword">int</span> &amp;qto,Node* nowAt)</span></span></span><br></pre></td></tr></table></figure></p>
@@ -517,7 +517,7 @@
 <p>像这样使用：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">segTr&lt;<span class="keyword">int</span>&gt; a;</span><br><span class="line">   a.build(<span class="number">10</span>);</span><br><span class="line">   a.add(<span class="number">1</span>,<span class="number">5</span>,<span class="number">30</span>);</span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt; a.query(<span class="number">1</span>,<span class="number">10</span>) &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">   <span class="keyword">if</span>(!a.isEmpty())</span><br><span class="line">   	a.clear();</span><br></pre></td></tr></table></figure>
 <hr>
-<h3 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h3><p>　在通常情况下，不会有题目专门以线段树作为考点来考我们，更多情况下，线段树是我们<em>优化程序的手段</em>。也就是说，我们在做题时通常是先想到一个很朴素的算法，如果这个算法时间复杂度不对，再来考虑能否用线段树优化。</p>
+<h3 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h3><p>　在通常情况下，不会有题目专门以线段树作为考点来考我们，更多情况下，线段树是我们_优化程序的手段_。也就是说，我们在做题时通常是先想到一个很朴素的算法，如果这个算法时间复杂度不对，再来考虑能否用线段树优化。</p>
 <p>　例如，在<a href="https://www.luogu.org/problemnew/show/P1502" target="_blank" rel="noopener">这道题目</a>中，我们在了解扫描线这种东西的原理之后，立马就会想到开一个二维数组，然后按照题目的要求，将二维数组填满，再扫一遍得到最大值，就是这道题的答案。</p>
 <p>　不过，这道题目数据大得可怕，以至于这么做可能连头几组数据也有些无能为力，即便是将二维数组优化为滚动的一维数组也还是时空都超。因此，我们可以总结一下导致时间爆炸的几个重要操作：</p>
 <ol>
@@ -1416,24 +1416,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

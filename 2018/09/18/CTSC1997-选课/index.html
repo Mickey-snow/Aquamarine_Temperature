@@ -437,7 +437,7 @@
       
         <p>题目是给定 $n$ 个不同的课程，每一门课都有一定学分，当然有一些课需要预先学习了某一门课才可以学习，现在学习 $m$ 门课，问最大的总学分。</p>
 <p>我们先对题目进行建模，记 $a \rightarrow b$ 代表学习 $b$ 需要先学习 $a$ ，那么就可以以没有任何先修课的课程为根，按照题意建立一棵树，对于树上任何一点，如果需要学习这门课程，必须学完它的所有祖先。需要注意的是，可能有非常多的课程都没有先修课，所以我们可以假定有一个结点 0 ，它没有任何先修课，但是原先没有先修课的课程需要先学习 0 号课程，换句话说，添加一个 0 号结点将森林转换为有根树，便于操作。当然，这个结点不计入总课程，也不能得到任何学分。</p>
-<p>状态定义为 $D<em>{r,i}$ 代表以 $r$ 为根的子树中选择 $i$ 门课程能够获得的最多学分，这里假定 $r$ 是没有先修课的，答案就是 $D</em>{0,m}$.</p>
+<p>状态定义为 $D_{r,i}$ 代表以 $r$ 为根的子树中选择 $i$ 门课程能够获得的最多学分，这里假定 $r$ 是没有先修课的，答案就是 $D_{0,m}$.</p>
 <p>过程还是使用搜索实现，假定当前结点为 $u$ 且 $u \rightarrow v$. 那么先递归地 dfs($v$)，然后转移方程是 </p>
 <script type="math/tex; mode=display">
 D_{u,i} = \max\{D_{u,i},\space D_{u,i-j}+D_{v,j}\} \space \space (i \ge j)</script><p>不要忘记，算完这一步之后得到的答案是错的，因为没有选择 $u$ 结点，解决的办法是将所有的</p>
@@ -1305,24 +1305,7 @@ D_{u,i} = D_{u,i-1}+val_u</script><p>$val_u$ 代表学习 $u$ 能够获得的学
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

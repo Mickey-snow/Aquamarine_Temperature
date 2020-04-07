@@ -441,7 +441,7 @@
 <li>$\forall\;u\to v\in E$, 将 $u$ 的左边与 $v$ 的右边相连，容量为 1.</li>
 </ol>
 <p>为了便于描述，我们将一条路径看作一个序列 $L=(u_1,u_2,u_3,\cdots,u_n)$. </p>
-<p>在这个模型中，类型 3 的路径描述了 $G$ 中所有有向边的关系，如果结点 $i$ 的左边与结点 $j$ 的右边相连，那么意味着 $i$ 和 $j$ 可以成为<strong>同一条路径中相邻的结点</strong>， 即 $u<em>t\in L\;,u</em>{t+1}\in L$. </p>
+<p>在这个模型中，类型 3 的路径描述了 $G$ 中所有有向边的关系，如果结点 $i$ 的左边与结点 $j$ 的右边相连，那么意味着 $i$ 和 $j$ 可以成为<strong>同一条路径中相邻的结点</strong>， 即 $u_t\in L\;,u_{t+1}\in L$. </p>
 <p>在此模型上运行最大流算法，可以发现，所有的流的产生都是相似的，即从源点 $s$ 出发，流经一个结点 $u$ 的左边，到达另外一个结点 $v$ 的右边，然后到达汇点 $t$. 这样的一条增广路描述了一个位置关系，即 $u$ 和 $v$ 处于同一条路径当中，而且 $v$ 紧跟在 $u$ 的后面。</p>
 <a id="more"></a>
 <p>所有的增广路便描述了最佳的方案，我们只用依次检查每个结点的左边，看看它的下一个结点是什么，最后维护一下，统一输出即可。</p>
@@ -1301,24 +1301,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

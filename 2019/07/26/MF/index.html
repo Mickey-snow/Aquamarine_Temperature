@@ -82,12 +82,12 @@
 
 
 
-<meta name="description" content="给定一个 $n$ 个结点 $m$ 条无向边的无向图，结点从 $1$ 到 $n$ 编号。每条边 $i$ 有两个权值 $ai,b_i$, 你需要找到一条路径 $T&#x3D;(a_1&#x3D;1,a_2,\cdots,a_t&#x3D;n)$，使得 $\max{1\leq i\leq t}{ai}+\max{1\leq i\leq t}{b_i}$ 最小。  我们将所有的边按照 $a$ 从小到大排序，一次加入一条边，同时看一下">
+<meta name="description" content="给定一个 $n$ 个结点 $m$ 条无向边的无向图，结点从 $1$ 到 $n$ 编号。每条边 $i$ 有两个权值 $a_i,b_i$, 你需要找到一条路径 $T&#x3D;(a_1&#x3D;1,a_2,\cdots,a_t&#x3D;n)$，使得 $\max_{1\leq i\leq t}\{a_i\}+\max_{1\leq i\leq t}\{b_i\}$ 最小。  我们将所有的边按照 $a$ 从小到大排序，一次加入一条">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NOI2014 魔法森林">
 <meta property="og:url" content="https://mickey-snow.github.io/2019/07/26/MF/index.html">
 <meta property="og:site_name" content="Mickey-snow&#39;s Blog">
-<meta property="og:description" content="给定一个 $n$ 个结点 $m$ 条无向边的无向图，结点从 $1$ 到 $n$ 编号。每条边 $i$ 有两个权值 $ai,b_i$, 你需要找到一条路径 $T&#x3D;(a_1&#x3D;1,a_2,\cdots,a_t&#x3D;n)$，使得 $\max{1\leq i\leq t}{ai}+\max{1\leq i\leq t}{b_i}$ 最小。  我们将所有的边按照 $a$ 从小到大排序，一次加入一条边，同时看一下">
+<meta property="og:description" content="给定一个 $n$ 个结点 $m$ 条无向边的无向图，结点从 $1$ 到 $n$ 编号。每条边 $i$ 有两个权值 $a_i,b_i$, 你需要找到一条路径 $T&#x3D;(a_1&#x3D;1,a_2,\cdots,a_t&#x3D;n)$，使得 $\max_{1\leq i\leq t}\{a_i\}+\max_{1\leq i\leq t}\{b_i\}$ 最小。  我们将所有的边按照 $a$ 从小到大排序，一次加入一条">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-07-25T16:00:00.000Z">
 <meta property="article:modified_time" content="2020-04-07T04:00:03.678Z">
@@ -432,7 +432,7 @@
       
 
       
-        <p>给定一个 $n$ 个结点 $m$ 条无向边的无向图，结点从 $1$ 到 $n$ 编号。每条边 $i$ 有两个权值 $a<em>i,b_i$, 你需要找到一条路径 $T=(a_1=1,a_2,\cdots,a_t=n)$，使得 $\max</em>{1\leq i\leq t}{a<em>i}+\max</em>{1\leq i\leq t}{b_i}$ 最小。</p>
+        <p>给定一个 $n$ 个结点 $m$ 条无向边的无向图，结点从 $1$ 到 $n$ 编号。每条边 $i$ 有两个权值 $a_i,b_i$, 你需要找到一条路径 $T=(a_1=1,a_2,\cdots,a_t=n)$，使得 $\max_{1\leq i\leq t}\{a_i\}+\max_{1\leq i\leq t}\{b_i\}$ 最小。</p>
 <hr>
 <p>我们将所有的边按照 $a$ 从小到大排序，一次加入一条边，同时看一下 $1\to n$ 路径中最大的 $b$ 是多少，更新答案即可。</p>
 <p>为了维护这样一个图，我们需要用到 LCT 来支持我们合并联通块，并且在出现环时断掉一条边，由于边有边权，我们考虑将每一条边上额外插入一个点，将边权转换为点权，我们额外创立的这些点的点权等于它原先边的边权，本来存在于图中的点点权为 $0$. 这样我们每个点再记录一下当前 Splay 层级最大点权的点是什么，查询直接像 Split 那样将 $1$ 和 $n$ 拎出来，询问最大点权即可。</p>
@@ -1293,24 +1293,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

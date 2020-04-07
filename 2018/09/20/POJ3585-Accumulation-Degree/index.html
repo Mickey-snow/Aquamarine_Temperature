@@ -442,7 +442,7 @@
 <p>假定我们已经到达了一个结点 $v$ ，如何更新它的一个儿子 $t$ 的 $f_t$ ?由于 $v$ 很可能有多个儿子，而 $f_t$ 又依赖于其它儿子的 $f$ 值，而其他儿子的 $f$ 值又依赖于 $f_t$. 很显然这样不可行。</p>
 <p>这个时候，我们需要两次 dfs 来求出所有点的 $f$ 值。虽然 $f$ 很不好求，但是我们可以间接地求得，具体地说，定义 $d_i$ 为以 $i$ 为根的子树以 $i$ 为源点能够流入汇点的总水量。可见</p>
 <script type="math/tex; mode=display">
-d_i = \sum_{t \in son_i} \min(d_t, \space val_{i\leftrightarrow t})</script><p>一次遍历即可求出说有点的 $d$ 值，接下来我们用另一次遍历求出 $f$ .假定当前结点为 $i$, $t$ 为 $i$ 的儿子。如果 $f<em>i$ 已经被正确地求出，那么 $f_t$ 可以分为向上和向下两部分。向下直接就是 $d_t$, 而向上稍微有点复杂，具体应该是 $f_i - i$流向 $t$ 的流量。也就是 $f_i - \min(d_t,\space val</em>{i\leftrightarrow t})$. 注意，由 $t$ 流向 $i$ 的流量不能超过 $val_{i\leftrightarrow t}$.</p>
+d_i = \sum_{t \in son_i} \min(d_t, \space val_{i\leftrightarrow t})</script><p>一次遍历即可求出说有点的 $d$ 值，接下来我们用另一次遍历求出 $f$ .假定当前结点为 $i$, $t$ 为 $i$ 的儿子。如果 $f_i$ 已经被正确地求出，那么 $f_t$ 可以分为向上和向下两部分。向下直接就是 $d_t$, 而向上稍微有点复杂，具体应该是 $f_i - i$流向 $t$ 的流量。也就是 $f_i - \min(d_t,\space val_{i\leftrightarrow t})$. 注意，由 $t$ 流向 $i$ 的流量不能超过 $val_{i\leftrightarrow t}$.</p>
 <script type="math/tex; mode=display">
 f_t = d_t+\min(val_{i\leftrightarrow t},\space f_i-\min (d_t,\space val_{i\leftrightarrow t}))</script><p>这样，两次 dfs ，$f_i$ 最大的结点 $i$ 即为流量最大时的源点， $f_i$ 即为所求答案。由于在 dfs 过程中 $f_i,\space d_i$ 每次更新都是 $O(1)$ 的，所以总时间复杂度为 $O(N)$.</p>
 <p>代码如下：</p>
@@ -1305,24 +1305,7 @@ f_t = d_t+\min(val_{i\leftrightarrow t},\space f_i-\min (d_t,\space val_{i\leftr
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

@@ -479,7 +479,7 @@
 
 </div></div>
 <h2 id="子集异或和第-k-小"><a href="#子集异或和第-k-小" class="headerlink" title="子集异或和第 $k$ 小"></a>子集异或和第 $k$ 小</h2><p>先将所有元素插入线性基，此时我们用于保存线性基的数组 $A$ 中可能存在部分元素为 0. 我们将 $A$ 中所有 0 去掉，生成另一个数组 $B$(这个过程中不能改变 $A$ 中元素相对顺序)，这样 $B$ 中所有的元素都存在于线性基中。(以下部分地方记线性基为 $B$)</p>
-<p>由于线性基是线性无关的，$\forall a\in\mathrm{span}(B)$ 都只有唯一一种方法选择 $B$ 中的若干个元素使得他们异或和为 $a$. 同时，$\forall (B<em>i)_j=1$, 不存在 $k$ 使得 $(B_k)_j=1$. 所以 $\forall j\not=i, B_i~\mbox{xor}~B_j&gt;B_i$, $\forall i&lt;|B|$, 令 $S_i={B_j|j\leq i}$, $B</em>{i+1}&gt;\mathrm{Xorsum}(S_i)$.</p>
+<p>由于线性基是线性无关的，$\forall a\in\mathrm{span}(B)$ 都只有唯一一种方法选择 $B$ 中的若干个元素使得他们异或和为 $a$. 同时，$\forall (B_i)_j=1$, 不存在 $k$ 使得 $(B_k)_j=1$. 所以 $\forall j\not=i, B_i~\mbox{xor}~B_j&gt;B_i$, $\forall i&lt;|B|$, 令 $S_i=\{B_j|j\leq i\}$, $B_{i+1}&gt;\mathrm{Xorsum}(S_i)$.</p>
 <p>如果我们需要得到第 $k$ 小的自己异或和，将 $k$ 二进制拆分，如果 $k_i=1$ ，将答案异或上 $B_i$.</p>
 <p>需要特别注意的是，如果我们一共往线性基中插入了 $n$ 个数，而最终 $|B|&lt;n$, 说明至少一个元素可以被其他元素表示，也就是说存在一个子集异或和为 0, 这时需要令 $k\leftarrow k-1$, 然后再计算答案。</p>
 <p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=3949" target="_blank" rel="noopener">模板题目链接</a></p>
@@ -1365,24 +1365,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

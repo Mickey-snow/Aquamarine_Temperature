@@ -446,11 +446,11 @@ B(x)=(b_0,b_1,b_2,\cdots,b_{n-1})</script><p>那么它们的乘积 $C(x)$ 的系
 <h2 id="系数表示法"><a href="#系数表示法" class="headerlink" title="系数表示法"></a>系数表示法</h2><p>即</p>
 <script type="math/tex; mode=display">
 A(x)=\sum_{i=0}^{n-1}a_ix^i</script><h2 id="点值表示法"><a href="#点值表示法" class="headerlink" title="点值表示法"></a>点值表示法</h2><p>这种表示方法在快速傅里叶变换中会使用到。基本思想是将 $A(x)$ 看作一条关于 $x$ 的函数，画在笛卡尔平面直角坐标系中，然后在当中取 $n$ 个不同的点，由它们的 $x,y$ 坐标值，即可确定这个多项式。</p>
-<p>即将一组不同的的 $(x<em>0,x_1,x_2,\cdots,x</em>{n-1})$ 代入 $A(x)$ 得到 $(y<em>0,y_1,y_2,\cdots,y</em>{n-1})$. 其中</p>
+<p>即将一组不同的的 $(x_0,x_1,x_2,\cdots,x_{n-1})$ 代入 $A(x)$ 得到 $(y_0,y_1,y_2,\cdots,y_{n-1})$. 其中</p>
 <script type="math/tex; mode=display">
 \forall i\in[0,n)\quad y_i=\sum_{j=0}^{n-1}a_jx_i^j</script><p>在这当中，已知点值表示求系数表示的过程称为<strong>插值</strong>。</p>
 <h1 id="多项式乘法"><a href="#多项式乘法" class="headerlink" title="多项式乘法"></a>多项式乘法</h1><p>之前提到过，如果是两个系数表示的多项式朴素地求它们的乘积时间复杂度为 $O(N^2)$. 而如果是点值表示法的多项式呢？</p>
-<p>如果将一组不同的的 $(x<em>0,x_1,x_2,\cdots,x</em>{n-1})$ 分别代入 $A(x),\,B(x)$ 得到 $(y<em>0,y_1,y_2,\cdots,y</em>{n-1}),\;(y^\prime<em>0,y^\prime_1,y^\prime_2,\cdots,y^\prime</em>{n-1})$. </p>
+<p>如果将一组不同的的 $(x_0,x_1,x_2,\cdots,x_{n-1})$ 分别代入 $A(x),\,B(x)$ 得到 $(y_0,y_1,y_2,\cdots,y_{n-1}),\;(y^\prime_0,y^\prime_1,y^\prime_2,\cdots,y^\prime_{n-1})$. </p>
 <p>那么 $C(x)=A(x)\times B(x)$ 的点值表达为</p>
 <script type="math/tex; mode=display">
 (y_0y^\prime_0,y_1y^\prime_1,y_2y^\prime_2,\cdots,y_{n-1}y^\prime_{n-1})</script><h1 id="复数"><a href="#复数" class="headerlink" title="复数"></a>复数</h1><p>形如 $a+bi$ 的数称为<strong>复数</strong>，复数的集合用 $C$ 表示，其中 $a$ 为<strong>实部</strong>，$b$ 为<strong>虚部</strong>，$i$ 为虚数单位，满足</p>
@@ -511,7 +511,7 @@ a_0\\a_1\\a_2\\\vdots\\a_{n-1}
 \end{bmatrix}=\begin{bmatrix}
 y_0\\y_1\\y_2\\\vdots\\y_{n-1}
 \end{bmatrix}</script><p>由于这个范德蒙德矩阵的逆矩阵是唯一的，所以这一组点值表达式对应的系数表达式也是唯一的。</p>
-<p>假定 $(y<em>0,y_1,y_2,\cdots,y</em>{n-1})$ 为 $(a<em>0,a_1,a_2,\cdots,a</em>{n-1})$ 经过傅里叶变换之后的点值表达式。另外一个向量 $(c<em>0,c_1,c_2,\cdots,c</em>{n-1})$ 是多项式 $B(x)=\sum_{i=0}^{n-1}a_ix^i$ 在 $(\omega_n^0,\omega_n^{-1},\omega_n^{-2},\cdots,\omega_n^{-(n-1)})$ 处的点值表达，满足</p>
+<p>假定 $(y_0,y_1,y_2,\cdots,y_{n-1})$ 为 $(a_0,a_1,a_2,\cdots,a_{n-1})$ 经过傅里叶变换之后的点值表达式。另外一个向量 $(c_0,c_1,c_2,\cdots,c_{n-1})$ 是多项式 $B(x)=\sum_{i=0}^{n-1}a_ix^i$ 在 $(\omega_n^0,\omega_n^{-1},\omega_n^{-2},\cdots,\omega_n^{-(n-1)})$ 处的点值表达，满足</p>
 <script type="math/tex; mode=display">
 \forall k\in[0,n),\quad c_k=\sum_{i=0}^{n-1}y_i(\omega_n^{-k})^i</script><p>那么可以推导出</p>
 <script type="math/tex; mode=display">
@@ -535,15 +535,15 @@ S(\omega_n^0)=n</script><p>在之前的式子中，</p>
 <script type="math/tex; mode=display">
 c_k=\sum_{j=0}^{n-1}a_j\left(\sum_{i=0}^{n-1}(\omega_n^{j-k})^i\right)\\
 c_k=na_k\\
-a_k=\frac{c_k}n</script><p>这样，我们就找到了点值与系数之间的关系，由于 $c<em>k=\sum</em>{i=0}^{n-1}y<em>i(\omega_n^{-k})^i$, 在这里一组 $(c_0,c_1,c_2,\cdots,c</em>{n-1})$ 就相当于将 $(\omega<em>n^0,\omega_n^{-1},\omega_n^{-2},\cdots,\omega_n^{-(n-1)})$ 带入到多项式 $Y(x)=\sum</em>{i=0}^{n-1} y_ix^i$ 中，与求值的过程是类似的，所以我们可以再次调用之前的函数，但是将所带入的单位复数根次数换成负的，即可求出所有的 $c_k$, 然后全部除以 $n$, 就完成了整个过程。</p>
+a_k=\frac{c_k}n</script><p>这样，我们就找到了点值与系数之间的关系，由于 $c_k=\sum_{i=0}^{n-1}y_i(\omega_n^{-k})^i$, 在这里一组 $(c_0,c_1,c_2,\cdots,c_{n-1})$ 就相当于将 $(\omega_n^0,\omega_n^{-1},\omega_n^{-2},\cdots,\omega_n^{-(n-1)})$ 带入到多项式 $Y(x)=\sum_{i=0}^{n-1} y_ix^i$ 中，与求值的过程是类似的，所以我们可以再次调用之前的函数，但是将所带入的单位复数根次数换成负的，即可求出所有的 $c_k$, 然后全部除以 $n$, 就完成了整个过程。</p>
 <h1 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h1><p>在具体的实现过程中，需要通过数个优化，进一步加快变换的速度。</p>
 <h2 id="蝴蝶操作"><a href="#蝴蝶操作" class="headerlink" title="蝴蝶操作"></a>蝴蝶操作</h2><p>注意到</p>
 <script type="math/tex; mode=display">
 A(\omega_n^k)=A_0\left(\omega_{\frac n2}^k\right)+\omega_n^kA_1\left(\omega_{\frac n2}^k\right)\\
-A\left(\omega_n^{k+\frac n2}\right)=A_0\left(\omega_{\frac n2}^k\right)-\omega_n^kA_1\left(\omega_{\frac n2}^k\right)</script><p>我们可以将 $\omega<em>n^kA_1\left(\omega</em>{\frac n2}^k\right)$ 的值记下来，省掉一步运算。</p>
+A\left(\omega_n^{k+\frac n2}\right)=A_0\left(\omega_{\frac n2}^k\right)-\omega_n^kA_1\left(\omega_{\frac n2}^k\right)</script><p>我们可以将 $\omega_n^kA_1\left(\omega_{\frac n2}^k\right)$ 的值记下来，省掉一步运算。</p>
 <h2 id="迭代实现"><a href="#迭代实现" class="headerlink" title="迭代实现"></a>迭代实现</h2><p>从表面上看，实现这个过程需要进行递归运算，这样难免会使用额外的空间，甚至耗费大量计算能力，这个递归的过程可以看做一个将原序列先划分再合并的过程。</p>
 <p>记一个整数 $a=\sum_{i\in \mathbb{N}^+}2^i$ 的二进制表示为 $a=0b\overline{a_1a_2a_3\cdots}$</p>
-<p>经过观察可以发现，原先在序列第 $i=0b\overline{a<em>1a_2\cdots a_m}$ 位置的数，递归到底层就到了位置 $j=0b\overline{a_ma</em>{m-1}\cdots a_1}$. 于是，我们可以预处理一个数组 $r_i$ 记录下原序列中位置为 $i$ 的数，递归到底层的位置。这个数组递推公式如下：</p>
+<p>经过观察可以发现，原先在序列第 $i=0b\overline{a_1a_2\cdots a_m}$ 位置的数，递归到底层就到了位置 $j=0b\overline{a_ma_{m-1}\cdots a_1}$. 于是，我们可以预处理一个数组 $r_i$ 记录下原序列中位置为 $i$ 的数，递归到底层的位置。这个数组递推公式如下：</p>
 <script type="math/tex; mode=display">
 r_i=(r_{\frac i2}>>1)|\left((i\&1)<<l-1\right)</script><p>其中 $l=\log_2n$. 这样做是正确的，可以用数学归纳法证明。首先，$r_0=0$, 假定 $i-1$ 之前的位置已经正确计算，那么</p>
 <script type="math/tex; mode=display">
@@ -1445,24 +1445,7 @@ r_{\frac i2}>>1=0b\overline{0a_{m-1}a_{m-2}\cdots a_1}\\
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

@@ -436,7 +436,7 @@
 <a id="more"></a>
 <hr>
 <p>考虑在没有修改的情况下，如何求出最优点 $v$. 可以发现，如果当前位于一个点 $u$, 它的一个儿子的子树点权和大于 $u$ 子树权值和的一半，那么最优点一定位于这个儿子的子树中。</p>
-<p>接下来考虑修改操作，对于每一个点 $i$ 维护 $d<em>i$ 代表 $i$ 的点权，$sd_i$ 代表 $i$ 子树 $S_i$ 的点权和，$sum_i$ 代表 $\sum</em>{j\in S<em>i}dist(j\to i)\times d_j$, $sumf_i$ 代表 $\sum</em>{j\in S_i}dist(j\to fa_i)\times d_j$. 如果修改的结点是 $k$, 那么只用将前后点权的变换量 $\Delta d_k$ 记录下来，接着从 $k$ 逐步跳到根，顺带修改这几个变量即可。</p>
+<p>接下来考虑修改操作，对于每一个点 $i$ 维护 $d_i$ 代表 $i$ 的点权，$sd_i$ 代表 $i$ 子树 $S_i$ 的点权和，$sum_i$ 代表 $\sum_{j\in S_i}dist(j\to i)\times d_j$, $sumf_i$ 代表 $\sum_{j\in S_i}dist(j\to fa_i)\times d_j$. 如果修改的结点是 $k$, 那么只用将前后点权的变换量 $\Delta d_k$ 记录下来，接着从 $k$ 逐步跳到根，顺带修改这几个变量即可。</p>
 <p>由于树形结构不一定平衡，考虑在点分树上进行这两个操作。修改基本思路还是一样。查询的时候如果需要将当前最优点从 $u$ 转移到 $v$ ($u,\ v$ 在点分树上有一条边直接相连)，那么记点 $w$ 为原树上 $u\to v$ 中间一个点，且原树上存在直接点接 $u\to w$ 的边。将 $d_w$ 增加 $sd_u-sd_v$, 答案加上 $dist(u\to w)\times(sd_u-sd_v)+sum_u-sumf_v$. 之后从 $w$ 开始将之前点权的修改逐步上跳更新到 $v$. 最终如果找到罗最优点 $v$, 那么还需要将答案再加上 $sum_v$.</p>
 <hr>
 <p>时间复杂度为 $O(M\log^2 N)$.</p>
@@ -1295,24 +1295,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

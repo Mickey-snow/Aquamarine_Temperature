@@ -82,12 +82,12 @@
 
 
 
-<meta name="description" content="首先，我们可以发现一个很有用的信息，就是到达一个房间 $i$ 之后如果不能够直接走向 $i + 1$ (奇数次到达 $i$ ) ，那么之后我们只能够去一个拥有比 $i$ 小的 序号的房间，这为我们提供了动态规划的思路。 我们先开一个二维数组 $Dp$ , $Dp{i,j}$ 代表从 $i$ 号房间走到 $j$ 号房间需要经过的门的数量，$Dp$ 仅当 $i \leq j$ 时才有意义。如果房间从">
+<meta name="description" content="首先，我们可以发现一个很有用的信息，就是到达一个房间 $i$ 之后如果不能够直接走向 $i + 1$ (奇数次到达 $i$ ) ，那么之后我们只能够去一个拥有比 $i$ 小的 序号的房间，这为我们提供了动态规划的思路。 我们先开一个二维数组 $Dp$ , $Dp_{i,j}$ 代表从 $i$ 号房间走到 $j$ 号房间需要经过的门的数量，$Dp$ 仅当 $i \leq j$ 时才有意义。如果房间从">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【题解】CF407B">
 <meta property="og:url" content="https://mickey-snow.github.io/2018/08/19/CF407B%20Long%20Path/index.html">
 <meta property="og:site_name" content="Mickey-snow&#39;s Blog">
-<meta property="og:description" content="首先，我们可以发现一个很有用的信息，就是到达一个房间 $i$ 之后如果不能够直接走向 $i + 1$ (奇数次到达 $i$ ) ，那么之后我们只能够去一个拥有比 $i$ 小的 序号的房间，这为我们提供了动态规划的思路。 我们先开一个二维数组 $Dp$ , $Dp{i,j}$ 代表从 $i$ 号房间走到 $j$ 号房间需要经过的门的数量，$Dp$ 仅当 $i \leq j$ 时才有意义。如果房间从">
+<meta property="og:description" content="首先，我们可以发现一个很有用的信息，就是到达一个房间 $i$ 之后如果不能够直接走向 $i + 1$ (奇数次到达 $i$ ) ，那么之后我们只能够去一个拥有比 $i$ 小的 序号的房间，这为我们提供了动态规划的思路。 我们先开一个二维数组 $Dp$ , $Dp_{i,j}$ 代表从 $i$ 号房间走到 $j$ 号房间需要经过的门的数量，$Dp$ 仅当 $i \leq j$ 时才有意义。如果房间从">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-08-18T16:00:00.000Z">
 <meta property="article:modified_time" content="2020-04-07T04:00:03.671Z">
@@ -433,14 +433,14 @@
 
       
         <p>首先，我们可以发现一个很有用的信息，就是到达一个房间 $i$ 之后如果不能够直接走向 $i + 1$ (奇数次到达 $i$ ) ，那么之后我们只能够去一个拥有比 $i$ 小的 序号的房间，这为我们提供了动态规划的思路。</p>
-<p>我们先开一个二维数组 $Dp$ , $Dp<em>{i,j}$ 代表从 $i$ 号房间走到 $j$ 号房间需要经过的门的数量，$Dp$ 仅当 $i \leq j$ 时才有意义。如果房间从 1 开始编号，那么答案就是 $Dp</em>{1,n + 1} - 1$ ，边界条件为 $Dp_{i,i} = 1$.</p>
+<p>我们先开一个二维数组 $Dp$ , $Dp_{i,j}$ 代表从 $i$ 号房间走到 $j$ 号房间需要经过的门的数量，$Dp$ 仅当 $i \leq j$ 时才有意义。如果房间从 1 开始编号，那么答案就是 $Dp_{1,n + 1} - 1$ ，边界条件为 $Dp_{i,i} = 1$.</p>
 <p>到这里可能有人会有疑问：这两个1是怎么来的。 事实上，$Dp_{i,i} = 1$ 代表从 $i$ 号房间走到 $i$ 号房间，而并不是呆在原地不动，这也是为什么后面的答案算出来也需要减去1的原因。</p>
 <h4 id="第一次到达-i-i-gt-1-之前，一定到达了-i-1-号房间正好-2-次。"><a href="#第一次到达-i-i-gt-1-之前，一定到达了-i-1-号房间正好-2-次。" class="headerlink" title="第一次到达 $i | i &gt; 1$ 之前，一定到达了 $i - 1$ 号房间正好 2 次。"></a>第一次到达 $i | i &gt; 1$ 之前，一定到达了 $i - 1$ 号房间正好 2 次。</h4><p>证明：第一次到达 $i$ 号房间之前，一定没有到达过$ i + 1 $。 当第一个达到 $i$ 的时候，走向一个房间 $j$ ,而且 $j \leq i$ ,我们再经过一连串的房间，它们都小于 $i + 1$ ,直到第二次到达 $i$ ，才可以径直走向 $i + 1$.</p>
 <p>按照这个逻辑，转移方程如下：</p>
 <pre><code>$$ Dp_{fr,to} = Dp_{fr,to - 1} + Dp_{next_{to - 1}, to-1} + 1 $$ 
 </code></pre><p>  有了转移方程，但是<del>由于我太垃圾了</del>看不出来计算顺序，所以我们可以使用记忆化搜索，$Dp_{fr,to}$ 通过以下的函数得到。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">static Int64 Solve(int fr,int to) &#123;</span><br><span class="line">	if(fr &#x3D;&#x3D; to) return Global.Dp[fr, to] &#x3D; 1;</span><br><span class="line">	if(Global.vis[fr, to]) return Global.Dp[fr, to];</span><br><span class="line">	else &#123; Global.vis[fr, to] &#x3D; true;Global.Dp[fr, to] &#x3D; 0; &#125;</span><br><span class="line"></span><br><span class="line">	return (Global.Dp[fr, to] &#x3D; (Solve(fr, to - 1) + Solve(Global.nxt[to - 1], to - 1) + 1) % 1000000007);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 在这份代码中 Global 是全局函数类名， $vis<em>{i,j}$ 代表有没有计算过，当然也可以用 $Dp</em>{i,j} = -1$ 达到相同的效果。</p>
+<p> 在这份代码中 Global 是全局函数类名， $vis_{i,j}$ 代表有没有计算过，当然也可以用 $Dp_{i,j} = -1$ 达到相同的效果。</p>
 <p>时空复杂度为 $O(N^2)$  ，但是由于有些状态搜索不到，所以应该实际上比这个小一些？</p>
 <p>完整的代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line"></span><br><span class="line">namespace CF407B</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">		public class Global &#123;</span><br><span class="line">			public static Int64[,] Dp;</span><br><span class="line">			public static int[] nxt;</span><br><span class="line">			public static bool[,] vis;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">			int totRooms &#x3D; Convert.ToInt32(Console.ReadLine());</span><br><span class="line">			string[] div &#x3D; Console.ReadLine().Split(&#39; &#39;);</span><br><span class="line"></span><br><span class="line">			Global.nxt &#x3D; new int[totRooms];</span><br><span class="line">			for(int i &#x3D; 0; i &lt; totRooms; i++) Global.nxt[i] &#x3D; Convert.ToInt32(div[i]) - 1;</span><br><span class="line"></span><br><span class="line">			Global.Dp &#x3D; new Int64[totRooms + 1, totRooms + 1];</span><br><span class="line">			Global.vis &#x3D; new bool[totRooms + 1, totRooms + 1];</span><br><span class="line">			for(int i &#x3D; 0; i &lt;&#x3D; totRooms; i++) for(int j &#x3D; 0; j &lt;&#x3D; totRooms; j++) Global.vis[i, j] &#x3D; false;</span><br><span class="line"></span><br><span class="line">			Console.WriteLine((Solve(0, totRooms) - 1).ToString());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">		static Int64 Solve(int fr,int to) &#123;</span><br><span class="line">			if(fr &#x3D;&#x3D; to) return Global.Dp[fr, to] &#x3D; 1;</span><br><span class="line">			if(Global.vis[fr, to]) return Global.Dp[fr, to];</span><br><span class="line">			else &#123; Global.vis[fr, to] &#x3D; true;Global.Dp[fr, to] &#x3D; 0; &#125;</span><br><span class="line"></span><br><span class="line">			return (Global.Dp[fr, to] &#x3D; (Solve(fr, to - 1) + Solve(Global.nxt[to - 1], to - 1) + 1) % 1000000007);</span><br><span class="line">		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1323,24 +1323,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

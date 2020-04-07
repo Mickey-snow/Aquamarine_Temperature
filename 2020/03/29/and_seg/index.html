@@ -82,12 +82,12 @@
 
 
 
-<meta name="description" content="Codeforces 1327 F.AND Segments 给定 $m$ 个限制条件，第 $i$ 个形如 $(l_i,r_i,x_i)$. 统计长度为 $n$ 的数列 $A$, 满足  $\forall1\leq i\leq n$, $0\leq a_i&lt; 2^k$. $\forall1\leq i\leq m$, $a{l_i}\&amp;a{li+1}\&amp;\cdots\&amp;amp">
+<meta name="description" content="Codeforces 1327 F.AND Segments 给定 $m$ 个限制条件，第 $i$ 个形如 $(l_i,r_i,x_i)$. 统计长度为 $n$ 的数列 $A$, 满足  $\forall1\leq i\leq n$, $0\leq a_i&lt; 2^k$. $\forall1\leq i\leq m$, $a_{l_i}\&amp;a_{l_i+1}\&amp;\cdots\&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CF1327F AND Segments">
 <meta property="og:url" content="https://mickey-snow.github.io/2020/03/29/and_seg/index.html">
 <meta property="og:site_name" content="Mickey-snow&#39;s Blog">
-<meta property="og:description" content="Codeforces 1327 F.AND Segments 给定 $m$ 个限制条件，第 $i$ 个形如 $(l_i,r_i,x_i)$. 统计长度为 $n$ 的数列 $A$, 满足  $\forall1\leq i\leq n$, $0\leq a_i&lt; 2^k$. $\forall1\leq i\leq m$, $a{l_i}\&amp;a{li+1}\&amp;\cdots\&amp;amp">
+<meta property="og:description" content="Codeforces 1327 F.AND Segments 给定 $m$ 个限制条件，第 $i$ 个形如 $(l_i,r_i,x_i)$. 统计长度为 $n$ 的数列 $A$, 满足  $\forall1\leq i\leq n$, $0\leq a_i&lt; 2^k$. $\forall1\leq i\leq m$, $a_{l_i}\&amp;a_{l_i+1}\&amp;\cdots\&amp;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-28T16:00:00.000Z">
 <meta property="article:modified_time" content="2020-04-07T04:00:03.686Z">
@@ -437,17 +437,17 @@
 <p>统计长度为 $n$ 的数列 $A$, 满足</p>
 <ul>
 <li>$\forall1\leq i\leq n$, $0\leq a_i&lt; 2^k$.</li>
-<li>$\forall1\leq i\leq m$, $a<em>{l_i}\&amp;a</em>{l<em>i+1}\&amp;\cdots\&amp;a</em>{r_i}=x_i$.</li>
+<li>$\forall1\leq i\leq m$, $a_{l_i}\&amp;a_{l_i+1}\&amp;\cdots\&amp;a_{r_i}=x_i$.</li>
 </ul>
 <a id="more"></a>
 <hr>
 <p>由于各个二进制位之间互不影响，因此单独考虑每一个二进制位，最终的答案是这 $K$ 个二进制位答案的乘积。</p>
 <p>对于一个二进制位而言，问题转化成了：统计满足限制条件的长度为 $n$ 的 01 数列个数，每一个限制条件 $i$ 根据 $x_i$ 二进制表示下当前考虑位置的值，决定这个条件限制的是 $l_i-r_i$ 中间全部是 1, 还是 $l_i-r_i$ 中间有至少一个 0.</p>
-<p>考虑用动态规划解决这个问题。先预处理出一个数组 $p$, $p<em>i$ 代表仅考虑所有 $r_j&lt;i$ 的条件 $j$, 第一个 0 最早可能出现的位置，换言之就是这些条件中最大的 $l_j$. 定义状态 $D</em>{i,j}$ 代表当前考虑到第 $i$ 位，最后一个 0 出现在第 $j$ 位的方案数，转移时</p>
+<p>考虑用动态规划解决这个问题。先预处理出一个数组 $p$, $p_i$ 代表仅考虑所有 $r_j&lt;i$ 的条件 $j$, 第一个 0 最早可能出现的位置，换言之就是这些条件中最大的 $l_j$. 定义状态 $D_{i,j}$ 代表当前考虑到第 $i$ 位，最后一个 0 出现在第 $j$ 位的方案数，转移时</p>
 <ul>
-<li>若 $j&lt;p<em>i$, 那么此后一定还需要有 0 才能满足要求，$D</em>{i,j}=0$.</li>
-<li>若 $p<em>i\leq j&lt;i$, 上一位所有满足要求的方案依然合法，同时无法构造出更多方案，$D</em>{i,j}=D{i-1,j}$.</li>
-<li>若 $j=i$, 这时讨论是否有条件限制了第 $i$ 位必须是 1. 如果有 $D<em>{i,j}=0$, 否则 $D</em>{i,j}=\sum<em>{k=j}^{i-1}D</em>{i-1,j}$.</li>
+<li>若 $j&lt;p_i$, 那么此后一定还需要有 0 才能满足要求，$D_{i,j}=0$.</li>
+<li>若 $p_i\leq j&lt;i$, 上一位所有满足要求的方案依然合法，同时无法构造出更多方案，$D_{i,j}=D{i-1,j}$.</li>
+<li>若 $j=i$, 这时讨论是否有条件限制了第 $i$ 位必须是 1. 如果有 $D_{i,j}=0$, 否则 $D_{i,j}=\sum_{k=j}^{i-1}D_{i-1,j}$.</li>
 </ul>
 <p>状态中的第一维可以滚动处理，第二种情况可以不管，然后只需维护一个指针和一个区间和就可以在 $O(N)$ 的时间复杂度内完成单次 DP. 答案是 $D_{n+1,n+1}$.</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">auto</span> MOD = <span class="number">998244353L</span>L;</span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">auto</span> MAXN = (<span class="keyword">int</span>)<span class="number">5e5</span>+<span class="number">50</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">long</span> <span class="keyword">long</span>&amp; <span class="title">s_Module</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span>&amp; a, <span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span>&amp; t)</span></span>&#123; <span class="keyword">return</span> (a+=t) &gt;= MOD ? a-=MOD : a; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> fr[MAXN],to[MAXN],sand[MAXN];</span><br><span class="line"><span class="keyword">int</span> dcov[MAXN],pos[MAXN];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> D[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> totLen,totOptn,totBits;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cin</span>&gt;&gt;totLen&gt;&gt;totBits&gt;&gt;totOptn; ++totLen;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;totOptn;++i)&#123; <span class="built_in">std</span>::<span class="built_in">cin</span>&gt;&gt;fr[i]&gt;&gt;to[i]&gt;&gt;sand[i]; ++to[i]; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">1L</span>L,cnt,sum; <span class="keyword">int</span> cov,now;</span><br><span class="line">    <span class="keyword">while</span>(totBits--)&#123;</span><br><span class="line">        <span class="built_in">memset</span>(pos,<span class="number">0</span>,<span class="keyword">sizeof</span>(pos)); <span class="built_in">memset</span>(dcov,<span class="number">0</span>,<span class="keyword">sizeof</span>(dcov)); <span class="built_in">memset</span>(D,<span class="number">0</span>,<span class="keyword">sizeof</span>(D));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;totOptn;++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(sand[i] &amp; <span class="number">1</span>)&#123; ++dcov[fr[i]]; --dcov[to[i]]; &#125;</span><br><span class="line">            <span class="keyword">else</span> pos[to[i]] = <span class="built_in">std</span>::max(pos[to[i]], fr[i]);</span><br><span class="line">            sand[i] &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=totLen;++i) pos[i] = <span class="built_in">std</span>::max(pos[i], pos[i<span class="number">-1</span>]);</span><br><span class="line"></span><br><span class="line">        now = cov = <span class="number">0</span>; sum = D[<span class="number">0</span>] = <span class="number">1L</span>L;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=totLen;++i)&#123;</span><br><span class="line">            cov += dcov[i];</span><br><span class="line">            <span class="keyword">while</span>(now &lt; pos[i])&#123; s_Module(sum, MOD-D[now]);  D[now++] = <span class="number">0</span>; &#125;</span><br><span class="line">            D[i] = cov&gt;<span class="number">0</span> ? <span class="number">0L</span>L : sum;</span><br><span class="line">            s_Module(sum, D[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        (ans *= D[totLen]) %= MOD;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1305,24 +1305,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

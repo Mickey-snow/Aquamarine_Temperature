@@ -82,12 +82,12 @@
 
 
 
-<meta name="description" content="CF1029C Maximal Intersection : 暴力 题目大意：给定 $n$ 个区间，你需要在当中去掉一个，求剩下区间交的长度。这里长度是指区间右端点数值减去左端点，例如区间 $[1,2]$ 长度为 $1$.区间交指区间相交的部分，例如区间 $[2,5]$ 和区间 $[3,8]$ 的区间交为 $[3,5]$. 在这题中，$n$ 高达 $3 \times 10^5$ ，很容易让人想到贪">
+<meta name="description" content="CF1029C _Maximal Intersection_ : 暴力 题目大意：给定 $n$ 个区间，你需要在当中去掉一个，求剩下区间交的长度。这里长度是指区间右端点数值减去左端点，例如区间 $[1,2]$ 长度为 $1$.区间交指区间相交的部分，例如区间 $[2,5]$ 和区间 $[3,8]$ 的区间交为 $[3,5]$. 在这题中，$n$ 高达 $3 \times 10^5$ ，很容易让人想">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【题解】CF1029C">
 <meta property="og:url" content="https://mickey-snow.github.io/2018/08/25/CF1029C/index.html">
 <meta property="og:site_name" content="Mickey-snow&#39;s Blog">
-<meta property="og:description" content="CF1029C Maximal Intersection : 暴力 题目大意：给定 $n$ 个区间，你需要在当中去掉一个，求剩下区间交的长度。这里长度是指区间右端点数值减去左端点，例如区间 $[1,2]$ 长度为 $1$.区间交指区间相交的部分，例如区间 $[2,5]$ 和区间 $[3,8]$ 的区间交为 $[3,5]$. 在这题中，$n$ 高达 $3 \times 10^5$ ，很容易让人想到贪">
+<meta property="og:description" content="CF1029C _Maximal Intersection_ : 暴力 题目大意：给定 $n$ 个区间，你需要在当中去掉一个，求剩下区间交的长度。这里长度是指区间右端点数值减去左端点，例如区间 $[1,2]$ 长度为 $1$.区间交指区间相交的部分，例如区间 $[2,5]$ 和区间 $[3,8]$ 的区间交为 $[3,5]$. 在这题中，$n$ 高达 $3 \times 10^5$ ，很容易让人想">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://mickey-snow.github.io/2018/08/25/CF1029C/30378%5B1%5D.png">
 <meta property="article:published_time" content="2018-08-24T16:00:00.000Z">
@@ -434,7 +434,7 @@
       
 
       
-        <p><a href="http://codeforces.com/problemset/problem/2029/C" target="_blank" rel="noopener">CF1029C</a> <em>Maximal Intersection</em> : 暴力</p>
+        <p><a href="http://codeforces.com/problemset/problem/2029/C" target="_blank" rel="noopener">CF1029C</a> _Maximal Intersection_ : 暴力</p>
 <p>题目大意：给定 $n$ 个区间，你需要在当中去掉一个，求剩下区间交的长度。这里长度是指区间右端点数值减去左端点，例如区间 $[1,2]$ 长度为 $1$.区间交指区间相交的部分，例如区间 $[2,5]$ 和区间 $[3,8]$ 的区间交为 $[3,5]$.</p>
 <p>在这题中，$n$ 高达 $3 \times 10^5$ ，很容易让人想到贪心，去掉区间长度最小的。但是这么做是错误的，因为这个最小的区间位置是不确定的，很有可能是这样的情况：</p>
 <img src="/2018/08/25/CF1029C/30378%5B1%5D.png" class="">
@@ -445,7 +445,7 @@
 <p>cg是为了保存一个区间写的结构体。记合并区间 $A$ 和 $B$ 为 $A \bigotimes B$ .</p>
 <p>当我们合并一堆区间的时候，无论按照什么顺序合并，结果一定一样。换句话说，$\bigotimes$ 运算满足交换律：</p>
 <script type="math/tex; mode=display">A \bigotimes B \bigotimes C = A \bigotimes C \bigotimes B</script><p>假设题目给定的区间为 $b_i$ ，那么 </p>
-<script type="math/tex; mode=display">a_i = b_0 \bigotimes \cdots \bigotimes b_{i-1} \bigotimes b_{i+1} \bigotimes \cdots \bigotimes b_{n-1}</script><p>将这个过程分为两部分，第一部分为所有 $b<em>j | j &lt; i$ ,第二部分为所有 $b_j | j &gt; i$ .可以发现我们没有必要单独为每一个 $a$ 计算一遍这个过程，将 $a_i$ 的第一部分添加一个 $b_i$ 就是 $a</em>{i+1}$ 的第一部分了，按照这个思路，计算所有的第一部分时间复杂度为 $O(N)$, 第二部分也是。</p>
+<script type="math/tex; mode=display">a_i = b_0 \bigotimes \cdots \bigotimes b_{i-1} \bigotimes b_{i+1} \bigotimes \cdots \bigotimes b_{n-1}</script><p>将这个过程分为两部分，第一部分为所有 $b_j | j &lt; i$ ,第二部分为所有 $b_j | j &gt; i$ .可以发现我们没有必要单独为每一个 $a$ 计算一遍这个过程，将 $a_i$ 的第一部分添加一个 $b_i$ 就是 $a_{i+1}$ 的第一部分了，按照这个思路，计算所有的第一部分时间复杂度为 $O(N)$, 第二部分也是。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cg now = *seg;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; totSeg; i++) &#123;</span><br><span class="line">	arr[i] = now;</span><br><span class="line">	now = Range(now, seg[i]);</span><br><span class="line">&#125;</span><br><span class="line">now = seg[totSeg - <span class="number">1</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = totSeg - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">	arr[i] = Range(arr[i], now);</span><br><span class="line">	now = Range(now, seg[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>代码中 $arr$ 就是之前提到的 $a$ 数组， $seg$ 就是之前提到的 $b$ 数组。</p>
 <p>执行完这一过程，$a$ 数组即为满足条件的数组。最后再扫一遍，求出一个最大值即可。总的时间复杂度仍然为 $O(N)$.</p>
@@ -1304,24 +1304,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

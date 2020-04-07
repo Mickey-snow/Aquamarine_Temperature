@@ -448,7 +448,7 @@
 <h2 id="选排列"><a href="#选排列" class="headerlink" title="选排列"></a>选排列</h2><p>即为 $\mathbb{P}_n^r$. 满足：</p>
 <script type="math/tex; mode=display">
 \mathbb{P}_n^r=\prod_{i=n-r+1}^n i=\frac{n!}{(n-r)!}\\
-\mathbb{P}_n^n = n!</script><h2 id="错位排列"><a href="#错位排列" class="headerlink" title="错位排列"></a>错位排列</h2><p>有一个集合 $D_n = {1,2,\cdots,n}$ , 如果 $(a_1,a_2,\cdots,a_n)$ 为 $D_n$ 的一个全排列，而且 $\forall i\in{1,2,3,\cdots,n}$ ,都有 $a_i\not= i$, 那么 $(a_1,a_2,\cdots,a_n)$ 为 $D_n$ 的一个错位排列，总的方案数记为 $\mathbb{D}_n$.</p>
+\mathbb{P}_n^n = n!</script><h2 id="错位排列"><a href="#错位排列" class="headerlink" title="错位排列"></a>错位排列</h2><p>有一个集合 $D_n = \{1,2,\cdots,n\}$ , 如果 $(a_1,a_2,\cdots,a_n)$ 为 $D_n$ 的一个全排列，而且 $\forall i\in\{1,2,3,\cdots,n\}$ ,都有 $a_i\not= i$, 那么 $(a_1,a_2,\cdots,a_n)$ 为 $D_n$ 的一个错位排列，总的方案数记为 $\mathbb{D}_n$.</p>
 <script type="math/tex; mode=display">
 \mathbb{D}_n=n!\cdot\left(\sum_{i=0}^n\frac{(-1)^i}{i!}\right)</script><h2 id="圆排列"><a href="#圆排列" class="headerlink" title="圆排列"></a>圆排列</h2><p>从 $n$ 个元素中选出 $r$ 个元素，不分首尾地围成一个圆圈的排列叫做圆排列，其排列方案数为 $\frac{\mathbb{P}_n^r}{r}$ . 如果 $r=n$, 则有 $(n-1)!$ 种。</p>
 
@@ -1330,24 +1330,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

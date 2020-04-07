@@ -438,7 +438,7 @@
 <hr>
 <p>大致意思是，一个集合 $H$ 满足 $\forall a\in N$, $4a+1\in H$. 在 $H$ 集合中的一个数为 <strong>H-素数</strong> 的条件是在 $H$ 集合中只有这个数和 1 能够将其整除。特别地，1 不是 H-素数。两个不同的H-素数的乘积是一个 <strong>H-合成数</strong> 。求出不大于 $n$ 的 H-合成数 的个数。</p>
 <hr>
-<p>这题说了这么多新定义，实质上就是找到所有的 H-素数，然后两两相乘，最后打个表 $f<em>i = f</em>{i-1}+isHComposite_i$. 这样 $f_i$ 就是不大于 $i$ 的 H-合成数 的个数。</p>
+<p>这题说了这么多新定义，实质上就是找到所有的 H-素数，然后两两相乘，最后打个表 $f_i = f_{i-1}+isHComposite_i$. 这样 $f_i$ 就是不大于 $i$ 的 H-合成数 的个数。</p>
 <p>筛素数与在整数集合中的做法几乎一样只用特别注意一下筛的时候只考虑 H-数 即可。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 1000002</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> isPrime[MAXN];</span><br><span class="line"><span class="keyword">int</span> prime[MAXN], cnt = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> Sum[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(isPrime, <span class="literal">true</span>, <span class="keyword">sizeof</span>(isPrime));</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">5</span>; i &lt;= MAXN; i += <span class="number">4</span>)</span><br><span class="line">		<span class="keyword">if</span> (isPrime[i]) &#123;</span><br><span class="line">			prime[cnt++] = i;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = i * <span class="number">5</span>; j &lt;= MAXN; j += (i &lt;&lt; <span class="number">2</span>))</span><br><span class="line">				isPrime[j] = <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">memset</span>(isPrime, <span class="literal">false</span>, <span class="keyword">sizeof</span>(isPrime));</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; cnt; i++)</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; cnt &amp;&amp; (<span class="keyword">long</span> <span class="keyword">long</span>)prime[i] * (<span class="keyword">long</span> <span class="keyword">long</span>)prime[j] &lt;= MAXN; j++)</span><br><span class="line">			isPrime[prime[i] * prime[j]] = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= MAXN; i++)</span><br><span class="line">		Sum[i] = Sum[i - <span class="number">1</span>] + isPrime[i];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n) == <span class="number">1</span> &amp;&amp; n)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>, n, Sum[n]);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//system("pause");</span></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1299,24 +1299,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

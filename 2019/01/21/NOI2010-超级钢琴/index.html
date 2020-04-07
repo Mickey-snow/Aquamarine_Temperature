@@ -82,12 +82,12 @@
 
 
 
-<meta name="description" content="题目在这里.(LG) 这道题目的大致意思是，给定一个序列 $a$, 你需要求出它最大的 $k$ 个长度介于 $[L,R]$ 之间的子序列的所有元素之和。 记 $si&#x3D;\sum{i&#x3D;1}^iai$. 对于一个三元组 $(l,L,R)$ 描述一个候选区间的左端点为 $l$, 右端点必须在 $[L,R]$ 之间。这时对于这个区间根据贪心的思想我们应该选择一个最大的 $a_i\ (i\in[L,R])$.">
+<meta name="description" content="题目在这里.(LG) 这道题目的大致意思是，给定一个序列 $a$, 你需要求出它最大的 $k$ 个长度介于 $[L,R]$ 之间的子序列的所有元素之和。 记 $s_i&#x3D;\sum_{i&#x3D;1}^ia_i$. 对于一个三元组 $(l,L,R)$ 描述一个候选区间的左端点为 $l$, 右端点必须在 $[L,R]$ 之间。这时对于这个区间根据贪心的思想我们应该选择一个最大的 $a_i\ (i\in[L,R]">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【题解】NOI2010 超级钢琴">
 <meta property="og:url" content="https://mickey-snow.github.io/2019/01/21/NOI2010-%E8%B6%85%E7%BA%A7%E9%92%A2%E7%90%B4/index.html">
 <meta property="og:site_name" content="Mickey-snow&#39;s Blog">
-<meta property="og:description" content="题目在这里.(LG) 这道题目的大致意思是，给定一个序列 $a$, 你需要求出它最大的 $k$ 个长度介于 $[L,R]$ 之间的子序列的所有元素之和。 记 $si&#x3D;\sum{i&#x3D;1}^iai$. 对于一个三元组 $(l,L,R)$ 描述一个候选区间的左端点为 $l$, 右端点必须在 $[L,R]$ 之间。这时对于这个区间根据贪心的思想我们应该选择一个最大的 $a_i\ (i\in[L,R])$.">
+<meta property="og:description" content="题目在这里.(LG) 这道题目的大致意思是，给定一个序列 $a$, 你需要求出它最大的 $k$ 个长度介于 $[L,R]$ 之间的子序列的所有元素之和。 记 $s_i&#x3D;\sum_{i&#x3D;1}^ia_i$. 对于一个三元组 $(l,L,R)$ 描述一个候选区间的左端点为 $l$, 右端点必须在 $[L,R]$ 之间。这时对于这个区间根据贪心的思想我们应该选择一个最大的 $a_i\ (i\in[L,R]">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-01-20T16:00:00.000Z">
 <meta property="article:modified_time" content="2020-04-07T04:00:03.679Z">
@@ -436,7 +436,7 @@
       
         <p>题目在<a href="https://www.luogu.org/problemnew/show/P2048" target="_blank" rel="noopener">这里</a>.(LG)</p>
 <p>这道题目的大致意思是，给定一个序列 $a$, 你需要求出它最大的 $k$ 个长度介于 $[L,R]$ 之间的子序列的所有元素之和。</p>
-<p>记 $s<em>i=\sum</em>{i=1}^ia<em>i$. 对于一个三元组 $(l,L,R)$ 描述一个候选区间的左端点为 $l$, 右端点必须在 $[L,R]$ 之间。这时对于这个区间根据贪心的思想我们应该选择一个最大的 $a_i\ (i\in[L,R])$. 然后它对于答案的贡献就是 $s</em>{a<em>i}-s</em>{l-1}$. 之后为了不重复选择，需要添加两个区间到达候选的队列中：</p>
+<p>记 $s_i=\sum_{i=1}^ia_i$. 对于一个三元组 $(l,L,R)$ 描述一个候选区间的左端点为 $l$, 右端点必须在 $[L,R]$ 之间。这时对于这个区间根据贪心的思想我们应该选择一个最大的 $a_i\ (i\in[L,R])$. 然后它对于答案的贡献就是 $s_{a_i}-s_{l-1}$. 之后为了不重复选择，需要添加两个区间到达候选的队列中：</p>
 <ul>
 <li>$(l,L,a_i-1)$</li>
 <li>$(l,a_i+1,R)$</li>
@@ -1303,24 +1303,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

@@ -439,7 +439,7 @@
 <blockquote>
 <p>每次增广之后，在残量网络中任意节点到汇点的最短距离都不会变得更短。</p>
 </blockquote>
-<p>定义 $d(i) = $ 结点 $i$ 到 $t$ 的最短距离，$cnt(x) = |D_x|$ 其中 $D_x = {a|d(a)=x}$. 可以发现，一旦满足下列条件中任意一条，当前残量网络就不能再增广：</p>
+<p>定义 $d(i) = $ 结点 $i$ 到 $t$ 的最短距离，$cnt(x) = |D_x|$ 其中 $D_x = \{a|d(a)=x\}$. 可以发现，一旦满足下列条件中任意一条，当前残量网络就不能再增广：</p>
 <ul>
 <li>$d(s)&gt;n$.</li>
 <li>存在 $cnt(i)=0$.</li>
@@ -448,7 +448,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (depth[it.to] == depth[nowAt] - <span class="number">1</span> &amp;&amp; it.residual &gt; <span class="number">0</span>) &#123; 	<span class="comment">//可行边</span></span><br><span class="line">	last[it.to] = G[nowAt][i]; cur[nowAt] = i; nowAt = it.to;	<span class="comment">//Advance</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果无路可走，就直接后退一步，这个过程叫做 Retreat. 同时，我们需要更新一下当前结点的 $d(i)$. 前面提到，如果存在 $cnt(i)=0$ ,那么不能再增广，判断是否满足这个条件也很简单，只用开一个数组记录一下有多少个结点的 $d(i)$ 等于某一特定的数即可。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> m = totNode - <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G[nowAt].size(); i++) &#123;</span><br><span class="line">	Edge&amp; it = edges[G[nowAt][i]];</span><br><span class="line">	<span class="keyword">if</span> (it.residual &gt; <span class="number">0</span>)m = <span class="built_in">std</span>::min(m, depth[it.to]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (--num[depth[nowAt]] == <span class="number">0</span>)<span class="keyword">break</span>;	<span class="comment">//gap</span></span><br><span class="line">num[depth[nowAt] = m + <span class="number">1</span>]++;</span><br><span class="line"><span class="keyword">if</span> (nowAt != s)nowAt = edges[last[nowAt]].fr;</span><br></pre></td></tr></table></figure>
-<p>具体地说，在上述代码中 $num<em>x = \sum</em>{i\in G} [d(i)=x]$ . 这一步的优化在 ISAP 中叫做 Gap 优化。</p>
+<p>具体地说，在上述代码中 $num_x = \sum_{i\in G} [d(i)=x]$ . 这一步的优化在 ISAP 中叫做 Gap 优化。</p>
 <p>除此之外，我们还可以像在 Dinic 中一样，加上当前弧优化。</p>
 <p>如果在某一时刻，我们到达了汇点，那么只用从汇点出发，一路沿着 $last$ 往回走，就可以还原整条路径。我们需要重复走两次，一次找到最大增广，另一次修改各个弧的信息。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Augment</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> deltaFlow = INT_MAX, nowAt = t;</span><br><span class="line">	<span class="keyword">while</span> (nowAt != s) &#123;</span><br><span class="line">		Edge&amp; it = edges[last[nowAt]];</span><br><span class="line">		deltaFlow = <span class="built_in">std</span>::min(deltaFlow, it.residual);</span><br><span class="line">		nowAt = it.fr;</span><br><span class="line">	&#125;nowAt = t;</span><br><span class="line">	<span class="keyword">while</span> (nowAt != s) &#123;</span><br><span class="line">		edges[last[nowAt]].residual -= deltaFlow;</span><br><span class="line">		edges[last[nowAt] ^ <span class="number">1</span>].residual += deltaFlow;</span><br><span class="line">		nowAt = edges[last[nowAt]].fr;</span><br><span class="line">	&#125;<span class="keyword">return</span> deltaFlow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1319,24 +1319,7 @@
     mc.src = '//embed.widgetpack.com/widget.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
   })();
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
   

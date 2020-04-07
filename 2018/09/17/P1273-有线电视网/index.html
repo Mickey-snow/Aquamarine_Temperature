@@ -82,12 +82,12 @@
 
 
 
-<meta name="description" content="树上背包动态规划入门祭。题目链接. 在这一题中，使用背包的思想在树上递归地处理。假设 $D{r,i,k}$ 为以 $r$ 为根的子树在只考虑它前 $i$ 个儿子的情况下提供给 $k$ 个用户所能够获得的 最大利润 ,注意这个值可能是一个负数，代表亏本。我们在递归地处理完所有的结点之后，选取一个在根结点处不亏本的 $k$ 的值，即找到一个最大的 $k$ 使得 $D{root,\sum chilld,">
+<meta name="description" content="树上背包动态规划入门祭。题目链接. 在这一题中，使用背包的思想在树上递归地处理。假设 $D_{r,i,k}$ 为以 $r$ 为根的子树在只考虑它前 $i$ 个儿子的情况下提供给 $k$ 个用户所能够获得的 最大利润 ,注意这个值可能是一个负数，代表亏本。我们在递归地处理完所有的结点之后，选取一个在根结点处不亏本的 $k$ 的值，即找到一个最大的 $k$ 使得 $D_{root,\sum chill">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【题解】洛谷P1273 有线电视网">
 <meta property="og:url" content="https://mickey-snow.github.io/2018/09/17/P1273-%E6%9C%89%E7%BA%BF%E7%94%B5%E8%A7%86%E7%BD%91/index.html">
 <meta property="og:site_name" content="Mickey-snow&#39;s Blog">
-<meta property="og:description" content="树上背包动态规划入门祭。题目链接. 在这一题中，使用背包的思想在树上递归地处理。假设 $D{r,i,k}$ 为以 $r$ 为根的子树在只考虑它前 $i$ 个儿子的情况下提供给 $k$ 个用户所能够获得的 最大利润 ,注意这个值可能是一个负数，代表亏本。我们在递归地处理完所有的结点之后，选取一个在根结点处不亏本的 $k$ 的值，即找到一个最大的 $k$ 使得 $D{root,\sum chilld,">
+<meta property="og:description" content="树上背包动态规划入门祭。题目链接. 在这一题中，使用背包的思想在树上递归地处理。假设 $D_{r,i,k}$ 为以 $r$ 为根的子树在只考虑它前 $i$ 个儿子的情况下提供给 $k$ 个用户所能够获得的 最大利润 ,注意这个值可能是一个负数，代表亏本。我们在递归地处理完所有的结点之后，选取一个在根结点处不亏本的 $k$ 的值，即找到一个最大的 $k$ 使得 $D_{root,\sum chill">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-09-16T16:00:00.000Z">
 <meta property="article:modified_time" content="2020-04-07T04:00:03.679Z">
@@ -436,14 +436,14 @@
 
       
         <p>树上背包动态规划入门祭。<a href="https://www.luogu.org/problemnew/show/P1273" target="_blank" rel="noopener">题目链接</a>.</p>
-<p>在这一题中，使用背包的思想在树上递归地处理。假设 $D<em>{r,i,k}$ 为以 $r$ 为根的子树在只考虑它前 $i$ 个儿子的情况下提供给 $k$ 个用户所能够获得的 <strong>最大利润</strong> ,注意这个值可能是一个负数，代表亏本。我们在递归地处理完所有的结点之后，选取一个在根结点处不亏本的 $k$ 的值，即找到一个最大的 $k$ 使得 $D</em>{root,\sum chilld,k} \ge 0$ ，此时的 $k$ 即为所求答案。</p>
+<p>在这一题中，使用背包的思想在树上递归地处理。假设 $D_{r,i,k}$ 为以 $r$ 为根的子树在只考虑它前 $i$ 个儿子的情况下提供给 $k$ 个用户所能够获得的 <strong>最大利润</strong> ,注意这个值可能是一个负数，代表亏本。我们在递归地处理完所有的结点之后，选取一个在根结点处不亏本的 $k$ 的值，即找到一个最大的 $k$ 使得 $D_{root,\sum chilld,k} \ge 0$ ，此时的 $k$ 即为所求答案。</p>
 <p>事实上，这里的 $i$ 可以用滚动数组去掉。递归的过程用 dfs 实现，步骤如下：</p>
 <ol>
 <li>如果当前结点 $u​$ 是叶子节点， $D_{u,1} = 1​$ ，返回1. </li>
-<li>递归处理一个儿子节点 $v$ 更新一下 $D<em>{u,i} = \max{D</em>{u,i},D<em>{u,i-j} - val</em>{u \rightarrow v} + D_{v,j}}$ 这里 $i\ge j$.</li>
+<li>递归处理一个儿子节点 $v$ 更新一下 $D_{u,i} = \max\{D_{u,i},D_{u,i-j} - val_{u \rightarrow v} + D_{v,j}\}$ 这里 $i\ge j$.</li>
 <li>返回以 $u$ 为根节点的子树包含的叶子节点数量。</li>
 </ol>
-<p>dfs 的返回值 $f$ 可以帮助我们少计算一些不必要的信息，例如当 $f<em>r = 3$ ,即这下面有3个叶子节点，而我们却去算 $D</em>{r,100}$ ，这很明显只会浪费掉大量的计算能力。</p>
+<p>dfs 的返回值 $f$ 可以帮助我们少计算一些不必要的信息，例如当 $f_r = 3$ ,即这下面有3个叶子节点，而我们却去算 $D_{r,100}$ ，这很明显只会浪费掉大量的计算能力。</p>
 <p>dfs 代码如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;nowAt = <span class="number">0</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	D[nowAt][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (nowAt &gt;= totNode - totLf) &#123;	<span class="comment">//叶子结点</span></span><br><span class="line">		D[nowAt][<span class="number">1</span>] = val[nowAt]; <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> child = <span class="number">0</span>, res;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;it : G[nowAt]) &#123;</span><br><span class="line">		res = dfs(it.to);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= child; i++)T[i] = D[nowAt][i];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= child; i++)</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= res; j++)</span><br><span class="line">				D[nowAt][i + j] = <span class="built_in">std</span>::max(D[nowAt][i + j], T[i] - it.val + D[it.to][j]);</span><br><span class="line">		child += res;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> child;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这里有一行</p>
@@ -1314,24 +1314,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

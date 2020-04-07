@@ -437,7 +437,7 @@
 <p>经历了接近5个月的学习与摸索，我终于对斜率优化动态规划的思想有了清晰的抽象认识。在大多数（尤其是与数学有关的）题目中，我们可以发现，容易理解，较为形象的代码和算法实现总是为超时超空间，而往往是那些非常抽象的算法，能够很好地解题。</p>
 <p>这是一道非常简单的动态规划题目，直接写出状态转移方程如下：</p>
 <script type="math/tex; mode=display">
-F(i)=\min\{F(j)+T_i(C_i-C_j)+S(C_n-C_j)\}</script><p>其中 $F(i)$ 代表完成前 $i$ 个任务需要的时间（这里将后面的暖机花费也考虑了进去），记第 $i$ 个任务的费用系数为 $cost<em>i$, 需要时间为 $time_i$, 暖机一次耗费时间为 $S$. $T_j=\sum</em>{i=1}^jtime<em>i\quad C_j=\sum</em>{i=1}^jcost_i$.</p>
+F(i)=\min\{F(j)+T_i(C_i-C_j)+S(C_n-C_j)\}</script><p>其中 $F(i)$ 代表完成前 $i$ 个任务需要的时间（这里将后面的暖机花费也考虑了进去），记第 $i$ 个任务的费用系数为 $cost_i$, 需要时间为 $time_i$, 暖机一次耗费时间为 $S$. $T_j=\sum_{i=1}^jtime_i\quad C_j=\sum_{i=1}^jcost_i$.</p>
 <a id="more"></a>
 <p>去掉 $\min$ 函数，将 $j$ 看为常量。整理得</p>
 <script type="math/tex; mode=display">
@@ -1303,24 +1303,7 @@ F(j)=(T_i+S)C_j+F_i-C_iT_i-SC_n</script><p>一条直线的解析式是 $f(x)=kx+
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

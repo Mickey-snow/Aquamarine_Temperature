@@ -450,7 +450,7 @@ k=\lfloor\frac{p}{i}\rfloor</script><p>将原式两边同时乘上 $i^{-1}\times
 <script type="math/tex; mode=display">
 kr^{-1}+i^{-1}\equiv0\mod p\\
 \therefore i^{-1}\equiv-kr^{-1}\mod p\\
-\therefore i^{-1}\equiv -\lfloor\frac{p}{i}\rfloor \times p\%i\mod p</script><p>因此，$a<em>i=-(p/i)\times a</em>{p\%i}$.</p>
+\therefore i^{-1}\equiv -\lfloor\frac{p}{i}\rfloor \times p\%i\mod p</script><p>因此，$a_i=-(p/i)\times a_{p\%i}$.</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt; Get_MiM(<span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> size, <span class="keyword">const</span> T p) &#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;T&gt; ans&#123; <span class="number">0</span>,<span class="number">1</span> &#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">unsigned</span> <span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= size; i++)&#123;</span><br><span class="line">        ans.push_back(-(p / i)*ans[p%i]);</span><br><span class="line">        ans[ans.size()<span class="number">-1</span>]=(ans[ans.size()<span class="number">-1</span>]%p+p)%p;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <h2 id="费马小定理"><a href="#费马小定理" class="headerlink" title="费马小定理"></a>费马小定理</h2><p>假如 $p$ 是质数，且 $\gcd(a,p)=1$ ，那么 $a^{p−1}\equiv 1 \pmod p$.</p>
@@ -1334,24 +1334,7 @@ kr^{-1}+i^{-1}\equiv0\mod p\\
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

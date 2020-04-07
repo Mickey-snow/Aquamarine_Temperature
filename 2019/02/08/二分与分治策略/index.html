@@ -420,7 +420,7 @@
 <p>CDQ分治的主过程在很大程度上与归并排序非常类似，它可以解决的问题通常是在<strong>高维情况下统计带有多个维度限制</strong>的统计，简单情况下是 $n$ 维<strong>偏序</strong>问题。即对于一个 $n$ 元组 $(a_1,a_2,a_3,\cdots,a_n)$ 组成的数组 $A$, 统计对于一个元素 $i$ 的 </p>
 <script type="math/tex; mode=display">
 \sum_{j\not=i} [a_{1_j}<a_{1_i}][a_{2_j}<a_{2_i}]\cdots[a_{n_j}<a_{n_i}]</script><p>当然，如果是其它大小关系也存在对应策略。</p>
-<p>CDQ分治的思想是，在合并两个有序的数组 $A<em>1$ 和 $A_2$ 时，考虑其中的一个维度 $k$, 如果在某一个时刻 $A</em>{1<em>{l_k}}&lt;A</em>{2<em>{l_k}}$, 那么记录 $A</em>{1<em>l}$ 可能造成的影响，这个时候 $A</em>{1<em>l}$ 相对于 $A_2$ 中元素的位置没有变化。反之，查询 $A</em>{2<em>r}$ 受到的影响，这时 $A</em>{2<em>r}$ 会被移动到 $A</em>{1<em>l}\mbox{-}A</em>{1<em>{mid}}$ 的前面，因为我们可以断言，$A_1$ 中剩余的元素<strong>不会</strong>对 $A</em>{2_r}$ 产生贡献。通常情况下这个过程会借助其它数据结构辅助统计。</p>
+<p>CDQ分治的思想是，在合并两个有序的数组 $A_1$ 和 $A_2$ 时，考虑其中的一个维度 $k$, 如果在某一个时刻 $A_{1_{l_k}}&lt;A_{2_{l_k}}$, 那么记录 $A_{1_l}$ 可能造成的影响，这个时候 $A_{1_l}$ 相对于 $A_2$ 中元素的位置没有变化。反之，查询 $A_{2_r}$ 受到的影响，这时 $A_{2_r}$ 会被移动到 $A_{1_l}\mbox{-}A_{1_{mid}}$ 的前面，因为我们可以断言，$A_1$ 中剩余的元素<strong>不会</strong>对 $A_{2_r}$ 产生贡献。通常情况下这个过程会借助其它数据结构辅助统计。</p>
 <p>我们不妨将每一步归并过程中需要”排序”的数组称为一个<strong>块</strong>，合并完 $A_1$ 和 $A_2$ 后得到的对于第 $k$ 维有序的块称为<strong>完全块</strong>。可以发现，在任意时刻整个序列中位置相对靠前的元素不会得到位置相对靠后元素的贡献，同时在一个完全块中每一个元素得到的贡献都已经得到计算。</p>
 <p>这就是 $n$ 维偏序问题的解决，举例 $n=3$ 时的情况。我们可以先将第一维为第一关键字，第二维为第二关键字，第三维为第三关键字进行排序，这样我们在以后的统计中可以忽视第一维造成的影响。然后对第二维进行归并排序，如果在某一个时刻需要取 $A_1$ 中的元素，将取得元素的第三维插入一个树状数组中，如果在某一时刻需要取 $A_2$ 中的元素，将这个元素的答案加上树状数组中小于它第三维的数的个数。</p>
 <p>这么做时间复杂度为 $O(N\log^2N)$, 代码如下：</p>
@@ -1326,24 +1326,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

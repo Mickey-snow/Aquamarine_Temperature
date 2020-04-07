@@ -438,7 +438,7 @@
 <p>先确定大致的思路，我们像做字符串匹配那样在 $s_1$ 中寻找 $s_2$. 现在假定 $s_2$ 的一个子串 $s_2[l,r]$ 是 $s_1$ 的一个子串，记答案为 $ans$, 并保证在任意时刻，$s_2$ 以 $1\leq l_0\leq l$ 开头，$l_0\leq r_0\leq r$ 结尾的子串的贡献都被计算到了答案中。接下来将 $r$ 扩展一位变成 $r_1=r+1$，如果这个时候发现 $s_2[l,r_1]$ 不再是 $s_1$ 的一个子串，那么我们要将 $l$ 收缩一位变成 $l_1=l+1$, 同时更新一下 $s_2$ 以 $l_1$ 开头，$l_1\leq r$ 结尾的子串对答案的贡献。不断这样调整，直到调整到第一个合适的 $l_3$ 使得 $s_2[l_3,r_1]$ 是 $s_1$ 的一个子串。一次扩展完成。</p>
 <p>按照上述过程一次次扩展，最终到达一个子串类似 $s_2[l_4,n_2]$ 这样的状态，全部收缩，同时不要忘记计算。由于每一次扩展都更新了以当前子串开头字母开始的所有子串的贡献，而每一次收缩都计算了以新的开头字母开始的所有子串的贡献，因此这样算出来的答案是正确的。</p>
 <hr>
-<p>要想实现这样的计算过程，需要对 $s<em>1$ 建立后缀树，然后对于后缀树上的每一个结点 $v$，预处理一下从初始状态 $t_0$ 到 $v$ 的路径长度 $v</em>{totLen}$, 以 $v$ 为根的子树的叶节点个数 $v<em>{appear}$ 以及一个比较重要的 $v_D$, 记 $v$ 的父亲为 $u$, $v$ 中压缩的结点个数为 $v</em>{len}$. 那么</p>
+<p>要想实现这样的计算过程，需要对 $s_1$ 建立后缀树，然后对于后缀树上的每一个结点 $v$，预处理一下从初始状态 $t_0$ 到 $v$ 的路径长度 $v_{totLen}$, 以 $v$ 为根的子树的叶节点个数 $v_{appear}$ 以及一个比较重要的 $v_D$, 记 $v$ 的父亲为 $u$, $v$ 中压缩的结点个数为 $v_{len}$. 那么</p>
 <script type="math/tex; mode=display">
 v_D=u_D+v_{len}\times v_{appear}</script><p>这个 $v_D$ 主要是在收缩时使用，要想实现一次收缩，其本质上就是跳到了去掉当前后缀第一个字母的后缀，在后缀树上相当于沿着后缀链接走一次。跳到相应结点后，还需要一次性更新 $l_1$ 开头的所有字符串对答案的贡献，也就是当前结点 $v$ 的 $v_D$. 需要注意的是，如果当前没有正好结束在一个结点上，那就还需要再额外算一下多出来的一小部分。</p>
 <a id="more"></a>s
@@ -493,8 +493,8 @@ v_D=u_D+v_{len}\times v_{appear}</script><p>这个 $v_D$ 主要是在收缩时�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/26/CF1166E-The-LCMs-Must-be-Large/" rel="next" title="【题解】CF1166E The LCMs Must be Large">
-                <i class="fa fa-chevron-left"></i> 【题解】CF1166E The LCMs Must be Large
+              <a href="/2019/05/26/CF1166D-Cute-Sequences/" rel="next" title="【题解】CF1166D Cute Sequences">
+                <i class="fa fa-chevron-left"></i> 【题解】CF1166D Cute Sequences
               </a>
             
           </div>
@@ -1304,24 +1304,7 @@ v_D=u_D+v_{len}\times v_{appear}</script><p>这个 $v_D$ 主要是在收缩时�
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

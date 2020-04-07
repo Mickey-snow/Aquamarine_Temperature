@@ -437,7 +437,7 @@
 <p>给定一颗 $n$ 个结点的树，你允许断开这棵树的一条边并加上一条新的边。现在对于每一个点询问它有没有可能在经过操作后成为这棵树的中心。</p>
 <hr>
 <p>想要让 $v$ 成为中心，那么看上去最优的操作就是在 $v$ 最大的儿子中寻找一颗最大，但是又不超过 $\frac n2$ 个结点的子树，插到 $v$ 上作为一个直接儿子。</p>
-<p>考虑动态规划。将给定的树中每一条边拆成两条有向边，那么任何一条边异或 1 就是它的反向边。将动态规划的状态定义在边层级上：对于连接 $i<em>u\to i_v$ 的边 $i$, $s_i$ 表示断开边 $i$, 以 $i_v$ 为根的子树的大小，可见 $s</em>{i\mbox{^}1}=n-s_i$. $c_i$ 表示断开边 $i$, 以 $i$ 为根的子树最大可以断开多大一颗子树。</p>
+<p>考虑动态规划。将给定的树中每一条边拆成两条有向边，那么任何一条边异或 1 就是它的反向边。将动态规划的状态定义在边层级上：对于连接 $i_u\to i_v$ 的边 $i$, $s_i$ 表示断开边 $i$, 以 $i_v$ 为根的子树的大小，可见 $s_{i\mbox{^}1}=n-s_i$. $c_i$ 表示断开边 $i$, 以 $i$ 为根的子树最大可以断开多大一颗子树。</p>
 <p>一遍深搜就可以计算出 $s$ 和一部分的 $c$, 但是对于所有从儿子连向父亲的边还没有处理出来，这就需要第二次深搜，用父亲更新儿子。</p>
 <p>需要特别注意的是，第二次深搜时父亲不能将剪掉一个儿子作为这个儿子的 $c$ 值，这就需要在之前同时保存最大和次大值在点层级上，然后同时参考这两个值来更新。</p>
 <p>判断一个点 $u$ 是否满足条件时，只用枚举它的所有出边 $i$, 如果存在 $s_i-c_i\ge\frac n2$, 那么就不符合要求。</p>
@@ -1298,24 +1298,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

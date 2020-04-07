@@ -82,12 +82,12 @@
 
 
 
-<meta name="description" content="题目大意：给定一颗二叉搜索树的中序遍历，已知此二叉搜索树所有有连边的两个节点最大公约数都大于 $1$ ,问能否构造出一颗满足条件的二叉搜索树。 开两个二维数组 $lft{i,j}$ 代表区间 $[i,j]$ 能否构造出以 $j$ 为根的搜索树。类似地，二维数组 $rgt{i,j}$ 代表区间 $[i,j]$ 能否构造出以 $i$ 为根的搜索树。 由于题目中给定的是中序遍历，所以原搜索树中任何一个子">
+<meta name="description" content="题目大意：给定一颗二叉搜索树的中序遍历，已知此二叉搜索树所有有连边的两个节点最大公约数都大于 $1$ ,问能否构造出一颗满足条件的二叉搜索树。 开两个二维数组 $lft_{i,j}$ 代表区间 $[i,j]$ 能否构造出以 $j$ 为根的搜索树。类似地，二维数组 $rgt_{i,j}$ 代表区间 $[i,j]$ 能否构造出以 $i$ 为根的搜索树。 由于题目中给定的是中序遍历，所以原搜索树中任何一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【题解】CF1025D">
 <meta property="og:url" content="https://mickey-snow.github.io/2018/08/22/CF1025D%20Recovering%20BST/index.html">
 <meta property="og:site_name" content="Mickey-snow&#39;s Blog">
-<meta property="og:description" content="题目大意：给定一颗二叉搜索树的中序遍历，已知此二叉搜索树所有有连边的两个节点最大公约数都大于 $1$ ,问能否构造出一颗满足条件的二叉搜索树。 开两个二维数组 $lft{i,j}$ 代表区间 $[i,j]$ 能否构造出以 $j$ 为根的搜索树。类似地，二维数组 $rgt{i,j}$ 代表区间 $[i,j]$ 能否构造出以 $i$ 为根的搜索树。 由于题目中给定的是中序遍历，所以原搜索树中任何一个子">
+<meta property="og:description" content="题目大意：给定一颗二叉搜索树的中序遍历，已知此二叉搜索树所有有连边的两个节点最大公约数都大于 $1$ ,问能否构造出一颗满足条件的二叉搜索树。 开两个二维数组 $lft_{i,j}$ 代表区间 $[i,j]$ 能否构造出以 $j$ 为根的搜索树。类似地，二维数组 $rgt_{i,j}$ 代表区间 $[i,j]$ 能否构造出以 $i$ 为根的搜索树。 由于题目中给定的是中序遍历，所以原搜索树中任何一">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-08-21T16:00:00.000Z">
 <meta property="article:modified_time" content="2020-04-07T04:00:03.669Z">
@@ -433,8 +433,8 @@
 
       
         <p>题目大意：给定一颗二叉搜索树的中序遍历，已知此二叉搜索树所有有连边的两个节点最大公约数都大于 $1$ ,问能否构造出一颗满足条件的二叉搜索树。</p>
-<p>开两个二维数组 $lft<em>{i,j}$ 代表区间 $[i,j]$ 能否构造出以 $j$ 为根的搜索树。类似地，二维数组 $rgt</em>{i,j}$ 代表区间 $[i,j]$ 能否构造出以 $i$ 为根的搜索树。</p>
-<p>由于题目中给定的是中序遍历，所以原搜索树中任何一个子树都是给定数组 $a$ 的一段连续区间，而且无论是 $lft$ 还是 $rgt$ 代表的都是能否构造出一个根只有一个儿子的子树。可见，如果存在一个节点 $k$ 同时满足 $lft<em>{i,k}$ 和 $rgt</em>{k,j}$ 那么就是说可以构造出来一颗以 $k$ 为根而且有两个儿子的搜索树，我们可以用这个来转移。如果 $k$ 能够成为子树的根，那么我们再来判断一下 $k$ 能否与 $i-1, j+1$ 连边，推导出 $k$ 可能的父节点，也就是 $lft<em>{i-1,l}$ 和 $rgt</em>{i,l+1}$.由于题目没有要求将构造的搜索树输出，所以转移完之后 $k$ 就不重要了，下一步要考虑的根应该是 $i-1$ 和 $l+1$.</p>
+<p>开两个二维数组 $lft_{i,j}$ 代表区间 $[i,j]$ 能否构造出以 $j$ 为根的搜索树。类似地，二维数组 $rgt_{i,j}$ 代表区间 $[i,j]$ 能否构造出以 $i$ 为根的搜索树。</p>
+<p>由于题目中给定的是中序遍历，所以原搜索树中任何一个子树都是给定数组 $a$ 的一段连续区间，而且无论是 $lft$ 还是 $rgt$ 代表的都是能否构造出一个根只有一个儿子的子树。可见，如果存在一个节点 $k$ 同时满足 $lft_{i,k}$ 和 $rgt_{k,j}$ 那么就是说可以构造出来一颗以 $k$ 为根而且有两个儿子的搜索树，我们可以用这个来转移。如果 $k$ 能够成为子树的根，那么我们再来判断一下 $k$ 能否与 $i-1, j+1$ 连边，推导出 $k$ 可能的父节点，也就是 $lft_{i-1,l}$ 和 $rgt_{i,l+1}$.由于题目没有要求将构造的搜索树输出，所以转移完之后 $k$ 就不重要了，下一步要考虑的根应该是 $i-1$ 和 $l+1$.</p>
 <p>如果在某一时刻发现可以以 $k$ 为根，构造出区间  $[1,n]$ 的搜索树。也就是 $i=1,j=n$ ，那么要求的答案就是 Yes,如果执行完了全部循环，说明找不到符合条件的搜索树，答案为 No.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line"></span><br><span class="line">namespace CF1025D </span><br><span class="line">&#123;</span><br><span class="line">	class Program </span><br><span class="line">	&#123;</span><br><span class="line">		static void Main(string[] args) &#123;</span><br><span class="line">			int totNodes &#x3D; Convert.ToInt32(Console.ReadLine());</span><br><span class="line">			string[] inp &#x3D; Console.ReadLine().Split(&#39; &#39;);</span><br><span class="line">			int[] num &#x3D; new int[totNodes];</span><br><span class="line">			bool[,] lft &#x3D; new bool[totNodes, totNodes], rgt &#x3D; new bool[totNodes, totNodes];</span><br><span class="line"></span><br><span class="line">			for(int i &#x3D; 0;i &lt; totNodes;i++) &#123;</span><br><span class="line">				num[i] &#x3D; Convert.ToInt32(inp[i]);</span><br><span class="line">				lft[i, i] &#x3D; true;rgt[i, i] &#x3D; true;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			for(int fr &#x3D; totNodes - 1;fr &gt;&#x3D; 0;fr--)</span><br><span class="line">				for(int to &#x3D; fr;to &lt; totNodes;to++) </span><br><span class="line">					for(int root &#x3D; fr;root &lt;&#x3D; to;root++)</span><br><span class="line">						if(lft[fr, root] &amp;&amp; rgt[root, to]) &#123;</span><br><span class="line">							if(fr &#x3D;&#x3D; 0 &amp;&amp; to &#x3D;&#x3D; totNodes - 1) &#123;</span><br><span class="line">								Console.WriteLine(&quot;Yes&quot;);return;</span><br><span class="line">							&#125;</span><br><span class="line"></span><br><span class="line">							if(fr &gt; 0 &amp;&amp; gcd(num[root], num[fr - 1]) &gt; 1) rgt[fr - 1, to] &#x3D; true;</span><br><span class="line">							if(to &lt; totNodes - 1 &amp;&amp; gcd(num[root], num[to + 1]) &gt; 1) lft[fr, to + 1] &#x3D; true;</span><br><span class="line">						&#125;</span><br><span class="line"></span><br><span class="line">			Console.WriteLine(&quot;No&quot;);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		static int gcd(int a,int b) &#123;</span><br><span class="line">			return b &#x3D;&#x3D; 0 ? a : gcd(b, a % b);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1291,24 +1291,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

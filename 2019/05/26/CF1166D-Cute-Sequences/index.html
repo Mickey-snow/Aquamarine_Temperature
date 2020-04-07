@@ -82,12 +82,12 @@
 
 
 
-<meta name="description" content="题目链接 有一个长度为 $n\;(n\leq50)$ 的序列 $x1,x_2,\cdots,x_n$. $\forall 2\leq i\leq n$, $x_i&#x3D;r_i\sum{j&#x3D;1}^{i-1}x_i$, 且 $1\leq r_i\leq m$. 给定 $x_1,x_n,m$, 还原这个序列或者输出 -1 代表无解.  可以发现，这个序列第二项开始，每一项的值所在的区间都是固定了的，设 $x">
+<meta name="description" content="题目链接 有一个长度为 $n\;(n\leq50)$ 的序列 $x_1,x_2,\cdots,x_n$. $\forall 2\leq i\leq n$, $x_i&#x3D;r_i\sum_{j&#x3D;1}^{i-1}x_i$, 且 $1\leq r_i\leq m$. 给定 $x_1,x_n,m$, 还原这个序列或者输出 -1 代表无解.  可以发现，这个序列第二项开始，每一项的值所在的区间都是固定了的，设">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【题解】CF1166D Cute Sequences">
 <meta property="og:url" content="https://mickey-snow.github.io/2019/05/26/CF1166D-Cute-Sequences/index.html">
 <meta property="og:site_name" content="Mickey-snow&#39;s Blog">
-<meta property="og:description" content="题目链接 有一个长度为 $n\;(n\leq50)$ 的序列 $x1,x_2,\cdots,x_n$. $\forall 2\leq i\leq n$, $x_i&#x3D;r_i\sum{j&#x3D;1}^{i-1}x_i$, 且 $1\leq r_i\leq m$. 给定 $x_1,x_n,m$, 还原这个序列或者输出 -1 代表无解.  可以发现，这个序列第二项开始，每一项的值所在的区间都是固定了的，设 $x">
+<meta property="og:description" content="题目链接 有一个长度为 $n\;(n\leq50)$ 的序列 $x_1,x_2,\cdots,x_n$. $\forall 2\leq i\leq n$, $x_i&#x3D;r_i\sum_{j&#x3D;1}^{i-1}x_i$, 且 $1\leq r_i\leq m$. 给定 $x_1,x_n,m$, 还原这个序列或者输出 -1 代表无解.  可以发现，这个序列第二项开始，每一项的值所在的区间都是固定了的，设">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-05-25T16:00:00.000Z">
 <meta property="article:modified_time" content="2020-04-07T04:00:03.671Z">
@@ -435,7 +435,7 @@
 
       
         <p><a href="https://codeforces.com/contest/1166/problem/D" target="_blank" rel="noopener">题目链接</a></p>
-<p>有一个长度为 $n\;(n\leq50)$ 的序列 $x<em>1,x_2,\cdots,x_n$. $\forall 2\leq i\leq n$, $x_i=r_i\sum</em>{j=1}^{i-1}x_i$, 且 $1\leq r_i\leq m$. 给定 $x_1,x_n,m$, 还原这个序列或者输出 -1 代表无解.</p>
+<p>有一个长度为 $n\;(n\leq50)$ 的序列 $x_1,x_2,\cdots,x_n$. $\forall 2\leq i\leq n$, $x_i=r_i\sum_{j=1}^{i-1}x_i$, 且 $1\leq r_i\leq m$. 给定 $x_1,x_n,m$, 还原这个序列或者输出 -1 代表无解.</p>
 <hr>
 <p>可以发现，这个序列第二项开始，每一项的值所在的区间都是固定了的，设 $x_i\in[l_i,r_i]$, 那么 </p>
 <script type="math/tex; mode=display">
@@ -493,8 +493,8 @@ r_i=2^{i-2}x_1+2^{i-2}m</script><p>枚举一下序列的长度 $n$, 即可判定
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/26/TJOI2017-City/" rel="next" title="【题解】TJOI2017-城市">
-                <i class="fa fa-chevron-left"></i> 【题解】TJOI2017-城市
+              <a href="/2019/05/26/CF1166E-The-LCMs-Must-be-Large/" rel="next" title="【题解】CF1166E The LCMs Must be Large">
+                <i class="fa fa-chevron-left"></i> 【题解】CF1166E The LCMs Must be Large
               </a>
             
           </div>
@@ -503,8 +503,8 @@ r_i=2^{i-2}x_1+2^{i-2}m</script><p>枚举一下序列的长度 $n$, 即可判定
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/26/CF1166E-The-LCMs-Must-be-Large/" rel="prev" title="【题解】CF1166E The LCMs Must be Large">
-                【题解】CF1166E The LCMs Must be Large <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/28/HAOI2016-Search/" rel="prev" title="【题解】AHOI2016-找相同字符">
+                【题解】AHOI2016-找相同字符 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1304,24 +1304,7 @@ r_i=2^{i-2}x_1+2^{i-2}m</script><p>枚举一下序列的长度 $n$, 即可判定
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

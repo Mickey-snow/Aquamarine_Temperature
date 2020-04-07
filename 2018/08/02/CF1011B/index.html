@@ -82,12 +82,12 @@
 
 
 
-<meta name="description" content="先将所有的食物读入，用类似于桶排序的方法存在一个数组中。 然后二分一下天数，检查是否可行。 对于一个确定的天数，可以使用贪心的方法模拟检查：首先将食物排序，数组中的数字代表着这种食物剩余的数量。创建一个指针指向数组的0号单元，这时判断指针指向的数是否大于这个天数，也就是这种类型的食物是否还够一个人吃上这么多天，如果够，人数减一，这种食物剩余量减去天数，如果不够，指针后移。特别地，如果人数等于0说明">
+<meta name="description" content="先将所有的食物读入，用类似于桶排序的方法存在一个数组中。 然后二分一下天数，检查是否可行。 对于一个确定的天数，可以使用贪心的方法模拟检查：首先将食物排序，数组中的数字代表着这种食物_剩余的_数量。创建一个指针指向数组的0号单元，这时判断指针指向的数是否大于这个天数，也就是这种类型的食物是否还够一个人吃上这么多天，如果够，人数减一，这种食物剩余量减去天数，如果不够，指针后移。特别地，如果人数等于0">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【题解】CF1011B">
 <meta property="og:url" content="https://mickey-snow.github.io/2018/08/02/CF1011B/index.html">
 <meta property="og:site_name" content="Mickey-snow&#39;s Blog">
-<meta property="og:description" content="先将所有的食物读入，用类似于桶排序的方法存在一个数组中。 然后二分一下天数，检查是否可行。 对于一个确定的天数，可以使用贪心的方法模拟检查：首先将食物排序，数组中的数字代表着这种食物剩余的数量。创建一个指针指向数组的0号单元，这时判断指针指向的数是否大于这个天数，也就是这种类型的食物是否还够一个人吃上这么多天，如果够，人数减一，这种食物剩余量减去天数，如果不够，指针后移。特别地，如果人数等于0说明">
+<meta property="og:description" content="先将所有的食物读入，用类似于桶排序的方法存在一个数组中。 然后二分一下天数，检查是否可行。 对于一个确定的天数，可以使用贪心的方法模拟检查：首先将食物排序，数组中的数字代表着这种食物_剩余的_数量。创建一个指针指向数组的0号单元，这时判断指针指向的数是否大于这个天数，也就是这种类型的食物是否还够一个人吃上这么多天，如果够，人数减一，这种食物剩余量减去天数，如果不够，指针后移。特别地，如果人数等于0">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-08-01T16:00:00.000Z">
 <meta property="article:modified_time" content="2020-04-07T04:00:03.667Z">
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  430 character(s)
+                  431 character(s)
                 </span>
               
 
@@ -435,7 +435,7 @@
       
         <p>先将所有的食物读入，用类似于桶排序的方法存在一个数组中。</p>
 <p>然后二分一下天数，检查是否可行。</p>
-<p>对于一个确定的天数，可以使用贪心的方法模拟检查：首先将食物排序，数组中的数字代表着这种食物<em>剩余的</em>数量。创建一个指针指向数组的0号单元，这时判断指针指向的数是否大于这个天数，也就是这种类型的食物是否还够一个人吃上这么多天，如果够，人数减一，这种食物剩余量减去天数，如果不够，指针后移。特别地，如果人数等于0说明可行，指针超出数组范围反之。</p>
+<p>对于一个确定的天数，可以使用贪心的方法模拟检查：首先将食物排序，数组中的数字代表着这种食物_剩余的_数量。创建一个指针指向数组的0号单元，这时判断指针指向的数是否大于这个天数，也就是这种类型的食物是否还够一个人吃上这么多天，如果够，人数减一，这种食物剩余量减去天数，如果不够，指针后移。特别地，如果人数等于0说明可行，指针超出数组范围反之。</p>
 <p>上伪代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line"></span><br><span class="line">namespace CF1011B</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        public static int _cmp(int a,int b) &#123;</span><br><span class="line">            if (a &#x3D;&#x3D; b) return 0;</span><br><span class="line">            else if (a &gt; b) return -1;</span><br><span class="line">            else return 1;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public static bool canSolve(int[] food, int days, int totPeo) &#123;</span><br><span class="line">            int now &#x3D; 0;</span><br><span class="line">            while (totPeo &gt; 0) &#123;</span><br><span class="line">                while (food[now] &lt; days)</span><br><span class="line">                    if (++now &gt; 100) return false;</span><br><span class="line">                food[now] -&#x3D; days;</span><br><span class="line">                totPeo--;</span><br><span class="line">            &#125;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            int totNums, totParticipant;</span><br><span class="line"></span><br><span class="line">            string inp &#x3D; Console.ReadLine(); string[] div;</span><br><span class="line">            div &#x3D; inp.Split(&#39; &#39;);</span><br><span class="line">            totNums &#x3D; Convert.ToInt32(div[1]);totParticipant &#x3D; Convert.ToInt32(div[0]);</span><br><span class="line"></span><br><span class="line">            int[] num &#x3D; new int[101];</span><br><span class="line">            for (int i &#x3D; 0; i &lt; 101; i++) num[i] &#x3D; 0;</span><br><span class="line">            inp &#x3D; Console.ReadLine();div &#x3D; inp.Split(&#39; &#39;);</span><br><span class="line">            for (int i &#x3D; 0; i &lt; totNums; i++)</span><br><span class="line">                num[Convert.ToInt32(div[i]) - 1]++;</span><br><span class="line"></span><br><span class="line">            Array.Sort(num, _cmp);</span><br><span class="line"></span><br><span class="line">            int fr &#x3D; 0, to &#x3D; 101, mid;</span><br><span class="line">            int[] fd &#x3D; new int[101];</span><br><span class="line">            while (fr &lt; to) &#123;</span><br><span class="line">                mid &#x3D; ((fr + to) &gt;&gt; 1) + 1;</span><br><span class="line">                for (int i &#x3D; 0; i &lt; 101; i++) fd[i] &#x3D; num[i];</span><br><span class="line">                if (canSolve(fd, mid, totParticipant)) fr &#x3D; mid;</span><br><span class="line">                else to &#x3D; mid - 1;</span><br><span class="line">            &#125;</span><br><span class="line">            Console.WriteLine(fr.ToString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
@@ -1293,24 +1293,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

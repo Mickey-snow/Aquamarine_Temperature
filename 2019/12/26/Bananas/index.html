@@ -437,7 +437,7 @@
 <p>给定 $n$ 和 $k$, 需要输出序列的第 $n$ 项。</p>
 <a id="more"></a>
 <hr>
-<p>记 $F<em>i$ 为第 $i$ 项的值，$T_i=\sum</em>{j=1}^i F_i$.</p>
+<p>记 $F_i$ 为第 $i$ 项的值，$T_i=\sum_{j=1}^i F_i$.</p>
 <script type="math/tex; mode=display">
 F_i=T_{i-1}+i^k\\
 T_i=T_{i-1}+F_i=2T_{i-1}+i^k</script><p>那么 $T$ 可以用矩阵描述转移</p>
@@ -1312,24 +1312,7 @@ T_i\\(i+1)^k\\(i+1)^{k-1}\\\vdots\\i+1\\1
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

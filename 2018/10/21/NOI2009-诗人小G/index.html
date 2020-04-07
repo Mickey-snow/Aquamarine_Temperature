@@ -485,7 +485,7 @@ g^\prime(x)=px^{p-1}+p(x+c)^{p-1}\\
 <hr>
 <p>由于 $Cult$ 满足四边形不等式，所以 $f$ 函数具有单调性。</p>
 <p>证明：</p>
-<p>假定对于一个确定的 $i$, 能使 $\min{f(j)+val(j,i)}$ 取到最小值的 $j$ 为 $p_i$, 即 $p_i=j$ , $f(i)=f(p_i)+val(p_i,i)$. 即证 $\forall i&gt;j\quad p_i\ge p_j$.</p>
+<p>假定对于一个确定的 $i$, 能使 $\min\{f(j)+val(j,i)\}$ 取到最小值的 $j$ 为 $p_i$, 即 $p_i=j$ , $f(i)=f(p_i)+val(p_i,i)$. 即证 $\forall i&gt;j\quad p_i\ge p_j$.</p>
 <p>显然</p>
 <script type="math/tex; mode=display">
 f(p_i)+val(p_i,i)\leq f(j)+val(j,i)</script><p>由于函数 $val$ 满足四边形不等式，$\forall i_0\in (i,N]$,</p>
@@ -493,7 +493,7 @@ f(p_i)+val(p_i,i)\leq f(j)+val(j,i)</script><p>由于函数 $val$ 满足四边�
 val(j,i_0)+val(p_i,i)\ge val(j,i)+val(p_i,i_0)\\
 \therefore val(p_i,i_0)-val(p_i,i)\leq val(j,i_0)-val(j,i)</script><p>与上一个式子相加，得到</p>
 <script type="math/tex; mode=display">
-f(p_i)+val(p_i,i_0)\leq f(j)+val(j,i_0)</script><p>这也就是说，对于 $f(i<em>0),\quad i_0&gt;i$ 而言，$p_i$ 之前的决策点都不可能称为最优决策点，除非 $p_i$ 也是一个最优决策点，换言之 $p</em>{i_0}&gt;p_i$.</p>
+f(p_i)+val(p_i,i_0)\leq f(j)+val(j,i_0)</script><p>这也就是说，对于 $f(i_0),\quad i_0&gt;i$ 而言，$p_i$ 之前的决策点都不可能称为最优决策点，除非 $p_i$ 也是一个最优决策点，换言之 $p_{i_0}&gt;p_i$.</p>
 <p>证毕。</p>
 <hr>
 <p>在实现的过程中，我们可以维护一个队列，其中包含很多个三元组 $(fr,to,targ)$, 代表 $[fr,to]$ 这一段的决策都是 $targ$, 然后不断更新这个队列即可。</p>
@@ -1363,24 +1363,7 @@ Cult(i,fr_t)\leq Cult(targ_t,fr_t)</script><p>满足则直接弹出队尾，否�
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

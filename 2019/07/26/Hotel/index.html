@@ -82,12 +82,12 @@
 
 
 
-<meta name="description" content="给定一棵树有 $n(n\leq100000)$ 个结点的树，问能找到多少个三元无序点集使得他们之间路径长度两两相同。  考虑动态规划。我们定义 $f{i,j}$ 代表当前在 $i$ 结点能找到多少个点深度比 $i$ 大 $j$. 定义 $g{i,j}$ 代表当前在 $i$ 结点能找到多少无序点对 $(u,v)$ 满足他们到他们的 $lca$ 距离 $d$ 相等，同时 $lca\to i$ 距离恰好">
+<meta name="description" content="给定一棵树有 $n(n\leq100000)$ 个结点的树，问能找到多少个三元无序点集使得他们之间路径长度两两相同。  考虑动态规划。我们定义 $f_{i,j}$ 代表当前在 $i$ 结点能找到多少个点深度比 $i$ 大 $j$. 定义 $g_{i,j}$ 代表当前在 $i$ 结点能找到多少无序点对 $(u,v)$ 满足他们到他们的 $lca$ 距离 $d$ 相等，同时 $lca\to i$ 距离">
 <meta property="og:type" content="article">
 <meta property="og:title" content="POI2014 Hotel">
 <meta property="og:url" content="https://mickey-snow.github.io/2019/07/26/Hotel/index.html">
 <meta property="og:site_name" content="Mickey-snow&#39;s Blog">
-<meta property="og:description" content="给定一棵树有 $n(n\leq100000)$ 个结点的树，问能找到多少个三元无序点集使得他们之间路径长度两两相同。  考虑动态规划。我们定义 $f{i,j}$ 代表当前在 $i$ 结点能找到多少个点深度比 $i$ 大 $j$. 定义 $g{i,j}$ 代表当前在 $i$ 结点能找到多少无序点对 $(u,v)$ 满足他们到他们的 $lca$ 距离 $d$ 相等，同时 $lca\to i$ 距离恰好">
+<meta property="og:description" content="给定一棵树有 $n(n\leq100000)$ 个结点的树，问能找到多少个三元无序点集使得他们之间路径长度两两相同。  考虑动态规划。我们定义 $f_{i,j}$ 代表当前在 $i$ 结点能找到多少个点深度比 $i$ 大 $j$. 定义 $g_{i,j}$ 代表当前在 $i$ 结点能找到多少无序点对 $(u,v)$ 满足他们到他们的 $lca$ 距离 $d$ 相等，同时 $lca\to i$ 距离">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-07-25T16:00:00.000Z">
 <meta property="article:modified_time" content="2020-04-07T04:00:03.676Z">
@@ -435,7 +435,7 @@
       
         <p>给定一棵树有 $n(n\leq100000)$ 个结点的树，问能找到多少个三元无序点集使得他们之间路径长度两两相同。</p>
 <hr>
-<p>考虑动态规划。我们定义 $f<em>{i,j}$ 代表当前在 $i$ 结点能找到多少个点深度比 $i$ 大 $j$. 定义 $g</em>{i,j}$ 代表当前在 $i$ 结点能找到多少无序点对 $(u,v)$ 满足他们到他们的 $lca$ 距离 $d$ 相等，同时 $lca\to i$ 距离恰好是 $d-j$. 可以看做他们到 $lca$ 的距离 $d$ 翻折上去还有 $j$.</p>
+<p>考虑动态规划。我们定义 $f_{i,j}$ 代表当前在 $i$ 结点能找到多少个点深度比 $i$ 大 $j$. 定义 $g_{i,j}$ 代表当前在 $i$ 结点能找到多少无序点对 $(u,v)$ 满足他们到他们的 $lca$ 距离 $d$ 相等，同时 $lca\to i$ 距离恰好是 $d-j$. 可以看做他们到 $lca$ 的距离 $d$ 翻折上去还有 $j$.</p>
 <p>我们发现，只要在转移过程中按照特定的顺序，转移的同时统计答案，可以很好的维护。具体来说如果正确地计算完了 $y$ 的信息，现在要将他们转移到 $x$ 上，首先统计答案</p>
 <script type="math/tex; mode=display">
 \Delta ans=\sum_if_{x,i-1}\times g_{y,i}+g_{x,i+1}\times f_{y,i}</script><p>然后枚举 $i$, 交替地更新</p>
@@ -1302,24 +1302,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

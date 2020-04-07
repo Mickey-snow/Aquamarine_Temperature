@@ -450,7 +450,7 @@
 <p>证毕。</p>
 <p>　</p>
 <h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><p>由引理可知，$\forall$ 矩形的宽$a$ ，能使这个矩形 $P$ 值最小的必定是一个最小的 $b$ 满足 $b \ge a$.</p>
-<p>将木棍配对，假设最终可用的木棍为 $m$ ,每一对木棍的长度分别为 $a<em>i$ ,那么我们只用扫一遍，找到一组 $P$ 值最小的 $a_i$ 和 $a</em>{i+1}$ 即可。</p>
+<p>将木棍配对，假设最终可用的木棍为 $m$ ,每一对木棍的长度分别为 $a_i$ ,那么我们只用扫一遍，找到一组 $P$ 值最小的 $a_i$ 和 $a_{i+1}$ 即可。</p>
 <p>由于任何一个木棍长度都不会超过 $10^4$ ,所以我们可以开一个一维数组，读入的同时桶排序，如果发现超过两个就放一对木棍进入 $b$ 数组，如果超过四个就再放一对。这样就自动过滤掉了多余的无用木棍。完成这一步后需要对 $b$ 数组进行排序。</p>
 <p>这一步结束后，我们应该有一个数组 $b$ ,$b_i$ 代表第 $i$ 对木棍长度。前面提到过，$b$ 中元素个数为 $m$.</p>
 <p>最后就扫一遍就完了，按照公式 $O(1)$ 算出 $P$ 值，$O(M)$ 结束整个过程。</p>
@@ -1336,24 +1336,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

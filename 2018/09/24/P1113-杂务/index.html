@@ -82,12 +82,12 @@
 
 
 
-<meta name="description" content="题目在这里. 记一共有 $n$ 个任务。一个任务 $i$ 的前置任务有 $m$ 个，从 $pre{i,0}$ 到 $pre{i,m}$，它最早在 $time_i$ 时刻完成，完成它需要的时间为 $t_i$。 那么对于每一个任务的完成时间，有  time_i &#x3D; \begin{cases} t_i \space\space\space\space m&#x3D;0\\ \max(pre_{i,j})+t_i\">
+<meta name="description" content="题目在这里. 记一共有 $n$ 个任务。一个任务 $i$ 的前置任务有 $m$ 个，从 $pre_{i,0}$ 到 $pre_{i,m}$，它最早在 $time_i$ 时刻完成，完成它需要的时间为 $t_i$。 那么对于每一个任务的完成时间，有  time_i &#x3D; \begin{cases} t_i \space\space\space\space m&#x3D;0\\ \max(pre_{i,j})+t_">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【题解】洛谷P1113 杂务">
 <meta property="og:url" content="https://mickey-snow.github.io/2018/09/24/P1113-%E6%9D%82%E5%8A%A1/index.html">
 <meta property="og:site_name" content="Mickey-snow&#39;s Blog">
-<meta property="og:description" content="题目在这里. 记一共有 $n$ 个任务。一个任务 $i$ 的前置任务有 $m$ 个，从 $pre{i,0}$ 到 $pre{i,m}$，它最早在 $time_i$ 时刻完成，完成它需要的时间为 $t_i$。 那么对于每一个任务的完成时间，有  time_i &#x3D; \begin{cases} t_i \space\space\space\space m&#x3D;0\\ \max(pre_{i,j})+t_i\">
+<meta property="og:description" content="题目在这里. 记一共有 $n$ 个任务。一个任务 $i$ 的前置任务有 $m$ 个，从 $pre_{i,0}$ 到 $pre_{i,m}$，它最早在 $time_i$ 时刻完成，完成它需要的时间为 $t_i$。 那么对于每一个任务的完成时间，有  time_i &#x3D; \begin{cases} t_i \space\space\space\space m&#x3D;0\\ \max(pre_{i,j})+t_">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-09-23T16:00:00.000Z">
 <meta property="article:modified_time" content="2020-04-07T04:00:03.679Z">
@@ -435,7 +435,7 @@
 
       
         <p>题目在<a href="https://www.luogu.org/problemnew/show/P1113" target="_blank" rel="noopener">这里</a>.</p>
-<p>记一共有 $n$ 个任务。一个任务 $i$ 的前置任务有 $m$ 个，从 $pre<em>{i,0}$ 到 $pre</em>{i,m}$，它最早在 $time_i$ 时刻完成，完成它需要的时间为 $t_i$。</p>
+<p>记一共有 $n$ 个任务。一个任务 $i$ 的前置任务有 $m$ 个，从 $pre_{i,0}$ 到 $pre_{i,m}$，它最早在 $time_i$ 时刻完成，完成它需要的时间为 $t_i$。</p>
 <p>那么对于每一个任务的完成时间，有</p>
 <script type="math/tex; mode=display">
 time_i = \begin{cases}
@@ -1303,24 +1303,7 @@ t_i \space\space\space\space m=0\\
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

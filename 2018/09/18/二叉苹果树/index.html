@@ -437,12 +437,12 @@
         <p>题目在<a href="https://www.luogu.org/problemnew/show/P2015" target="_blank" rel="noopener">这里</a>.</p>
 <p>这题本质上并不难，但是有很多细节需要注意。</p>
 <p>首先，数据的输入是一个无向图，我们事先并不知道输入的两个结点中谁是父亲结点。假设 $u \rightarrow v$ 代表 $u$ 是 $v$ 的直接父亲，那么我们在读入时先按照无向图保存，由于最终的根节点一定是1，所以在这里 dfs 一下就可以了，很容易就可以转换为有根树。其次，题目给定的是一条边上的苹果数量，最终保留 $m$ 条边。可以发现，最终留下了的边和结点正好组成了一棵树，因此，我们可以假设题目要求的是最终保留 $m+1$ 个不同的结点，而某一条边 $u \rightarrow v$ 上面的苹果数量，可以看成是结点 $v$ 上面的苹果数量，这两种定义是完全等价的，不会影响答案。</p>
-<p>转换为有根树之后，我们就可以开始 DP 了，在递归的过程中，记 $R<em>i,\space L_i$ 分别为 $i$ 右左两个儿子，当前节点为 $r$，保留 $k$ 个结点. $D</em>{r,i}$ 代表以 $r$ 为根的子树保留 $i$ 个结点的最大苹果数量。递归函数的返回值就是 $D_{r,i}$ 的值。</p>
+<p>转换为有根树之后，我们就可以开始 DP 了，在递归的过程中，记 $R_i,\space L_i$ 分别为 $i$ 右左两个儿子，当前节点为 $r$，保留 $k$ 个结点. $D_{r,i}$ 代表以 $r$ 为根的子树保留 $i$ 个结点的最大苹果数量。递归函数的返回值就是 $D_{r,i}$ 的值。</p>
 <ol>
 <li>如果 $i \leq 0$ ，返回 0.</li>
 <li>如果 $R_r=L_r=0$ 说明当前节点是一个叶子节点，返回 $val_r$.</li>
 <li>计算过的直接返回算得的值。</li>
-<li>枚举一下 $j$ ，$D<em>{r,i} = \max{D</em>{r,i},\space D<em>{Ri,j}+D</em>{Li,k-j-1}+val_r}$.</li>
+<li>枚举一下 $j$ ，$D_{r,i} = \max\{D_{r,i},\space D_{Ri,j}+D_{Li,k-j-1}+val_r\}$.</li>
 <li>返回 $D_r,i$.</li>
 </ol>
 <p>在第四步中，去掉当前结点不看，我们还能够选择 $i-1$ 个结点，这些节点可以被分配给左右两个子树，所以我们枚举一下分配给左子树多少个，最后取一个最大的即可。</p>
@@ -1306,24 +1306,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

@@ -298,6 +298,198 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2019/07/22/Lights/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mickey-snow">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mickey-snow's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/22/Lights/" itemprop="url">USACO Lights</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建时间" itemprop="dateCreated datePublished" datetime="2019-07-22T00:00:00+08:00">
+                2019-07-22
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">修改时间&#58;</span>
+              
+              <time title="修改时间" itemprop="dateModified" datetime="2020-04-07T12:00:03+08:00">
+                2020-04-07
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index">
+                    <span itemprop="name">题解</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  400 character(s)
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  2 minute(s)
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>给定 $n$ 盏灯和 $m$ 条边，每一条边链接两盏灯，触发一盏灯的开关会改变这盏灯和所有与它有直接边相连的灯的状态。问最少触发多少个开关使得灯全亮。</p>
+<hr>
+<p>直接用一个64位整数表示某一盏灯开关触发之后会改变的灯的集合，然后双向深搜，将前一半结果记在一个 map 里面，后面搜到一个状态直接取反，在 map 中查找。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/22/Lights/#更多" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+  
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2019/07/22/Tokitsukaze_and_Discard_Items/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -828,7 +1020,7 @@
         
           <p>包含给定点 $P_1,P_2,\cdots,P_n$ 的最小圆圆心坐标和半径。</p>
 <hr>
-<p>首先我们假定已经处理了 $k$ 个点，得到包含 $P<em>1,P_2,\cdots,P_k$ 的最小圆，这时检查一下 $P</em>{k+1}$ 是否在圆内，如果不在则说明这个点一定在包含 $P<em>1,P_2,\cdots,P</em>{k+1}$ 的最小圆边上，枚举一下剩下两个点，然后重复到包含全部的点。</p>
+<p>首先我们假定已经处理了 $k$ 个点，得到包含 $P_1,P_2,\cdots,P_k$ 的最小圆，这时检查一下 $P_{k+1}$ 是否在圆内，如果不在则说明这个点一定在包含 $P_1,P_2,\cdots,P_{k+1}$ 的最小圆边上，枚举一下剩下两个点，然后重复到包含全部的点。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/07/18/Minimal_Circle/#更多" rel="contents">
@@ -1023,7 +1215,7 @@
 <hr>
 <p>可以看出，最终一个合法的方案中选中了的所有区间并在一起是连续的一段，而且不存在任何一个点被三个区间同时覆盖。</p>
 <p>将所有区间以右端点为第一关键字，左端点为第二关键字排序。</p>
-<p>考虑动态规划。定义 $D<em>{i,j}$ 为最后一个区间为 $i$, 倒数第二个区间为 $j$ 所有合法方案总数。当 $l_i&gt;r_j$ 时，$D</em>{i,j}=0$. 否则需要根据 $i,j$ 左端点之间的大小关系进行转移。</p>
+<p>考虑动态规划。定义 $D_{i,j}$ 为最后一个区间为 $i$, 倒数第二个区间为 $j$ 所有合法方案总数。当 $l_i&gt;r_j$ 时，$D_{i,j}=0$. 否则需要根据 $i,j$ 左端点之间的大小关系进行转移。</p>
 <script type="math/tex; mode=display">
 D_{i,j}=\begin{cases}
 0&\mbox{if}\;l_i>r_j\\
@@ -1421,9 +1613,9 @@ f_{i,j}=f_{i,j-1}+\sum_k[r_k=j]D_{i,k}</script><p>$f$ 每一步转移只用考�
         
           <p>有一个长度为 $N$ 的 01 串，你可以每次将相邻的 $k$ 个字符合并，得到一个新的字符并获得一定分数。得到的新字符和分数由这 $k$ 个字符确定。你需要求出你能获得的最大分数。</p>
 <hr>
-<p>定义 $D<em>{i,j,S}$ 其中 $i,j$ 代表一个区间 $[i,j]$, $S$ 描述一个状态。数值代表将 $s</em>{i,j}$ 经过若干次合并，最终得到 $S$ 的最大分数。</p>
+<p>定义 $D_{i,j,S}$ 其中 $i,j$ 代表一个区间 $[i,j]$, $S$ 描述一个状态。数值代表将 $s_{i,j}$ 经过若干次合并，最终得到 $S$ 的最大分数。</p>
 <p>在转移的时候，枚举 $i,j,S$ 和一个整数 $t\in\left[0,\lfloor\frac{i-j}{k-1}\rfloor\right]$. 代表状态 $k$ 最右边的一位数是按照某种顺序合并 $s\left[j-t(k-1),j\right]$ 得到的。如果当前区间包含了超过 $k$ 个字符，那么将其中的 $k$ 个合并，将会继续得到分数，所以枚举 $S$ 时不应超过 $k$ 位。</p>
-<p>最终的答案为 $\max<em>S\left{D</em>{0,N-1,S}\right}$.</p>
+<p>最终的答案为 $\max_S\left\{D_{0,N-1,S}\right\}$.</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/07/15/CMerge/#更多" rel="contents">
@@ -4002,204 +4194,6 @@ f(x)=a_1x^2+a_2x+a_3</script><p>的二次函数图像是一个曲线，于是我
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2019/05/28/HAOI2016-Search/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mickey-snow">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mickey-snow's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/28/HAOI2016-Search/" itemprop="url">【题解】AHOI2016-找相同字符</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建时间" itemprop="dateCreated datePublished" datetime="2019-05-28T00:00:00+08:00">
-                2019-05-28
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">修改时间&#58;</span>
-              
-              <time title="修改时间" itemprop="dateModified" datetime="2020-04-07T12:00:03+08:00">
-                2020-04-07
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index">
-                    <span itemprop="name">题解</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  1.4k character(s)
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  7 minute(s)
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><a href="https://www.luogu.org/problemnew/show/P3181" target="_blank" rel="noopener">题目链接</a></p>
-<p>给定两个字符串 $s_1$ 和 $s_2$, 长度分别为 $n_1$, $n_2$. 求出在两个字符串中各取出一个子串使得这两个子串相同的方案数。两个方案不同当且仅当这两个子串中有一个位置不同。</p>
-<hr>
-<p>先确定大致的思路，我们像做字符串匹配那样在 $s_1$ 中寻找 $s_2$. 现在假定 $s_2$ 的一个子串 $s_2[l,r]$ 是 $s_1$ 的一个子串，记答案为 $ans$, 并保证在任意时刻，$s_2$ 以 $1\leq l_0\leq l$ 开头，$l_0\leq r_0\leq r$ 结尾的子串的贡献都被计算到了答案中。接下来将 $r$ 扩展一位变成 $r_1=r+1$，如果这个时候发现 $s_2[l,r_1]$ 不再是 $s_1$ 的一个子串，那么我们要将 $l$ 收缩一位变成 $l_1=l+1$, 同时更新一下 $s_2$ 以 $l_1$ 开头，$l_1\leq r$ 结尾的子串对答案的贡献。不断这样调整，直到调整到第一个合适的 $l_3$ 使得 $s_2[l_3,r_1]$ 是 $s_1$ 的一个子串。一次扩展完成。</p>
-<p>按照上述过程一次次扩展，最终到达一个子串类似 $s_2[l_4,n_2]$ 这样的状态，全部收缩，同时不要忘记计算。由于每一次扩展都更新了以当前子串开头字母开始的所有子串的贡献，而每一次收缩都计算了以新的开头字母开始的所有子串的贡献，因此这样算出来的答案是正确的。</p>
-<hr>
-<p>要想实现这样的计算过程，需要对 $s<em>1$ 建立后缀树，然后对于后缀树上的每一个结点 $v$，预处理一下从初始状态 $t_0$ 到 $v$ 的路径长度 $v</em>{totLen}$, 以 $v$ 为根的子树的叶节点个数 $v<em>{appear}$ 以及一个比较重要的 $v_D$, 记 $v$ 的父亲为 $u$, $v$ 中压缩的结点个数为 $v</em>{len}$. 那么</p>
-<script type="math/tex; mode=display">
-v_D=u_D+v_{len}\times v_{appear}</script><p>这个 $v_D$ 主要是在收缩时使用，要想实现一次收缩，其本质上就是跳到了去掉当前后缀第一个字母的后缀，在后缀树上相当于沿着后缀链接走一次。跳到相应结点后，还需要一次性更新 $l_1$ 开头的所有字符串对答案的贡献，也就是当前结点 $v$ 的 $v_D$. 需要注意的是，如果当前没有正好结束在一个结点上，那就还需要再额外算一下多出来的一小部分。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/28/HAOI2016-Search/#更多" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-  
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -4944,24 +4938,7 @@ v_D=u_D+v_{len}\times v_{appear}</script><p>这个 $v_D$ 主要是在收缩时�
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

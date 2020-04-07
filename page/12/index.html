@@ -298,6 +298,201 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2018/09/18/CTSC1997-%E9%80%89%E8%AF%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mickey-snow">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mickey-snow's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/18/CTSC1997-%E9%80%89%E8%AF%BE/" itemprop="url">【题解】CTSC1997 选课</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建时间" itemprop="dateCreated datePublished" datetime="2018-09-18T00:00:00+08:00">
+                2018-09-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">修改时间&#58;</span>
+              
+              <time title="修改时间" itemprop="dateModified" datetime="2020-04-07T12:00:03+08:00">
+                2020-04-07
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index">
+                    <span itemprop="name">题解</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  831 character(s)
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  3 minute(s)
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>题目是给定 $n$ 个不同的课程，每一门课都有一定学分，当然有一些课需要预先学习了某一门课才可以学习，现在学习 $m$ 门课，问最大的总学分。</p>
+<p>我们先对题目进行建模，记 $a \rightarrow b$ 代表学习 $b$ 需要先学习 $a$ ，那么就可以以没有任何先修课的课程为根，按照题意建立一棵树，对于树上任何一点，如果需要学习这门课程，必须学完它的所有祖先。需要注意的是，可能有非常多的课程都没有先修课，所以我们可以假定有一个结点 0 ，它没有任何先修课，但是原先没有先修课的课程需要先学习 0 号课程，换句话说，添加一个 0 号结点将森林转换为有根树，便于操作。当然，这个结点不计入总课程，也不能得到任何学分。</p>
+<p>状态定义为 $D_{r,i}$ 代表以 $r$ 为根的子树中选择 $i$ 门课程能够获得的最多学分，这里假定 $r$ 是没有先修课的，答案就是 $D_{0,m}$.</p>
+<p>过程还是使用搜索实现，假定当前结点为 $u$ 且 $u \rightarrow v$. 那么先递归地 dfs($v$)，然后转移方程是 </p>
+<script type="math/tex; mode=display">
+D_{u,i} = \max\{D_{u,i},\space D_{u,i-j}+D_{v,j}\} \space \space (i \ge j)</script><p>不要忘记，算完这一步之后得到的答案是错的，因为没有选择 $u$ 结点，解决的办法是将所有的</p>
+<script type="math/tex; mode=display">
+D_{u,i} = D_{u,i-1}+val_u</script><p>$val_u$ 代表学习 $u$ 能够获得的学分，这样一来，无论之前的结果如何，结点 $u$ 最终都强制地被选择了，在任何情况下都满足题意。</p>
+<p>整个算法时间复杂度为 $O(NM)$. C#代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Collections;</span><br><span class="line"></span><br><span class="line">namespace LuoGu_2014</span><br><span class="line">&#123;</span><br><span class="line">	class Program</span><br><span class="line">	&#123;</span><br><span class="line">		class G</span><br><span class="line">		&#123;</span><br><span class="line">			public static int totCho;</span><br><span class="line">			public static int[,] D; &#x2F;&#x2F;以 u 为子树选择 k 门课程的最大学分</span><br><span class="line">			public static int[] val;&#x2F;&#x2F;一门课学习获得的学分</span><br><span class="line">			public static List&lt;int&gt;[] Gr;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		static void Main(string[] args)</span><br><span class="line">		&#123;</span><br><span class="line">			string[] div &#x3D; Console.ReadLine().Split(&#39; &#39;);</span><br><span class="line">			int totLes &#x3D; Convert.ToInt32(div[0]) + 1;G.totCho &#x3D; Convert.ToInt32(div[1]);</span><br><span class="line"></span><br><span class="line">			G.D &#x3D; new int[totLes, G.totCho + 1];G.val &#x3D; new int[totLes];</span><br><span class="line">			G.Gr &#x3D; new List&lt;int&gt;[totLes];</span><br><span class="line">			for (int i &#x3D; 0; i &lt; totLes; i++) G.Gr[i] &#x3D; new List&lt;int&gt; &#123; &#125;;</span><br><span class="line"></span><br><span class="line">			for(int i &#x3D; 1; i &lt; totLes; i++) &#123;</span><br><span class="line">				div &#x3D; Console.ReadLine().Split(&#39; &#39;);</span><br><span class="line">				G.val[i] &#x3D; Convert.ToInt32(div[1]);</span><br><span class="line">				G.Gr[Convert.ToInt32(div[0])].Add(i);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			G.val[0] &#x3D; 0;</span><br><span class="line">			dfs();</span><br><span class="line"></span><br><span class="line">			Console.WriteLine(G.D[0, G.totCho]);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		static void dfs(int nowAt &#x3D; 0)</span><br><span class="line">		&#123;</span><br><span class="line">			G.D[nowAt, 0] &#x3D; 0;</span><br><span class="line">			</span><br><span class="line">			foreach(var it in G.Gr[nowAt])</span><br><span class="line">			&#123;</span><br><span class="line">				dfs(it);</span><br><span class="line">				for (int i &#x3D; G.totCho; i &gt; 0; i--)</span><br><span class="line">					for (int j &#x3D; i; j &gt; 0; j--)</span><br><span class="line">						G.D[nowAt, i] &#x3D; Math.Max(</span><br><span class="line">							G.D[nowAt, i], </span><br><span class="line">							G.D[nowAt, i - j] + G.D[it, j]);</span><br><span class="line">				&#x2F;&#x2F;更新当前状态，j代表在 it 中选择 j 门课程</span><br><span class="line">			&#125;</span><br><span class="line">			&#x2F;&#x2F;选择儿子课程的前提必须选择 nowAt</span><br><span class="line">			if (nowAt !&#x3D; 0)&#x2F;&#x2F;0是虚拟节点，不占用课程量</span><br><span class="line">				for (int i &#x3D; G.totCho; i &gt; 0; i--)</span><br><span class="line">					G.D[nowAt, i] &#x3D; G.D[nowAt, i - 1] + G.val[nowAt];&#x2F;&#x2F;强制选择 nowAt</span><br><span class="line">																	 &#x2F;&#x2F;此后所有的 G.D[now,k] 都包含了 nowAt, 都是合法的</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+  
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2018/09/18/%E4%BA%8C%E5%8F%89%E8%8B%B9%E6%9E%9C%E6%A0%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -437,12 +632,12 @@
             <p>题目在<a href="https://www.luogu.org/problemnew/show/P2015" target="_blank" rel="noopener">这里</a>.</p>
 <p>这题本质上并不难，但是有很多细节需要注意。</p>
 <p>首先，数据的输入是一个无向图，我们事先并不知道输入的两个结点中谁是父亲结点。假设 $u \rightarrow v$ 代表 $u$ 是 $v$ 的直接父亲，那么我们在读入时先按照无向图保存，由于最终的根节点一定是1，所以在这里 dfs 一下就可以了，很容易就可以转换为有根树。其次，题目给定的是一条边上的苹果数量，最终保留 $m$ 条边。可以发现，最终留下了的边和结点正好组成了一棵树，因此，我们可以假设题目要求的是最终保留 $m+1$ 个不同的结点，而某一条边 $u \rightarrow v$ 上面的苹果数量，可以看成是结点 $v$ 上面的苹果数量，这两种定义是完全等价的，不会影响答案。</p>
-<p>转换为有根树之后，我们就可以开始 DP 了，在递归的过程中，记 $R<em>i,\space L_i$ 分别为 $i$ 右左两个儿子，当前节点为 $r$，保留 $k$ 个结点. $D</em>{r,i}$ 代表以 $r$ 为根的子树保留 $i$ 个结点的最大苹果数量。递归函数的返回值就是 $D_{r,i}$ 的值。</p>
+<p>转换为有根树之后，我们就可以开始 DP 了，在递归的过程中，记 $R_i,\space L_i$ 分别为 $i$ 右左两个儿子，当前节点为 $r$，保留 $k$ 个结点. $D_{r,i}$ 代表以 $r$ 为根的子树保留 $i$ 个结点的最大苹果数量。递归函数的返回值就是 $D_{r,i}$ 的值。</p>
 <ol>
 <li>如果 $i \leq 0$ ，返回 0.</li>
 <li>如果 $R_r=L_r=0$ 说明当前节点是一个叶子节点，返回 $val_r$.</li>
 <li>计算过的直接返回算得的值。</li>
-<li>枚举一下 $j$ ，$D<em>{r,i} = \max{D</em>{r,i},\space D<em>{Ri,j}+D</em>{Li,k-j-1}+val_r}$.</li>
+<li>枚举一下 $j$ ，$D_{r,i} = \max\{D_{r,i},\space D_{Ri,j}+D_{Li,k-j-1}+val_r\}$.</li>
 <li>返回 $D_r,i$.</li>
 </ol>
 <p>在第四步中，去掉当前结点不看，我们还能够选择 $i-1$ 个结点，这些节点可以被分配给左右两个子树，所以我们枚举一下分配给左子树多少个，最后取一个最大的即可。</p>
@@ -634,14 +829,14 @@
         
           
             <p>树上背包动态规划入门祭。<a href="https://www.luogu.org/problemnew/show/P1273" target="_blank" rel="noopener">题目链接</a>.</p>
-<p>在这一题中，使用背包的思想在树上递归地处理。假设 $D<em>{r,i,k}$ 为以 $r$ 为根的子树在只考虑它前 $i$ 个儿子的情况下提供给 $k$ 个用户所能够获得的 <strong>最大利润</strong> ,注意这个值可能是一个负数，代表亏本。我们在递归地处理完所有的结点之后，选取一个在根结点处不亏本的 $k$ 的值，即找到一个最大的 $k$ 使得 $D</em>{root,\sum chilld,k} \ge 0$ ，此时的 $k$ 即为所求答案。</p>
+<p>在这一题中，使用背包的思想在树上递归地处理。假设 $D_{r,i,k}$ 为以 $r$ 为根的子树在只考虑它前 $i$ 个儿子的情况下提供给 $k$ 个用户所能够获得的 <strong>最大利润</strong> ,注意这个值可能是一个负数，代表亏本。我们在递归地处理完所有的结点之后，选取一个在根结点处不亏本的 $k$ 的值，即找到一个最大的 $k$ 使得 $D_{root,\sum chilld,k} \ge 0$ ，此时的 $k$ 即为所求答案。</p>
 <p>事实上，这里的 $i$ 可以用滚动数组去掉。递归的过程用 dfs 实现，步骤如下：</p>
 <ol>
 <li>如果当前结点 $u​$ 是叶子节点， $D_{u,1} = 1​$ ，返回1. </li>
-<li>递归处理一个儿子节点 $v$ 更新一下 $D<em>{u,i} = \max{D</em>{u,i},D<em>{u,i-j} - val</em>{u \rightarrow v} + D_{v,j}}$ 这里 $i\ge j$.</li>
+<li>递归处理一个儿子节点 $v$ 更新一下 $D_{u,i} = \max\{D_{u,i},D_{u,i-j} - val_{u \rightarrow v} + D_{v,j}\}$ 这里 $i\ge j$.</li>
 <li>返回以 $u$ 为根节点的子树包含的叶子节点数量。</li>
 </ol>
-<p>dfs 的返回值 $f$ 可以帮助我们少计算一些不必要的信息，例如当 $f<em>r = 3$ ,即这下面有3个叶子节点，而我们却去算 $D</em>{r,100}$ ，这很明显只会浪费掉大量的计算能力。</p>
+<p>dfs 的返回值 $f$ 可以帮助我们少计算一些不必要的信息，例如当 $f_r = 3$ ,即这下面有3个叶子节点，而我们却去算 $D_{r,100}$ ，这很明显只会浪费掉大量的计算能力。</p>
 <p>dfs 代码如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;nowAt = <span class="number">0</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	D[nowAt][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (nowAt &gt;= totNode - totLf) &#123;	<span class="comment">//叶子结点</span></span><br><span class="line">		D[nowAt][<span class="number">1</span>] = val[nowAt]; <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> child = <span class="number">0</span>, res;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;it : G[nowAt]) &#123;</span><br><span class="line">		res = dfs(it.to);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= child; i++)T[i] = D[nowAt][i];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= child; i++)</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= res; j++)</span><br><span class="line">				D[nowAt][i + j] = <span class="built_in">std</span>::max(D[nowAt][i + j], T[i] - it.val + D[it.to][j]);</span><br><span class="line">		child += res;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> child;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这里有一行</p>
@@ -2388,14 +2583,14 @@
 <li>反之，修改 $[L,L+n_0]$ 为1，修改 $[L+n_0+1,R]$ 为0.</li>
 </ul>
 <p>最后，如果位于 $b_{询问位置}$ 的数为0，说明 $k$ 大了，如果是1，说明 $k$ 小了或者正好等于。</p>
-<p>这样，我们在如果操作个数是 $Q$ 次，那么我们在 $O(Q\log N)$ 的时间复杂度内计算出了大小关系。总的时间复杂度为 $O(Q \log N \log \max {N})$.</p>
+<p>这样，我们在如果操作个数是 $Q$ 次，那么我们在 $O(Q\log N)$ 的时间复杂度内计算出了大小关系。总的时间复杂度为 $O(Q \log N \log \max \{N\})$.</p>
 <p>需要特别注意的是，我们在写线段树的时候会有两个标签，分别代表这段区间有没有被全部赋为1或者0，在我们向下移动标记的时候需要覆盖掉下面区间的一切标签。例如，当前区间有一个全部为0的标记，它的左儿子可能就有一个全部为1的标记，这个时候向下移动标记就要将这个全部为1去掉，不然就会出现很多难以调试的错误。</p>
 <p>题目略显毒瘤，但是对于练习思维和线段树非常有帮助。代码如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 100050</span></span><br><span class="line"><span class="keyword">int</span> origSeq[MAXN], L[MAXN], R[MAXN], pos; <span class="keyword">bool</span> cgT[MAXN];</span><br><span class="line"><span class="keyword">int</span> totNums, totCg;</span><br><span class="line"></span><br><span class="line"><span class="comment">//线段树</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> fr, to, trs;</span><br><span class="line">	<span class="keyword">bool</span> markTrue, markFalse, mark;</span><br><span class="line">	Node *lft, *rgt;</span><br><span class="line">&#125;*root = <span class="literal">nullptr</span>;</span><br><span class="line"><span class="function">Node* <span class="title">NewNode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Node* creat = (Node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));</span><br><span class="line">	creat-&gt;lft = creat-&gt;rgt = <span class="literal">nullptr</span>;</span><br><span class="line">	creat-&gt;trs = <span class="number">0</span>; creat-&gt;mark = creat-&gt;markFalse = creat-&gt;markTrue = <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">return</span> creat;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">freeNode</span><span class="params">(Node* targ)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (targ-&gt;lft != <span class="literal">nullptr</span>)freeNode(targ-&gt;lft);</span><br><span class="line">	<span class="keyword">if</span> (targ-&gt;rgt != <span class="literal">nullptr</span>)freeNode(targ-&gt;rgt);</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">free</span>(targ);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PushDown</span><span class="params">(Node* targ)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (targ-&gt;markTrue) &#123;</span><br><span class="line">		<span class="keyword">if</span> (targ-&gt;lft != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">			targ-&gt;lft-&gt;mark = <span class="literal">true</span>; </span><br><span class="line">			targ-&gt;lft-&gt;markTrue = <span class="literal">true</span>; targ-&gt;lft-&gt;markFalse = <span class="literal">false</span>;</span><br><span class="line">			targ-&gt;lft-&gt;trs = targ-&gt;lft-&gt;to - targ-&gt;lft-&gt;fr + <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (targ-&gt;rgt != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">			targ-&gt;rgt-&gt;mark = <span class="literal">true</span>; </span><br><span class="line">			targ-&gt;rgt-&gt;markTrue = <span class="literal">true</span>; targ-&gt;rgt-&gt;markFalse = <span class="literal">false</span>;</span><br><span class="line">			targ-&gt;rgt-&gt;trs = targ-&gt;rgt-&gt;to - targ-&gt;rgt-&gt;fr + <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (targ-&gt;markFalse) &#123;</span><br><span class="line">		<span class="keyword">if</span> (targ-&gt;lft != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">			targ-&gt;lft-&gt;mark = <span class="literal">true</span>; </span><br><span class="line">			targ-&gt;lft-&gt;markFalse = <span class="literal">true</span>; targ-&gt;lft-&gt;markTrue = <span class="literal">false</span>;</span><br><span class="line">			targ-&gt;lft-&gt;trs = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (targ-&gt;rgt != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">			targ-&gt;rgt-&gt;mark = <span class="literal">true</span>; </span><br><span class="line">			targ-&gt;rgt-&gt;markFalse = <span class="literal">true</span>; targ-&gt;lft-&gt;markTrue = <span class="literal">false</span>;</span><br><span class="line">			targ-&gt;rgt-&gt;trs = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	targ-&gt;mark = targ-&gt;markTrue = targ-&gt;markFalse = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fresh</span><span class="params">(Node* targ)</span> </span>&#123;</span><br><span class="line">	targ-&gt;trs = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (targ-&gt;lft != <span class="literal">nullptr</span>)targ-&gt;trs += targ-&gt;lft-&gt;trs;</span><br><span class="line">	<span class="keyword">if</span> (targ-&gt;rgt != <span class="literal">nullptr</span>)targ-&gt;trs += targ-&gt;rgt-&gt;trs;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Build</span><span class="params">(<span class="keyword">const</span> <span class="keyword">size_t</span> &amp;siz, <span class="keyword">const</span> <span class="keyword">int</span> &amp;comp)</span> </span>&#123;</span><br><span class="line">	Node *a, *b, *ext;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">queue</span>&lt;Node*&gt; que, add;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Render</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; siz; i++) &#123;</span><br><span class="line">		ext = NewNode();</span><br><span class="line">		ext-&gt;fr = ext-&gt;to = i;</span><br><span class="line">		ext-&gt;trs = comp &gt; origSeq[i] ? <span class="number">0</span> : <span class="number">1</span>;</span><br><span class="line">		que.push(ext);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (que.size() &gt; <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">while</span> (que.size() &gt; <span class="number">1</span>) &#123;</span><br><span class="line">			a = que.front(); que.pop();</span><br><span class="line">			b = que.front(); que.pop();</span><br><span class="line">			ext = NewNode();</span><br><span class="line">			ext-&gt;fr = a-&gt;fr; ext-&gt;to = b-&gt;to;</span><br><span class="line">			ext-&gt;lft = a; ext-&gt;rgt = b;</span><br><span class="line">			ext-&gt;trs = a-&gt;trs + b-&gt;trs;</span><br><span class="line">			add.push(ext);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (!que.empty()) &#123;</span><br><span class="line">			add.push(que.front()); que.pop();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">std</span>::swap(que, add);</span><br><span class="line">	&#125;</span><br><span class="line">	root = que.front();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Count</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;fr, <span class="keyword">const</span> <span class="keyword">int</span> &amp;to, Node* nowAt = root)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (nowAt == <span class="literal">nullptr</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (nowAt-&gt;fr &gt; to || nowAt-&gt;to &lt; fr)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (nowAt-&gt;mark)PushDown(nowAt);</span><br><span class="line">	<span class="keyword">if</span> (nowAt-&gt;fr &gt;= fr &amp;&amp; nowAt-&gt;to &lt;= to)<span class="keyword">return</span> nowAt-&gt;trs;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> Count(fr, to, nowAt-&gt;lft) + Count(fr, to, nowAt-&gt;rgt);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SetSeq</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;fr, <span class="keyword">const</span> <span class="keyword">int</span> &amp;to, <span class="keyword">const</span> <span class="keyword">bool</span> &amp;val, Node* nowAt = root)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (nowAt == <span class="literal">nullptr</span>)<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">if</span> (nowAt-&gt;fr &gt; to || nowAt-&gt;to &lt; fr)<span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (nowAt-&gt;mark)PushDown(nowAt);</span><br><span class="line">	<span class="keyword">if</span> (nowAt-&gt;fr &gt;= fr &amp;&amp; nowAt-&gt;to &lt;= to) &#123;</span><br><span class="line">		nowAt-&gt;mark = <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">if</span> (val == <span class="literal">true</span>) &#123;</span><br><span class="line">			nowAt-&gt;markTrue = <span class="literal">true</span>; nowAt-&gt;markFalse = <span class="literal">false</span>;</span><br><span class="line">			nowAt-&gt;trs = nowAt-&gt;to - nowAt-&gt;fr + <span class="number">1</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			nowAt-&gt;markFalse = <span class="literal">true</span>; nowAt-&gt;markTrue = <span class="literal">false</span>;</span><br><span class="line">			nowAt-&gt;trs = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		SetSeq(fr, to, val, nowAt-&gt;lft); SetSeq(fr, to, val, nowAt-&gt;rgt);</span><br><span class="line">		fresh(nowAt);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Query</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;k, Node* nowAt = root)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (nowAt-&gt;mark)PushDown(nowAt);</span><br><span class="line">	<span class="keyword">if</span> (nowAt-&gt;fr == nowAt-&gt;to&amp;&amp;nowAt-&gt;fr == k)<span class="keyword">return</span> nowAt-&gt;trs == <span class="number">1</span> ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> (nowAt-&gt;lft == <span class="literal">nullptr</span> || nowAt-&gt;rgt == <span class="literal">nullptr</span>)</span><br><span class="line">		<span class="keyword">return</span> Query(k, nowAt-&gt;lft == <span class="literal">nullptr</span> ? nowAt-&gt;rgt : nowAt-&gt;lft);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> Query(k, nowAt-&gt;lft-&gt;to &gt;= k ? nowAt-&gt;lft : nowAt-&gt;rgt);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//二分检查</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Solve</span><span class="params">(<span class="keyword">int</span> numTry)</span> </span>&#123;</span><br><span class="line">	Build(totNums, numTry);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> cnt1;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; totCg; i++) &#123;</span><br><span class="line">		cnt1 = Count(L[i], R[i]);</span><br><span class="line">		<span class="keyword">if</span> (cgT[i] == <span class="literal">true</span>) &#123;</span><br><span class="line">			SetSeq(L[i], L[i] + cnt1 - <span class="number">1</span>, <span class="literal">true</span>); SetSeq(L[i] + cnt1, R[i], <span class="literal">false</span>);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			SetSeq(L[i], R[i] - cnt1, <span class="literal">false</span>)</span><br><span class="line">			SetSeq(R[i] - cnt1 + <span class="number">1</span>, R[i], <span class="literal">true</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">bool</span> ans = Query(pos);</span><br><span class="line">	freeNode(root); root = <span class="literal">nullptr</span>;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> fr = <span class="number">1</span>, to = INT_MIN, mid, cgTo;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//read</span></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;totNums, &amp;totCg);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; totNums; i++) &#123; <span class="built_in">scanf</span>(<span class="string">"%d"</span>, origSeq + i); to = <span class="built_in">std</span>::max(to, origSeq[i]); &#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; totCg; i++) &#123; </span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;cgTo, L + i, R + i); L[i]--; R[i]--;</span><br><span class="line">		cgT[i] = cgTo == <span class="number">1</span> ? <span class="literal">false</span> : <span class="literal">true</span>; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;pos); pos--;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (fr &lt; to) &#123;</span><br><span class="line">		mid = (fr + to) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (Solve(++mid)) fr = mid;</span><br><span class="line">		<span class="keyword">else</span> to = mid - <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, fr);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//system("pause");</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>也是调了好几个小时才AC.</p>
 <hr>
 <h1 id="区间和"><a href="#区间和" class="headerlink" title="区间和"></a>区间和</h1><p>尚未发现包含这道题目的OJ.</p>
-<h2 id="描述-1"><a href="#描述-1" class="headerlink" title="描述"></a>描述</h2><h3 id="详情-1"><a href="#详情-1" class="headerlink" title="详情"></a>详情</h3><p>有一个数组包含 $n$ 个数，$a<em>0, a_1 \cdots \cdots a</em>{n-1}$ ,求这个数列所有元素之和为负数的子序列。</p>
+<h2 id="描述-1"><a href="#描述-1" class="headerlink" title="描述"></a>描述</h2><h3 id="详情-1"><a href="#详情-1" class="headerlink" title="详情"></a>详情</h3><p>有一个数组包含 $n$ 个数，$a_0, a_1 \cdots \cdots a_{n-1}$ ,求这个数列所有元素之和为负数的子序列。</p>
 <h3 id="输入格式-1"><a href="#输入格式-1" class="headerlink" title="输入格式"></a>输入格式</h3><p>一行一个数 $n$.</p>
 <p>一行 $n$ 个数 $a_i$.</p>
 <h3 id="输出格式-1"><a href="#输出格式-1" class="headerlink" title="输出格式"></a>输出格式</h3><p>一行一个数，代表元素和为负数的子序列的数量。</p>
@@ -2410,7 +2605,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1008611</span>;</span><br><span class="line"><span class="keyword">int</span> a[maxn], r[maxn], ans = <span class="number">0</span>, n, ts[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">msort</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span> t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (s == t) <span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">int</span> mid = (s + t) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	msort(s, mid); msort(mid + <span class="number">1</span>, t);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> i = s, j = mid + <span class="number">1</span>, k = s;</span><br><span class="line">	<span class="keyword">while</span> (i &lt;= mid &amp;&amp; j &lt;= t) &#123;</span><br><span class="line">		<span class="keyword">if</span> (a[i] &lt;= a[j])</span><br><span class="line">			r[k] = a[i], k++, i++;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			r[k] = a[j], k++, j++;</span><br><span class="line">			ans += mid - i + <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (i &lt;= mid)</span><br><span class="line">		r[k] = a[i], k++, i++;</span><br><span class="line">	<span class="keyword">while</span> (j &lt;= t)</span><br><span class="line">		r[k] = a[j], k++, j++;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = s; i &lt;= t; i++)</span><br><span class="line">		a[i] = r[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, ts + i);</span><br><span class="line">	*a = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)a[i] = a[i - <span class="number">1</span>] + ts[i];</span><br><span class="line"></span><br><span class="line">	msort(<span class="number">1</span>, n);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)<span class="keyword">if</span> (a[i] &lt; <span class="number">0</span>)ans++;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//system("pause");</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <h1 id="Super-Mario"><a href="#Super-Mario" class="headerlink" title="Super Mario"></a>Super Mario</h1><p>题目链接：<a href="http://acm.hdu.edu.cn/showproblem.php?pid=4417" target="_blank" rel="noopener">HDOJ4417</a></p>
-<h2 id="描述-2"><a href="#描述-2" class="headerlink" title="描述"></a>描述</h2><h3 id="详情-2"><a href="#详情-2" class="headerlink" title="详情"></a>详情</h3><p>有一个数组包含 $n$ 个数，$a<em>0, a_1 \cdots \cdots a</em>{n-1}$ ,有 $m$ 个询问，你需要求出 $a_i$ 至 $a_j$ 有多少个数小于 $k$.</p>
+<h2 id="描述-2"><a href="#描述-2" class="headerlink" title="描述"></a>描述</h2><h3 id="详情-2"><a href="#详情-2" class="headerlink" title="详情"></a>详情</h3><p>有一个数组包含 $n$ 个数，$a_0, a_1 \cdots \cdots a_{n-1}$ ,有 $m$ 个询问，你需要求出 $a_i$ 至 $a_j$ 有多少个数小于 $k$.</p>
 <h3 id="输入格式-2"><a href="#输入格式-2" class="headerlink" title="输入格式"></a>输入格式</h3><p>一行一个数 $T$ 代表数据组数.</p>
 <p>一行 $2$ 个数 $n,m$.</p>
 <p>一行 $n$ 个数 $a_i$.</p>
@@ -3463,7 +3658,7 @@ ay^2+axy+bx(y-1)</script><p>$\because y\in N$ </p>
         
           
             <p>这题意思是让你找出有向图 $G$ 中所有强连通分量中点权最小的点权值之和，以及有多少种不同的选择方法使得点权和最小。</p>
-<p>首先，如果我们求出来了所有的SCC，那么只用在相信时间内处理每一个 $SCC<em>i$, 就可以找出 $min{SCC_i}$ 和 $\sum</em>{j=0} ^{n} 1 (j \in SCC_i \space ,\space j = min{SCC_i})$ .</p>
+<p>首先，如果我们求出来了所有的SCC，那么只用在相信时间内处理每一个 $SCC_i$, 就可以找出 $min\{SCC_i\}$ 和 $\sum_{j=0} ^{n} 1 (j \in SCC_i \space ,\space j = min\{SCC_i\})$ .</p>
 <p>求出所有 SCC 可以使用 Tarjan 算法，我们可以在找到一个新的 SCC 时就更新答案，最后的时间复杂度为 $O(N)​$.</p>
 <p>代码如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 100050</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> mod = <span class="number">1000000007</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> val[MAXN]; <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; G[MAXN];</span><br><span class="line"><span class="keyword">int</span> pre[MAXN], low[MAXN], sccID[MAXN], dfs_Clock, nowScc;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> _count = <span class="number">1</span>, ans = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; S;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> nowAt)</span> </span>&#123;</span><br><span class="line">	pre[nowAt] = low[nowAt] = dfs_Clock++;</span><br><span class="line">	S.push(nowAt);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;it : G[nowAt]) &#123;</span><br><span class="line">		<span class="keyword">if</span> (pre[it] == <span class="number">-1</span>) &#123;</span><br><span class="line">			dfs(it);</span><br><span class="line">			low[nowAt] = <span class="built_in">std</span>::min(low[nowAt], low[it]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (sccID[it] == <span class="number">-1</span>) 			</span><br><span class="line">			low[nowAt] = <span class="built_in">std</span>::min(low[nowAt], pre[it]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//New SCC</span></span><br><span class="line">	<span class="keyword">if</span> (pre[nowAt] == low[nowAt]) &#123;</span><br><span class="line">		<span class="keyword">int</span> x, cnt = <span class="number">0</span>, _min = INT_MAX;</span><br><span class="line">		<span class="keyword">do</span></span><br><span class="line">		&#123;</span><br><span class="line">			x = S.top(); S.pop();</span><br><span class="line">			sccID[x] = nowScc;</span><br><span class="line">			<span class="keyword">if</span> (val[x] == _min)cnt++;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (val[x] &lt; _min) &#123; cnt = <span class="number">1</span>; _min = val[x]; &#125;</span><br><span class="line">		&#125; <span class="keyword">while</span> (x != nowAt);</span><br><span class="line">		nowScc++;</span><br><span class="line">		_count = _count * (cnt % mod) % mod;</span><br><span class="line">		ans += _min;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> totNodes, totRoads, fr, to;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;totNodes);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; totNodes; i++)<span class="built_in">scanf</span>(<span class="string">"%d"</span>, val + i);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;totRoads);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; totRoads; i++) &#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;fr, &amp;to);</span><br><span class="line">		G[--fr].push_back(--to);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	dfs_Clock = nowScc = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">memset</span>(pre, <span class="number">-1</span>, <span class="keyword">sizeof</span>(pre)); <span class="built_in">memset</span>(sccID, <span class="number">-1</span>, <span class="keyword">sizeof</span>(sccID));</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; totNodes; i++)</span><br><span class="line">		<span class="keyword">if</span> (pre[i] == <span class="number">-1</span>)dfs(i);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="string">" "</span> &lt;&lt; _count &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//system("pause");</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -4040,201 +4235,6 @@ ay^2+axy+bx(y-1)</script><p>$\because y\in N$ </p>
 <p>SCC 的 Tarjan 算法时间复杂度是线性级别的，相比较于 Kosaraju 算法，常数要更小一些。</p>
 <p>代码如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; S;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> nowAt)</span> </span>&#123;</span><br><span class="line">	pre[nowAt] = low[nowAt] = dfs_Clock++;</span><br><span class="line">	S.push(nowAt);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;it : G[nowAt]) &#123;</span><br><span class="line">		<span class="keyword">if</span> (pre[it] == <span class="number">-1</span>) &#123;</span><br><span class="line">			dfs(it);</span><br><span class="line">			low[nowAt] = <span class="built_in">std</span>::min(low[nowAt], low[it]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (sccID[it] == <span class="number">-1</span>) 			</span><br><span class="line">			low[nowAt] = <span class="built_in">std</span>::min(low[nowAt], pre[it]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//New SCC</span></span><br><span class="line">	<span class="keyword">if</span> (pre[nowAt] == low[nowAt]) &#123;</span><br><span class="line">		<span class="keyword">int</span> x, cnt = <span class="number">0</span>, _min = INT_MAX;</span><br><span class="line">		<span class="keyword">do</span></span><br><span class="line">		&#123;</span><br><span class="line">			x = S.top(); S.pop();</span><br><span class="line">			sccID[x] = nowScc;</span><br><span class="line">			<span class="keyword">if</span> (val[x] == _min)cnt++;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (val[x] &lt; _min) &#123; cnt = <span class="number">1</span>; _min = val[x]; &#125;</span><br><span class="line">		&#125; <span class="keyword">while</span> (x != nowAt);</span><br><span class="line">		nowScc++;</span><br><span class="line">		_count = _count * (cnt % mod) % mod;</span><br><span class="line">		ans += _min;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-  
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2018/09/01/%E6%9B%B4%E5%A4%9A%E4%BF%A1%E6%81%AF&%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mickey-snow">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mickey-snow's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/01/%E6%9B%B4%E5%A4%9A%E4%BF%A1%E6%81%AF&%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F/" itemprop="url">更多信息&联系方式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建时间" itemprop="dateCreated datePublished" datetime="2018-09-01T04:22:45+08:00">
-                2018-09-01
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">修改时间&#58;</span>
-              
-              <time title="修改时间" itemprop="dateModified" datetime="2020-04-07T12:00:03+08:00">
-                2020-04-07
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%90%AD%E5%BB%BA%E4%B8%8E%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index">
-                    <span itemprop="name">搭建与测试</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  38 character(s)
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  1 minute(s)
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Skype: <a href="https://join.skype.com/invite/QYhesYlIjMJS" target="_blank" rel="noopener">live:kevin77478</a></p>
-<p>Outlook邮箱地址：Kevin77478@outlook.com</p>
-<p>Gmail邮箱地址: Mickeysnow1031@gmail.com</p>
-<p>Facebook: Thunremmoni</p>
-<p>Twitter: Mickey-snow</p>
-<p>Instagram: thunremmoni</p>
-<p>Google+: <a href="https://plus.google.com/u/0/113600669053565040036" target="_blank" rel="noopener">Mickey Snow</a></p>
-<p>Github: Mickey-snow</p>
-<p>洛谷: <a href="https://www.luogu.org/space/show?uid=78371" target="_blank" rel="noopener">Mickey_snow</a></p>
-<p>Codeforces: <a href="http://codeforces.com/profile/Mickey-snow" target="_blank" rel="noopener">Mickey-snow</a></p>
 
           
         
@@ -5015,24 +5015,7 @@ ay^2+axy+bx(y-1)</script><p>$\because y\in N$ </p>
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

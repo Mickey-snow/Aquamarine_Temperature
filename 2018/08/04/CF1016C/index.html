@@ -82,12 +82,12 @@
 
 
 
-<meta name="description" content="这道题难度并不算大，主要考的是细心程度。 思路这题思路并不难想，注意有一句非常关键的话: 每个格子必须且只能经过一次。 不难发现，方案数量是线性的。   这是样例解释中的两张图，我们分别记他们为 方案1 和 方案2 ,可以发现，我们有三种可行方案：方案1，方案2，前 $i$ 列使用方案1，随后使用方案2. 这样，所有的方案都已经被找到，将他们计算出来的时间复杂度为 $O(N^2)$ ,超时。虽然时">
+<meta name="description" content="这道题难度并不算大，主要考的是细心程度。 思路这题思路并不难想，注意有一句非常关键的话: _每个格子必须且只能经过一次。_ 不难发现，方案数量是线性的。   这是样例解释中的两张图，我们分别记他们为 方案1 和 方案2 ,可以发现，我们有三种可行方案：方案1，方案2，前 $i$ 列使用方案1，随后使用方案2. 这样，所有的方案都已经被找到，将他们计算出来的时间复杂度为 $O(N^2)$ ,超时。虽">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【题解】CF1016C">
 <meta property="og:url" content="https://mickey-snow.github.io/2018/08/04/CF1016C/index.html">
 <meta property="og:site_name" content="Mickey-snow&#39;s Blog">
-<meta property="og:description" content="这道题难度并不算大，主要考的是细心程度。 思路这题思路并不难想，注意有一句非常关键的话: 每个格子必须且只能经过一次。 不难发现，方案数量是线性的。   这是样例解释中的两张图，我们分别记他们为 方案1 和 方案2 ,可以发现，我们有三种可行方案：方案1，方案2，前 $i$ 列使用方案1，随后使用方案2. 这样，所有的方案都已经被找到，将他们计算出来的时间复杂度为 $O(N^2)$ ,超时。虽然时">
+<meta property="og:description" content="这道题难度并不算大，主要考的是细心程度。 思路这题思路并不难想，注意有一句非常关键的话: _每个格子必须且只能经过一次。_ 不难发现，方案数量是线性的。   这是样例解释中的两张图，我们分别记他们为 方案1 和 方案2 ,可以发现，我们有三种可行方案：方案1，方案2，前 $i$ 列使用方案1，随后使用方案2. 这样，所有的方案都已经被找到，将他们计算出来的时间复杂度为 $O(N^2)$ ,超时。虽">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://mickey-snow.github.io/2018/08/04/CF1016C/26669%5B1%5D.png">
 <meta property="og:image" content="https://mickey-snow.github.io/2018/08/04/CF1016C/26670%5B1%5D.png">
@@ -401,7 +401,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  999 character(s)
+                  1k character(s)
                 </span>
               
 
@@ -439,12 +439,12 @@
 
       
         <p>这道题难度并不算大，主要考的是细心程度。</p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>这题思路并不难想，注意有一句非常关键的话: <em>每个格子必须且只能经过一次。</em> 不难发现，方案数量是线性的。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>这题思路并不难想，注意有一句非常关键的话: _每个格子必须且只能经过一次。_ 不难发现，方案数量是线性的。</p>
 <img src="/2018/08/04/CF1016C/26669%5B1%5D.png" class="">
 <img src="/2018/08/04/CF1016C/26670%5B1%5D.png" class="">
 <p>这是样例解释中的两张图，我们分别记他们为 <strong>方案1</strong> 和 <strong>方案2</strong> ,可以发现，我们有三种可行方案：方案1，方案2，前 $i$ 列使用方案1，随后使用方案2.</p>
 <p>这样，所有的方案都已经被找到，将他们计算出来的时间复杂度为 $O(N^2)$ ,超时。虽然时间超了，但是这种思路没错。</p>
-<h3 id="优化方案"><a href="#优化方案" class="headerlink" title="优化方案"></a>优化方案</h3><p>为了简单起见，以下图片中的数字代表 <em>位于这个格子中的数字(蘑菇生长速度)为最终的答案的贡献值</em> 也就是 <em>采集这个蘑菇时它生长了多少秒</em> 换句话说， <em>到达这个格子时可以采集到多少倍于它每秒生长值的蘑菇</em>.</p>
+<h3 id="优化方案"><a href="#优化方案" class="headerlink" title="优化方案"></a>优化方案</h3><p>为了简单起见，以下图片中的数字代表 _位于这个格子中的数字(蘑菇生长速度)为最终的答案的贡献值_ 也就是 _采集这个蘑菇时它生长了多少秒_ 换句话说， _到达这个格子时可以采集到多少倍于它每秒生长值的蘑菇_.</p>
 <p>如图，这是方案2中每个蘑菇的贡献。 $(n=8)$</p>
 <img src="/2018/08/04/CF1016C/26671%5B1%5D.png" class="">
 <p>这是采用两行方案1之后采用方案2每个蘑菇的贡献。</p>
@@ -1334,24 +1334,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

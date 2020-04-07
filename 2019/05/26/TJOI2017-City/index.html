@@ -437,7 +437,7 @@
 <hr>
 <p>枚举一下需要删除的边，假定这条边是 $r=(u,v,d)$. 然后得到两颗树。</p>
 <p>考虑改造之后，最长的路有可能产生于得到的这两颗树内部，也有可能从其中一棵树出发，经由添加的一条长度为 $d$ 的边，到达另一颗树。对于树内部的情况，一定是树的直径。否则，假定我们新建一条边 $b=(f,t,d)$, 那么最长的路径长度上等于从 $f$ 出发的最长路和从 $t$ 出发的最长路长度和加上 $d$.</p>
-<p>对于一个点 $u$ 假定它的父亲是 $v$. 此时我们已经计算了 $u$ 子树中的最长路径 $D<em>{1,u}$ 和次长路 $D</em>{2,u}$, 那么从 $u$ 出发的最长路 $D<em>{3,u}$ 有可能是 $D</em>{1,u}$, 也可能是往上走经过父亲 $v$ 到达父亲的父亲或者经由父亲到达一个兄弟。对于后一种情况，需要判断一下这个兄弟不是自己。将 $D<em>{3,v}$ 与 $D</em>{1,v}$ 或者 $D<em>{2,v}$ 取最大加上 $|v\to u|$，然后再与 $D</em>{1,u}$ 比较即可。</p>
+<p>对于一个点 $u$ 假定它的父亲是 $v$. 此时我们已经计算了 $u$ 子树中的最长路径 $D_{1,u}$ 和次长路 $D_{2,u}$, 那么从 $u$ 出发的最长路 $D_{3,u}$ 有可能是 $D_{1,u}$, 也可能是往上走经过父亲 $v$ 到达父亲的父亲或者经由父亲到达一个兄弟。对于后一种情况，需要判断一下这个兄弟不是自己。将 $D_{3,v}$ 与 $D_{1,v}$ 或者 $D_{2,v}$ 取最大加上 $|v\to u|$，然后再与 $D_{1,u}$ 比较即可。</p>
 <a id="more"></a>
 <hr>
 <p>总时间复杂度为 $O(N^2)$, 代码如下：</p>
@@ -497,8 +497,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/26/CF1166D-Cute-Sequences/" rel="prev" title="【题解】CF1166D Cute Sequences">
-                【题解】CF1166D Cute Sequences <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/26/CF1166E-The-LCMs-Must-be-Large/" rel="prev" title="【题解】CF1166E The LCMs Must be Large">
+                【题解】CF1166E The LCMs Must be Large <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1298,24 +1298,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

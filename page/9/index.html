@@ -298,6 +298,210 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2018/11/29/%E6%8E%92%E5%88%97%E4%B8%8E%E7%BB%84%E5%90%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mickey-snow">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mickey-snow's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/29/%E6%8E%92%E5%88%97%E4%B8%8E%E7%BB%84%E5%90%88/" itemprop="url">排列与组合</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建时间" itemprop="dateCreated datePublished" datetime="2018-11-29T00:00:00+08:00">
+                2018-11-29
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">修改时间&#58;</span>
+              
+              <time title="修改时间" itemprop="dateModified" datetime="2020-04-07T12:00:03+08:00">
+                2020-04-07
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  537 character(s)
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  2 minute(s)
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>排列组合就是按照一定规则排列一些元素，区别在于组合是相对于一个集合而言，而排列则需要考虑顺序。</p>
+<p>通常情况下，记 $\mathbb{ C}_n^m$ 代表 $n$ 个元素中选择 $m$ 个不同元素的方案数。 $\mathbb{P}_n^m$ 代表 $n$ 个元素中选择 $m$ 个元素进行排列的方案数。有些时候，我们需要求得满足特定条件的排列组合数，可能会用到容斥原理为主的计数原理。</p>
+<hr>
+<h1 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h1><p>从 $n$ 个元素的集合 $S$ 中无序地选择 $r$ 个不同元素，叫做 $S$ 的一个 $r$ 组合。所有不同组合的个数叫做组合数，记为 $\mathbb{C}_n^r$. 满足：</p>
+<script type="math/tex; mode=display">
+\mathbb{C}_n^r=\frac{\mathbb{P}_n^r}{r!}\\
+\mathbb{C}_n^r=\mathbb{C}_n^{n-r}\\
+\mathbb{C}_n^r=\mathbb{C}_{n-1}^r+\mathbb{C}_{n-1}^{r-1}\\
+\sum_{i=0}^n \mathbb{C}_n^i=2^n\\
+\mathbb{C}_n^r=\frac{n!}{(n-r)!r!}</script><p>特别地，记 $\mathbb{H}_n^r$ 代表从 $n$ 个元素的集合 $S$ 中无序地选择 $r$ 个元素（可以相同）的方案数。</p>
+<script type="math/tex; mode=display">
+\mathbb{H}_n^r=\mathbb{C}_{n+r-1}^r</script><hr>
+<h1 id="排列"><a href="#排列" class="headerlink" title="排列"></a>排列</h1><p>在排列问题中，需要考虑元素的顺序，最基本的 $\mathbb{P}_n^r$ 代表 $n$ 个元素中选择 $r$ 个互异元素进行排列的总方案数，在实际应用中根据问题的不同可以延伸出多种不同的排列。</p>
+<h2 id="选排列"><a href="#选排列" class="headerlink" title="选排列"></a>选排列</h2><p>即为 $\mathbb{P}_n^r$. 满足：</p>
+<script type="math/tex; mode=display">
+\mathbb{P}_n^r=\prod_{i=n-r+1}^n i=\frac{n!}{(n-r)!}\\
+\mathbb{P}_n^n = n!</script><h2 id="错位排列"><a href="#错位排列" class="headerlink" title="错位排列"></a>错位排列</h2><p>有一个集合 $D_n = \{1,2,\cdots,n\}$ , 如果 $(a_1,a_2,\cdots,a_n)$ 为 $D_n$ 的一个全排列，而且 $\forall i\in\{1,2,3,\cdots,n\}$ ,都有 $a_i\not= i$, 那么 $(a_1,a_2,\cdots,a_n)$ 为 $D_n$ 的一个错位排列，总的方案数记为 $\mathbb{D}_n$.</p>
+<script type="math/tex; mode=display">
+\mathbb{D}_n=n!\cdot\left(\sum_{i=0}^n\frac{(-1)^i}{i!}\right)</script><h2 id="圆排列"><a href="#圆排列" class="headerlink" title="圆排列"></a>圆排列</h2><p>从 $n$ 个元素中选出 $r$ 个元素，不分首尾地围成一个圆圈的排列叫做圆排列，其排列方案数为 $\frac{\mathbb{P}_n^r}{r}$ . 如果 $r=n$, 则有 $(n-1)!$ 种。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+  
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2018/11/28/Mickey-snow-is-back/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3508,7 +3712,7 @@ g^\prime(x)=px^{p-1}+p(x+c)^{p-1}\\
 <hr>
 <p>由于 $Cult$ 满足四边形不等式，所以 $f$ 函数具有单调性。</p>
 <p>证明：</p>
-<p>假定对于一个确定的 $i$, 能使 $\min{f(j)+val(j,i)}$ 取到最小值的 $j$ 为 $p_i$, 即 $p_i=j$ , $f(i)=f(p_i)+val(p_i,i)$. 即证 $\forall i&gt;j\quad p_i\ge p_j$.</p>
+<p>假定对于一个确定的 $i$, 能使 $\min\{f(j)+val(j,i)\}$ 取到最小值的 $j$ 为 $p_i$, 即 $p_i=j$ , $f(i)=f(p_i)+val(p_i,i)$. 即证 $\forall i&gt;j\quad p_i\ge p_j$.</p>
 <p>显然</p>
 <script type="math/tex; mode=display">
 f(p_i)+val(p_i,i)\leq f(j)+val(j,i)</script><p>由于函数 $val$ 满足四边形不等式，$\forall i_0\in (i,N]$,</p>
@@ -3516,7 +3720,7 @@ f(p_i)+val(p_i,i)\leq f(j)+val(j,i)</script><p>由于函数 $val$ 满足四边�
 val(j,i_0)+val(p_i,i)\ge val(j,i)+val(p_i,i_0)\\
 \therefore val(p_i,i_0)-val(p_i,i)\leq val(j,i_0)-val(j,i)</script><p>与上一个式子相加，得到</p>
 <script type="math/tex; mode=display">
-f(p_i)+val(p_i,i_0)\leq f(j)+val(j,i_0)</script><p>这也就是说，对于 $f(i<em>0),\quad i_0&gt;i$ 而言，$p_i$ 之前的决策点都不可能称为最优决策点，除非 $p_i$ 也是一个最优决策点，换言之 $p</em>{i_0}&gt;p_i$.</p>
+f(p_i)+val(p_i,i_0)\leq f(j)+val(j,i_0)</script><p>这也就是说，对于 $f(i_0),\quad i_0&gt;i$ 而言，$p_i$ 之前的决策点都不可能称为最优决策点，除非 $p_i$ 也是一个最优决策点，换言之 $p_{i_0}&gt;p_i$.</p>
 <p>证毕。</p>
 <hr>
 <p>在实现的过程中，我们可以维护一个队列，其中包含很多个三元组 $(fr,to,targ)$, 代表 $[fr,to]$ 这一段的决策都是 $targ$, 然后不断更新这个队列即可。</p>
@@ -3714,7 +3918,7 @@ Cult(i,fr_t)\leq Cult(targ_t,fr_t)</script><p>满足则直接弹出队尾，否�
         
           
             <p>题目在<a href="http://codeforces.com/problemset/problem/1066/E" target="_blank" rel="noopener">这里</a>.</p>
-<p>这道题目的大致意思是，给定两个使用二进制表示的正整数 $a,\,b$, 你需要求出 $\sum<em>{i=0}^{b</em>{Len}} ((b&gt;&gt;i)\&amp;a)$.</p>
+<p>这道题目的大致意思是，给定两个使用二进制表示的正整数 $a,\,b$, 你需要求出 $\sum_{i=0}^{b_{Len}} ((b&gt;&gt;i)\&amp;a)$.</p>
 <hr>
 <p>还是将 $a,\,b$ 用二进制表示，现在我们单独地看 $b$ 中的每一个二进制位。如果第 $i$ 位是 1，那么它对答案的贡献就是</p>
 <script type="math/tex; mode=display">
@@ -3913,224 +4117,6 @@ Cult(i,fr_t)\leq Cult(targ_t,fr_t)</script><p>满足则直接弹出队尾，否�
 <p>所以，设计估价函数是这题的关键，它的好坏决定了效率的高低。假定我们位于某一个状态 $S$, 再次状态之下有 $k$ 个位置放着的是不应该放的东西（这里假定空位置放着一个特殊的棋子）。接着模拟一下此后的移动过程。由于每一次移动都是一个骑士从一个位置跳到的另外一个位置，所以每一步 $k$ 最多减少 1. 事实上有可能某一时刻空位也在它应该在的位置，但是下一步它又会被移走，除非这就是最终状态。总之，如果当前步数 $+k-1&gt;$ 上限，那么直接剪枝。</p>
 <p>加上上述一个优化和一个剪枝之后，时间复杂度大大降低。代码如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">short</span> Target[<span class="number">5</span>][<span class="number">5</span>] = &#123;</span><br><span class="line">	&#123;<span class="literal">true</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="literal">true</span>&#125;,</span><br><span class="line">	&#123;<span class="literal">false</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="literal">true</span>&#125;,</span><br><span class="line">	&#123;<span class="literal">false</span>,<span class="literal">false</span>,<span class="number">-1</span>,<span class="literal">true</span>,<span class="literal">true</span>&#125;,</span><br><span class="line">	&#123;<span class="literal">false</span>,<span class="literal">false</span>,<span class="literal">false</span>,<span class="literal">false</span>,<span class="literal">true</span>&#125;,</span><br><span class="line">	&#123;<span class="literal">false</span>,<span class="literal">false</span>,<span class="literal">false</span>,<span class="literal">false</span>,<span class="literal">false</span>&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">short</span> nextY[] = &#123; <span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-2</span> &#125;;</span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">short</span> nextX[] = &#123; <span class="number">-1</span>,<span class="number">1</span>,<span class="number">-2</span>,<span class="number">2</span>,<span class="number">-2</span>,<span class="number">2</span>,<span class="number">-1</span>,<span class="number">1</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">short</span> <span class="title">GetChar</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">char</span> it;</span><br><span class="line">		<span class="keyword">do</span> it = getchar(); <span class="keyword">while</span> (it != <span class="string">'0'</span>&amp;&amp;it != <span class="string">'1'</span>&amp;&amp;it != <span class="string">'*'</span>);</span><br><span class="line">		<span class="keyword">return</span> it == <span class="string">'*'</span> ? <span class="number">-1</span> : (it == <span class="string">'0'</span> ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">operator</span> <span class="params">()</span> <span class="params">(<span class="keyword">const</span> Node &amp;a, <span class="keyword">const</span> Node &amp;comp)</span><span class="keyword">const</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a.cnt &lt; comp.cnt;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">short</span> <span class="built_in">map</span>[<span class="number">5</span>][<span class="number">5</span>];</span><br><span class="line">	<span class="keyword">short</span> cnt, y, x;</span><br><span class="line"></span><br><span class="line">	<span class="function">Node&amp; <span class="title">Clear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		cnt = <span class="number">0</span>; y = x = <span class="number">-1</span>; <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">Node&amp; <span class="title">Init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">5</span>; j++)</span><br><span class="line">				<span class="keyword">this</span>-&gt;<span class="built_in">map</span>[i][j] = GetChar();</span><br><span class="line">		<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">Node&amp; <span class="title">Cult</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">5</span>; j++) &#123;</span><br><span class="line">				<span class="keyword">if</span> (<span class="keyword">this</span>-&gt;<span class="built_in">map</span>[i][j] == <span class="number">-1</span>) &#123; y = i; x = j; &#125;</span><br><span class="line">				<span class="keyword">if</span> (<span class="keyword">this</span>-&gt;<span class="built_in">map</span>[i][j] != Target[i][j])cnt++;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">short</span> <span class="title">Count</span><span class="params">(<span class="keyword">const</span> <span class="keyword">short</span> y, <span class="keyword">const</span> <span class="keyword">short</span> x, <span class="keyword">const</span> <span class="keyword">short</span> cy, <span class="keyword">const</span> <span class="keyword">short</span> cx)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">short</span> Delta = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>-&gt;<span class="built_in">map</span>[y][x] == Target[y][x])++Delta;</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>-&gt;<span class="built_in">map</span>[cy][cx] == Target[cy][cx])++Delta;</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>-&gt;<span class="built_in">map</span>[cy][cx] == Target[y][x])--Delta;</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>-&gt;<span class="built_in">map</span>[y][x] == Target[cy][cx])--Delta;</span><br><span class="line">		<span class="keyword">return</span> Delta;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">Node <span class="title">Render</span><span class="params">(<span class="keyword">const</span> <span class="keyword">short</span> &amp;situ)</span> </span>&#123;</span><br><span class="line">		Node ret = *<span class="keyword">this</span>;</span><br><span class="line">		<span class="keyword">short</span> nxtX = x + nextX[situ], nxtY = y + nextY[situ];</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (nxtX &lt; <span class="number">0</span> || nxtY &lt; <span class="number">0</span> || nxtX &gt;= <span class="number">5</span> || nxtY &gt;= <span class="number">5</span>) &#123;</span><br><span class="line">			ret.cnt = INT16_MAX; <span class="keyword">return</span> ret;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		ret.cnt += <span class="keyword">this</span>-&gt;Count(y, x, nxtY, nxtX);</span><br><span class="line">		<span class="built_in">std</span>::swap(ret.<span class="built_in">map</span>[nxtY][nxtX], ret.<span class="built_in">map</span>[y][x]);</span><br><span class="line">		ret.x = nxtX; ret.y = nxtY;</span><br><span class="line">		<span class="keyword">return</span> ret;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Dfs</span><span class="params">(<span class="keyword">const</span> <span class="keyword">short</span> &amp;stepUsed, <span class="keyword">const</span> <span class="keyword">short</span> &amp;maxStep, Node &amp;nowAt)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (nowAt.cnt &lt;= <span class="number">0</span>)<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">if</span> (stepUsed + (nowAt.cnt - <span class="number">1</span>) &gt; maxStep)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;Node&gt; arr;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++)arr.push_back(nowAt.Render(i));</span><br><span class="line">	<span class="built_in">std</span>::sort(arr.begin(), arr.end(), Node());</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> &amp;it : arr)</span><br><span class="line">		<span class="keyword">if</span> (Dfs(stepUsed + <span class="number">1</span>, maxStep, it))<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> totCases, stepCounter;</span><br><span class="line">	Node begin;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cin</span> &gt;&gt; totCases;</span><br><span class="line">	<span class="keyword">while</span> (totCases--)</span><br><span class="line">	&#123;</span><br><span class="line">		begin.Clear().Init().Cult();</span><br><span class="line">		<span class="keyword">for</span> (stepCounter = <span class="number">0</span>; stepCounter &lt;= <span class="number">15</span>; stepCounter++)</span><br><span class="line">			<span class="keyword">if</span> (Dfs(<span class="number">0</span>, stepCounter, begin)) &#123;</span><br><span class="line">				<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; stepCounter &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="keyword">if</span> (stepCounter &gt; <span class="number">15</span>)<span class="built_in">puts</span>(<span class="string">"-1"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//system("pause");</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-  
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2018/10/18/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%E9%80%9A%E9%A1%B9%E5%85%AC%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mickey-snow">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mickey-snow's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/18/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%E9%80%9A%E9%A1%B9%E5%85%AC%E5%BC%8F/" itemprop="url">斐波那契数列通项公式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建时间" itemprop="dateCreated datePublished" datetime="2018-10-18T00:00:00+08:00">
-                2018-10-18
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">修改时间&#58;</span>
-              
-              <time title="修改时间" itemprop="dateModified" datetime="2020-04-07T12:00:03+08:00">
-                2020-04-07
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">学习笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  305 character(s)
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  1 minute(s)
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://zh.wikipedia.org/wiki/斐波那契数列" target="_blank" rel="noopener">斐波那契数列</a>, 是一种使用递归方法定义的数列</p>
-<script type="math/tex; mode=display">
-f(n)=\begin{cases}
-0\qquad\qquad\qquad\qquad\qquad n=0\\
-1\qquad\qquad\qquad\qquad\qquad n=1\\
-f(n-1)+f(n-2)\qquad \text{else}
-\end{cases}</script><hr>
-<p>使用待定系数法，可以求得斐波那契数列的通项公式。</p>
-<p>设 $r,s$ 使得</p>
-<script type="math/tex; mode=display">
-\begin{cases}
--rs=1\\
-r+s=1
-\end{cases}</script><p>解得</p>
-<script type="math/tex; mode=display">
-\begin{cases}
-s=\frac{1+\sqrt 5}{2}\\
-r=\frac{1-\sqrt 5}{2}
-\end{cases}</script><p>这样，</p>
-<script type="math/tex; mode=display">
-\because f(n)=(r+s)f(n-1)-rsf(n-2)\\
-\therefore f(n)-rf(n-1)=s[f(n-1)-rf(n-2)]\\
-f(n-1)-rf(n-2)=s[f(n-2)-rf(n-3)]\\
-\cdots\\
-f(3)-rf(2)=s[f(2)-rf(1)]\\
-\therefore f(n)=rf(n-1)=s^{n-2}[f(2)-f(1)]\\
-f(n)=s^{n-1}+rf(n-1)\\</script><script type="math/tex; mode=display">
-\because f(n)=s^{n-1}+rf(n-1)\\
-\therefore f(n)=s^{n-1}+rs^{n-2}+r^2f(n-2)\\
-\cdots\\
-f(n)=s^{n-1}+rs^{n-2}+r^2s^{n-3}+\cdots+r^{n-1}</script><p>可以发现，这是一个以 $s^{n-1}$ 为首项，$r^{n-1}$ 为末项，$\frac{r}{s}$ 为公比的等比数列。直接使用等比数列求和公式，得到</p>
-<script type="math/tex; mode=display">
-f(n)=\frac{\sqrt 5}{5}\left[\left(\frac{1+\sqrt 5}{2}\right)^n-\left(\frac{1-\sqrt 5}{2}\right)^n\right]</script><p>利用这个公式，可以求解斐波那契数列的任意一项。</p>
 
           
         
@@ -4911,24 +4897,7 @@ f(n)=\frac{\sqrt 5}{5}\left[\left(\frac{1+\sqrt 5}{2}\right)^n-\left(\frac{1-\sq
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
