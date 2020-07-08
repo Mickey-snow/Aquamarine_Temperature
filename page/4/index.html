@@ -298,6 +298,202 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2019/07/23/Median_Pyramid_Hard/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mickey-snow">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mickey-snow's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/23/Median_Pyramid_Hard/" itemprop="url">AT2165 Median Pyramid Hard</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建时间" itemprop="dateCreated datePublished" datetime="2019-07-23T00:00:00+08:00">
+                2019-07-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">修改时间&#58;</span>
+              
+              <time title="修改时间" itemprop="dateModified" datetime="2020-04-07T12:00:03+08:00">
+                2020-04-07
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index">
+                    <span itemprop="name">题解</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  442 character(s)
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  1 minute(s)
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>给出一个 $N$ 层的方格金字塔,自顶向下依次标号为第 1 到第 $N$ 层。其中第 $i(1\leq i\leq N)$ 层有 $2i − 1$ 个方格。</p>
+<p>第 $N$ 层有一个 $1$ 到 $2N-1$ 的排列,其他层的数字按以下规则生成：方格 $b$ 中填写的整数,是方格 $b$ 正下方,左下方和右下方方格所写整数的中位数。</p>
+<p>现在给出第 $N$ 层的数字，请你求第一层的数字。</p>
+<hr>
+<p>先二分一下答案 $a$. 然后将最后一行所有小于 $a$ 的数变为 0, 不小于 $a$ 的变为 1.</p>
+<p>然后手推一些比较小的数据可以发现，最终如果底部出现了连续两个或者更多的 0 或者 1, 那么这一块会一直延续到顶端，而由于每次最左和最右的数会被抹去，所以判断一下最靠近中间的这样一个块是由什么组成的，就可以推断出正确答案和 $a$ 之间的关系。</p>
+<p>特别地，如果最后一行是 01 交替出现的串，那么答案就是最后一行第一个数。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/23/Median_Pyramid_Hard/#更多" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+  
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2019/07/22/Lights/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -4007,193 +4203,6 @@ f(x)=a_1x^2+a_2x+a_3</script><p>的二次函数图像是一个曲线，于是我
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2019/05/29/Dynamic-Rankings/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mickey-snow">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mickey-snow's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/29/Dynamic-Rankings/" itemprop="url">【题解】Dynamic Rankings</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建时间" itemprop="dateCreated datePublished" datetime="2019-05-29T00:00:00+08:00">
-                2019-05-29
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">修改时间&#58;</span>
-              
-              <time title="修改时间" itemprop="dateModified" datetime="2020-04-07T12:00:03+08:00">
-                2020-04-07
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index">
-                    <span itemprop="name">题解</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  564 character(s)
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  3 minute(s)
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://www.luogu.org/problemnew/show/P2617" target="_blank" rel="noopener">题目链接</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">char</span> <span class="title">ReadChar</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> in;</span><br><span class="line">    <span class="keyword">do</span> in = getchar(); <span class="keyword">while</span>(in!=<span class="string">'Q'</span> &amp;&amp; in!=<span class="string">'C'</span>);</span><br><span class="line">    <span class="keyword">return</span> in;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">auto</span> MAXN = <span class="number">100000</span>+<span class="number">500</span>;</span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">auto</span> MAXM = MAXN+(<span class="number">100000</span>+<span class="number">500</span>&lt;&lt;<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//BIT</span></span><br><span class="line"><span class="keyword">int</span> bit_array[MAXN];</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lowbit(x) ((x)&amp;(-(x)))</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Add</span><span class="params">(<span class="keyword">int</span> pos, <span class="keyword">const</span> <span class="keyword">int</span>&amp; delta)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(;pos&lt;MAXN;pos+=lowbit(pos)) bit_array[pos] += delta;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Sum</span><span class="params">(<span class="keyword">int</span> pos)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(;pos&gt;<span class="number">0</span>;pos-=lowbit(pos)) ans += bit_array[pos];</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Sum</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>&amp; beg, <span class="keyword">const</span> <span class="keyword">int</span> &amp;end)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Sum(end)-Sum(beg<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Opt</span>&#123;</span></span><br><span class="line">    <span class="comment">//type = 1 : beg,end,kth,ans_ID</span></span><br><span class="line">    <span class="comment">//type = 2 : pos,delta,num</span></span><br><span class="line">    <span class="keyword">int</span> type,i,j,k,ID;</span><br><span class="line">    Opt()&#123;&#125;</span><br><span class="line">    Opt(<span class="keyword">const</span> <span class="keyword">int</span> &amp;itype, <span class="keyword">const</span> <span class="keyword">int</span> &amp;ii,<span class="keyword">const</span> <span class="keyword">int</span> &amp;ij,<span class="keyword">const</span> <span class="keyword">int</span> &amp;ik,<span class="keyword">const</span> <span class="keyword">int</span> &amp;iID = <span class="number">-1</span>) : type(itype),i(ii),j(ij),k(ik),ID(iID) &#123;&#125;</span><br><span class="line">&#125;opt[MAXM],q1[MAXM],q2[MAXM]; <span class="keyword">int</span> totOptn;</span><br><span class="line"><span class="keyword">int</span> ans[MAXM],totAns;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Solve</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp;ans_fr, <span class="keyword">const</span> <span class="keyword">int</span> &amp;ans_to, <span class="keyword">const</span> <span class="keyword">int</span> &amp;opt_fr, <span class="keyword">const</span> <span class="keyword">int</span> &amp;opt_to)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(opt_fr &gt; opt_to || ans_fr &gt; ans_to) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span>(ans_fr == ans_to)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=opt_fr;i&lt;=opt_to;i++)</span><br><span class="line">            <span class="keyword">if</span>(opt[i].ID != <span class="number">-1</span>) ans[opt[i].ID] = ans_fr;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> ans_mid = (ans_fr+ans_to)&gt;&gt;<span class="number">1</span>,res; <span class="keyword">auto</span> *s1=q1,*s2=q2; <span class="keyword">bool</span> lft = <span class="literal">false</span>, rgt = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> nowOpt = opt_fr; nowOpt &lt;= opt_to; ++nowOpt)&#123;</span><br><span class="line">        <span class="keyword">auto</span>&amp; nowAt = opt[nowOpt];</span><br><span class="line">        <span class="keyword">switch</span>(nowAt.type)&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">            res = Sum(nowAt.i,nowAt.j);</span><br><span class="line">            <span class="keyword">if</span>(res &gt;= nowAt.k)&#123;</span><br><span class="line">                lft = <span class="literal">true</span>; *s1++ = nowAt;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                rgt = <span class="literal">true</span>; nowAt.k -= res; *s2++ = nowAt;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">if</span>(nowAt.k &lt;= ans_mid)&#123;</span><br><span class="line">                Add(nowAt.i, nowAt.j);</span><br><span class="line">                *s1++ = nowAt;</span><br><span class="line">            &#125; <span class="keyword">else</span> *s2++ = nowAt;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>: <span class="built_in">puts</span>(<span class="string">"UTY"</span>); assert(<span class="literal">false</span>); <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Empty</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=opt_fr;i&lt;=opt_to;i++)</span><br><span class="line">        <span class="keyword">if</span>(opt[i].type==<span class="number">2</span> &amp;&amp; opt[i].k&lt;=ans_mid) Add(opt[i].i, -opt[i].j);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Copy</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> *i=q1;i&lt;s1;i++) opt[opt_fr+i-q1] = *i;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> *i=q2;i&lt;s2;i++) opt[opt_fr+s1-q1+i-q2] = *i;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(lft) Solve(ans_fr,ans_mid,opt_fr,opt_fr+s1-q1<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">if</span>(rgt) Solve(ans_mid+<span class="number">1</span>,ans_to,opt_fr+s1-q1,opt_to);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> num[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> totNums,totOrd;</span><br><span class="line">    <span class="keyword">int</span> i,j,k,min=INT_MAX,max=INT_MIN;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;totNums,&amp;totOrd);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> ii=<span class="number">0</span>;ii&lt;totNums;ii++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;k); num[ii+<span class="number">1</span>] = k;</span><br><span class="line">        opt[totOptn++] = Opt(<span class="number">2</span>,ii+<span class="number">1</span>,<span class="number">1</span>,k);</span><br><span class="line">        min = <span class="built_in">std</span>::min(min,k); max = <span class="built_in">std</span>::max(max,k);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> ii=<span class="number">0</span>;ii&lt;totOrd;ii++)</span><br><span class="line">        <span class="keyword">switch</span>(ReadChar())&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'Q'</span>:</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;i,&amp;j,&amp;k);</span><br><span class="line">            opt[totOptn++] = Opt(<span class="number">1</span>,i,j,k,totAns++);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'C'</span>:</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;i,&amp;k);</span><br><span class="line">            opt[totOptn++] = Opt(<span class="number">2</span>,i,<span class="number">-1</span>,num[i]);</span><br><span class="line">            opt[totOptn++] = Opt(<span class="number">2</span>,i,<span class="number">1</span>,num[i]=k);</span><br><span class="line">            min = <span class="built_in">std</span>::min(min,k); max = <span class="built_in">std</span>::max(max,k);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>: <span class="built_in">puts</span>(<span class="string">"UOPT"</span>); assert(<span class="literal">false</span>); <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    Solve(min,max,<span class="number">0</span>,totOptn<span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> ii=<span class="number">0</span>;ii&lt;totAns;ii++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans[ii]);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-  
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -4248,7 +4257,7 @@ f(x)=a_1x^2+a_2x+a_3</script><p>的二次函数图像是一个曲线，于是我
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">279</span>
+                  <span class="site-state-item-count">280</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -4420,7 +4429,7 @@ f(x)=a_1x^2+a_2x+a_3</script><p>的二次函数图像是一个曲线，于是我
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">210.7k</span>
+    <span title="Site words total count">211.7k</span>
   
 </div>
 

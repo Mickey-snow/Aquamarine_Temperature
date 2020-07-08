@@ -298,6 +298,200 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2019/03/14/%E7%9F%A9%E9%98%B5-%E6%A0%91%E5%AE%9A%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mickey-snow">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mickey-snow's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/14/%E7%9F%A9%E9%98%B5-%E6%A0%91%E5%AE%9A%E7%90%86/" itemprop="url">矩阵-树定理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建时间" itemprop="dateCreated datePublished" datetime="2019-03-14T00:00:00+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">修改时间&#58;</span>
+              
+              <time title="修改时间" itemprop="dateModified" datetime="2020-04-07T12:00:03+08:00">
+                2020-04-07
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2.2k character(s)
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  8 minute(s)
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><strong>矩阵-树定理</strong>在图和矩阵之间建立联系，其中矩阵代表一个无向图的 Kirchhoff矩阵，树则是生成树。矩阵-树定理可以用来求解一个无向图 $G=\{V,E\}$ 的不同生成树的个数。</p>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>首先，我们将图 $G$ 转换成为几个矩阵：$D_G$ 是 $G$ 的<strong>度数矩阵</strong>，其中 $D_{ii}$ 代表一个结点 $i\in V$ 的度数，$\forall i\not=j,\ D_{ij}=0$. $A_G$ 是 $G$ 的邻接矩阵，$A_{ij}$ 代表 $G$ 中两个结点 $i,\ j$ 之间有多少条无向边相连。</p>
+<p>然后定义 $G$ 的<strong>Kirchhoff矩阵</strong> $C_G=D_G-A_G$. 它的一个 $n-1$ 阶主子式就是对于 $1\leq r\leq n$, 将 $C_G$ 的第 $r$ 行和第 $r$ 列同时去掉之后得到的矩阵，记为 $C_{_rG}$.</p>
+<p>矩阵-树定理可以描述为 $G$ 的Kirchhoff矩阵的任何一个 $n-1$ 阶主子式 $C_{_rG}$ 的绝对值等于其不同生成树的个数。</p>
+<p>接下来我们可以看看这个 Kirchhoff矩阵都有些什么性质，并尝试从这些性质出发找到矩阵-树定理成立的原因。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/14/%E7%9F%A9%E9%98%B5-%E6%A0%91%E5%AE%9A%E7%90%86/#更多" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+  
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2019/03/09/HEOI2015-%E5%B0%8FZ%E7%9A%84%E6%88%BF%E9%97%B4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -4029,202 +4223,6 @@ g(i)=\sum_{j\not=i}[t_j>t_i][p_j>p_j][v_j<v_i]</script>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2019/02/01/NOI2014-%E8%B5%B7%E5%BA%8A%E5%9B%B0%E9%9A%BE%E7%BB%BC%E5%90%88%E7%97%87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mickey-snow">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mickey-snow's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/01/NOI2014-%E8%B5%B7%E5%BA%8A%E5%9B%B0%E9%9A%BE%E7%BB%BC%E5%90%88%E7%97%87/" itemprop="url">【题解】NOI2014 起床困难综合症</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建时间" itemprop="dateCreated datePublished" datetime="2019-02-01T00:00:00+08:00">
-                2019-02-01
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">修改时间&#58;</span>
-              
-              <time title="修改时间" itemprop="dateModified" datetime="2020-04-07T12:00:03+08:00">
-                2020-04-07
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index">
-                    <span itemprop="name">题解</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  397 character(s)
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  1 minute(s)
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>题目在<a href="https://www.luogu.org/problemnew/show/P2114" target="_blank" rel="noopener">这里</a>.(LG)</p>
-<p>这道题目可以利用贪心的做法，先让全部是 1 和全部是 0 的二进制数通过全部的位运算，然后由于这些位运算不同的位之间是互不干扰的，所以可以得到每一位是 0 或者 1 通过所有位运算之后得到的二进制数。之后，从高到低依次判断第 $i$ 位上的映射关系：</p>
-<ul>
-<li>如果这一位上存在映射 $0\to 1$, 那么答案的这一位就是 1.</li>
-<li>如果这一位上存在映射 $1\to 1$, 那么根据贪心的思想，我们尽可能让答案的这一位是 1. 这时需要考虑最大攻击力，如果大于 1&lt;&lt;$i$, 那么就将最大攻击力减去 1&lt;&lt;$i$, 然后答案的这一位就是 1 了。</li>
-<li>其他情况无论这一位上的数是什么，最后都会变为 0，可以不用考虑。</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/01/NOI2014-%E8%B5%B7%E5%BA%8A%E5%9B%B0%E9%9A%BE%E7%BB%BC%E5%90%88%E7%97%87/#更多" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-  
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -4279,7 +4277,7 @@ g(i)=\sum_{j\not=i}[t_j>t_i][p_j>p_j][v_j<v_i]</script>
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">279</span>
+                  <span class="site-state-item-count">280</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -4451,7 +4449,7 @@ g(i)=\sum_{j\not=i}[t_j>t_i][p_j>p_j][v_j<v_i]</script>
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">210.7k</span>
+    <span title="Site words total count">211.7k</span>
   
 </div>
 

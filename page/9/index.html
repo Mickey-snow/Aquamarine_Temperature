@@ -298,6 +298,202 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2018/12/02/Lucas-%E5%AE%9A%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mickey-snow">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mickey-snow's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/02/Lucas-%E5%AE%9A%E7%90%86/" itemprop="url">Lucas 定理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建时间" itemprop="dateCreated datePublished" datetime="2018-12-02T00:00:00+08:00">
+                2018-12-02
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">修改时间&#58;</span>
+              
+              <time title="修改时间" itemprop="dateModified" datetime="2020-04-07T12:00:03+08:00">
+                2020-04-07
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%A8%A1%E6%9D%BF%E5%92%8CAPI/" itemprop="url" rel="index">
+                    <span itemprop="name">模板和API</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  426 character(s)
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  2 minute(s)
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Lucas 定理主要用于求组合数 $\mathbb{C}_n^r \mod p$  的结果， $p$ 相对较小，而且是一个素数。</p>
+<script type="math/tex; mode=display">
+Lucas(n,r,p)=\begin{cases} 
+1 & \mbox{if}\quad r=0\\
+cm(n\;\mbox{mod}\;p,r\;\mbox{mod}\;p)\times Lucas(n\div p,r\div p,p) & \mbox{otherwise}
+\end{cases}</script><p>其中</p>
+<script type="math/tex; mode=display">
+cm(a,b)=\frac{a!}{(a-b)!}\times(b!)^{(p-2)}=\left(\prod_{i=a-b+1}^a i\right)\times(b!)^{(p-2)}</script><p>代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">Fast_Pow</span><span class="params">(T n, T m, <span class="keyword">const</span> T &amp;mod)</span> </span>&#123;</span><br><span class="line">	T ans = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (; m &gt; <span class="number">0</span>; m &gt;&gt;= <span class="number">1</span>, (n *= n) %= mod) <span class="keyword">if</span> (m &amp; <span class="number">1</span>)(ans *= n) %= mod;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">C</span><span class="params">(<span class="keyword">const</span> T&amp; n, <span class="keyword">const</span> T&amp; m, <span class="keyword">const</span> T&amp; mod)</span> </span>&#123;</span><br><span class="line">   	<span class="keyword">if</span> (m &gt; n)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	T s1 = <span class="number">1</span>, s2 = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)(s1 *= n - i) %= mod, (s2 *= (i + <span class="number">1</span>)) %= mod;</span><br><span class="line">	<span class="keyword">return</span> s1 * Fast_Pow(s2, mod - <span class="number">2</span>, mod) % mod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> type&gt;</span><br><span class="line"><span class="function">type <span class="title">Lucas</span><span class="params">(<span class="keyword">const</span> type&amp; n, <span class="keyword">const</span> type&amp; r, <span class="keyword">const</span> type&amp; mod)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (r == <span class="number">0</span>) ? <span class="number">1</span> : (C(n%mod, r%mod, mod)*Lucas(n / mod, r / mod, mod) % mod);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在特殊情况下，如果需要频繁地调用 Lucas 函数，那么将阶乘和阶乘逆元打表将会加快速度。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">1e6</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> Pr[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">Fast_Pow</span><span class="params">(T n, T m, <span class="keyword">const</span> T &amp;mod)</span> </span>&#123;</span><br><span class="line">	T ans = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (; m &gt; <span class="number">0</span>; m &gt;&gt;= <span class="number">1</span>, (n *= n) %= mod) <span class="keyword">if</span> (m &amp; <span class="number">1</span>)(ans *= n) %= mod;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">C</span><span class="params">(<span class="keyword">const</span> T&amp; n, <span class="keyword">const</span> T&amp; m, <span class="keyword">const</span> T&amp; mod)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (m &gt; n)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="comment">//T s1 = 1, s2 = 1;</span></span><br><span class="line">	<span class="comment">//for (int i = 0; i &lt; m; i++)(s1 *= n - i) %= mod, (s2 *= (i + 1)) %= mod;</span></span><br><span class="line">	<span class="comment">//return s1 * Fast_Pow(s2, mod - 2, mod) % mod;</span></span><br><span class="line">	<span class="keyword">return</span> Pr[n] * Fast_Pow(Pr[m], mod - <span class="number">2</span>, mod) % mod*Fast_Pow(Pr[n - m], mod - <span class="number">2</span>, mod) % mod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> type&gt;</span><br><span class="line"><span class="function">type <span class="title">Lucas</span><span class="params">(<span class="keyword">const</span> type&amp; n, <span class="keyword">const</span> type&amp; r, <span class="keyword">const</span> type&amp; mod)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (r == <span class="number">0</span>) ? <span class="number">1</span> : (C(n%mod, r%mod, mod)*Lucas(n / mod, r / mod, mod) % mod);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+  
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2018/11/29/%E6%8E%92%E5%88%97%E4%B8%8E%E7%BB%84%E5%90%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3961,198 +4157,6 @@ Cult(i,fr_t)\leq Cult(targ_t,fr_t)</script><p>满足则直接弹出队尾，否�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2018/10/20/SCOI2005-%E9%AA%91%E5%A3%AB%E7%B2%BE%E7%A5%9E/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mickey-snow">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mickey-snow's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/20/SCOI2005-%E9%AA%91%E5%A3%AB%E7%B2%BE%E7%A5%9E/" itemprop="url">【题解】SCOI2005 骑士精神</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建时间" itemprop="dateCreated datePublished" datetime="2018-10-20T00:00:00+08:00">
-                2018-10-20
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">修改时间&#58;</span>
-              
-              <time title="修改时间" itemprop="dateModified" datetime="2020-04-07T12:00:03+08:00">
-                2020-04-07
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index">
-                    <span itemprop="name">题解</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  907 character(s)
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  4 minute(s)
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>题目在<a href="https://www.luogu.org/problemnew/show/P2324" target="_blank" rel="noopener">这里</a>. 能这么快A掉这题的我真是码力暴强！</p>
-<hr>
-<p>这道题没有什么技巧，直接爆搜。其中用到了迭代加深和 IDA* 优化。首先，我们会得到一个初始状态 $S$, 从这个状态开始搜索。搜索时，为搜索树的深度定一个上限，如果在这个上限内得到了答案，直接输出即可，反之加深这个上限，注意上限不超过 15.</p>
-<p>达到了某一个状态，从这个状态至多扩展出来 8 个状态，将这 8 个状态按照没有复原的棋子数量进行排序，优先从没有复原数量较少的开始搜索，可以更快地逼近答案。如果在某一时刻，搜索树深度预测会超过限制，直接剪枝。</p>
-<p>所以，设计估价函数是这题的关键，它的好坏决定了效率的高低。假定我们位于某一个状态 $S$, 再次状态之下有 $k$ 个位置放着的是不应该放的东西（这里假定空位置放着一个特殊的棋子）。接着模拟一下此后的移动过程。由于每一次移动都是一个骑士从一个位置跳到的另外一个位置，所以每一步 $k$ 最多减少 1. 事实上有可能某一时刻空位也在它应该在的位置，但是下一步它又会被移走，除非这就是最终状态。总之，如果当前步数 $+k-1&gt;$ 上限，那么直接剪枝。</p>
-<p>加上上述一个优化和一个剪枝之后，时间复杂度大大降低。代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">short</span> Target[<span class="number">5</span>][<span class="number">5</span>] = &#123;</span><br><span class="line">	&#123;<span class="literal">true</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="literal">true</span>&#125;,</span><br><span class="line">	&#123;<span class="literal">false</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="literal">true</span>&#125;,</span><br><span class="line">	&#123;<span class="literal">false</span>,<span class="literal">false</span>,<span class="number">-1</span>,<span class="literal">true</span>,<span class="literal">true</span>&#125;,</span><br><span class="line">	&#123;<span class="literal">false</span>,<span class="literal">false</span>,<span class="literal">false</span>,<span class="literal">false</span>,<span class="literal">true</span>&#125;,</span><br><span class="line">	&#123;<span class="literal">false</span>,<span class="literal">false</span>,<span class="literal">false</span>,<span class="literal">false</span>,<span class="literal">false</span>&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">short</span> nextY[] = &#123; <span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-2</span> &#125;;</span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">short</span> nextX[] = &#123; <span class="number">-1</span>,<span class="number">1</span>,<span class="number">-2</span>,<span class="number">2</span>,<span class="number">-2</span>,<span class="number">2</span>,<span class="number">-1</span>,<span class="number">1</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">short</span> <span class="title">GetChar</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">char</span> it;</span><br><span class="line">		<span class="keyword">do</span> it = getchar(); <span class="keyword">while</span> (it != <span class="string">'0'</span>&amp;&amp;it != <span class="string">'1'</span>&amp;&amp;it != <span class="string">'*'</span>);</span><br><span class="line">		<span class="keyword">return</span> it == <span class="string">'*'</span> ? <span class="number">-1</span> : (it == <span class="string">'0'</span> ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">operator</span> <span class="params">()</span> <span class="params">(<span class="keyword">const</span> Node &amp;a, <span class="keyword">const</span> Node &amp;comp)</span><span class="keyword">const</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a.cnt &lt; comp.cnt;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">short</span> <span class="built_in">map</span>[<span class="number">5</span>][<span class="number">5</span>];</span><br><span class="line">	<span class="keyword">short</span> cnt, y, x;</span><br><span class="line"></span><br><span class="line">	<span class="function">Node&amp; <span class="title">Clear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		cnt = <span class="number">0</span>; y = x = <span class="number">-1</span>; <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">Node&amp; <span class="title">Init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">5</span>; j++)</span><br><span class="line">				<span class="keyword">this</span>-&gt;<span class="built_in">map</span>[i][j] = GetChar();</span><br><span class="line">		<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">Node&amp; <span class="title">Cult</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">5</span>; j++) &#123;</span><br><span class="line">				<span class="keyword">if</span> (<span class="keyword">this</span>-&gt;<span class="built_in">map</span>[i][j] == <span class="number">-1</span>) &#123; y = i; x = j; &#125;</span><br><span class="line">				<span class="keyword">if</span> (<span class="keyword">this</span>-&gt;<span class="built_in">map</span>[i][j] != Target[i][j])cnt++;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">short</span> <span class="title">Count</span><span class="params">(<span class="keyword">const</span> <span class="keyword">short</span> y, <span class="keyword">const</span> <span class="keyword">short</span> x, <span class="keyword">const</span> <span class="keyword">short</span> cy, <span class="keyword">const</span> <span class="keyword">short</span> cx)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">short</span> Delta = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>-&gt;<span class="built_in">map</span>[y][x] == Target[y][x])++Delta;</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>-&gt;<span class="built_in">map</span>[cy][cx] == Target[cy][cx])++Delta;</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>-&gt;<span class="built_in">map</span>[cy][cx] == Target[y][x])--Delta;</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>-&gt;<span class="built_in">map</span>[y][x] == Target[cy][cx])--Delta;</span><br><span class="line">		<span class="keyword">return</span> Delta;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">Node <span class="title">Render</span><span class="params">(<span class="keyword">const</span> <span class="keyword">short</span> &amp;situ)</span> </span>&#123;</span><br><span class="line">		Node ret = *<span class="keyword">this</span>;</span><br><span class="line">		<span class="keyword">short</span> nxtX = x + nextX[situ], nxtY = y + nextY[situ];</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (nxtX &lt; <span class="number">0</span> || nxtY &lt; <span class="number">0</span> || nxtX &gt;= <span class="number">5</span> || nxtY &gt;= <span class="number">5</span>) &#123;</span><br><span class="line">			ret.cnt = INT16_MAX; <span class="keyword">return</span> ret;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		ret.cnt += <span class="keyword">this</span>-&gt;Count(y, x, nxtY, nxtX);</span><br><span class="line">		<span class="built_in">std</span>::swap(ret.<span class="built_in">map</span>[nxtY][nxtX], ret.<span class="built_in">map</span>[y][x]);</span><br><span class="line">		ret.x = nxtX; ret.y = nxtY;</span><br><span class="line">		<span class="keyword">return</span> ret;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Dfs</span><span class="params">(<span class="keyword">const</span> <span class="keyword">short</span> &amp;stepUsed, <span class="keyword">const</span> <span class="keyword">short</span> &amp;maxStep, Node &amp;nowAt)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (nowAt.cnt &lt;= <span class="number">0</span>)<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">if</span> (stepUsed + (nowAt.cnt - <span class="number">1</span>) &gt; maxStep)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;Node&gt; arr;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++)arr.push_back(nowAt.Render(i));</span><br><span class="line">	<span class="built_in">std</span>::sort(arr.begin(), arr.end(), Node());</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> &amp;it : arr)</span><br><span class="line">		<span class="keyword">if</span> (Dfs(stepUsed + <span class="number">1</span>, maxStep, it))<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> totCases, stepCounter;</span><br><span class="line">	Node begin;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cin</span> &gt;&gt; totCases;</span><br><span class="line">	<span class="keyword">while</span> (totCases--)</span><br><span class="line">	&#123;</span><br><span class="line">		begin.Clear().Init().Cult();</span><br><span class="line">		<span class="keyword">for</span> (stepCounter = <span class="number">0</span>; stepCounter &lt;= <span class="number">15</span>; stepCounter++)</span><br><span class="line">			<span class="keyword">if</span> (Dfs(<span class="number">0</span>, stepCounter, begin)) &#123;</span><br><span class="line">				<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; stepCounter &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="keyword">if</span> (stepCounter &gt; <span class="number">15</span>)<span class="built_in">puts</span>(<span class="string">"-1"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//system("pause");</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-  
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -4207,7 +4211,7 @@ Cult(i,fr_t)\leq Cult(targ_t,fr_t)</script><p>满足则直接弹出队尾，否�
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">279</span>
+                  <span class="site-state-item-count">280</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -4379,7 +4383,7 @@ Cult(i,fr_t)\leq Cult(targ_t,fr_t)</script><p>满足则直接弹出队尾，否�
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">210.7k</span>
+    <span title="Site words total count">211.7k</span>
   
 </div>
 

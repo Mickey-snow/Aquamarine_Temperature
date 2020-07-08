@@ -298,6 +298,218 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2018/08/15/CF1019C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mickey-snow">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mickey-snow's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/15/CF1019C/" itemprop="url">【题解】CF1019C</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建时间" itemprop="dateCreated datePublished" datetime="2018-08-15T00:00:00+08:00">
+                2018-08-15
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">修改时间&#58;</span>
+              
+              <time title="修改时间" itemprop="dateModified" datetime="2020-04-07T12:00:03+08:00">
+                2020-04-07
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index">
+                    <span itemprop="name">题解</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  763 character(s)
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  3 minute(s)
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这题除了保存需要用到一下邻接表以外，几乎没什么是和图论有关的。就是一个纯模拟。</p>
+<p>题目大致的意思是，在一个有向图 $G$ 中找到一个点集 $S$ 。满足：</p>
+<ol>
+<li><p>点集中不能有两点之间有边相连。</p>
+</li>
+<li><p>从 $S$ 中的点出发，2步之内可以到达 $G$ 中任何一个点。</p>
+</li>
+</ol>
+<p>　</p>
+<p><strong>算法分为两步：</strong></p>
+<p>先开两个布尔数组 $vis_i$ 代表点 $i$ 有没有被访问过。 $cse_i$ 代表选不选点 $i$ 。 </p>
+<ol>
+<li><p>从小到大将所有的点扫一遍，如果没有访问过( $vis_i==true$ )就同时标记 $vis_i$ 和 $cse_i$ 为真，并将所有的 $vis_j$ 标记为假。(如果从 $i$ 出发能够直接到达 $j$ )</p>
+</li>
+<li><p>从大到小将所有的点扫一遍，如果这个点已经被选( $cse_i==true$ ),将所有 $cse_j$ 标记为假。(如果从 $i$ 出发能够直接到达 $j$ )</p>
+</li>
+</ol>
+<p>最后再扫一遍所有的点，这时 $cse_i$ 就是点 $i$ 最终是否被选择的情况了。</p>
+<p>　</p>
+<p><strong>这个算法为什么是正确的？</strong></p>
+<p>假设每条边长度都是1.</p>
+<p>首先我们可以确定的是，执行步骤1之后满足条件2，因为如果存在一个点离 $S$ 中最近的点 $t$ 距离超过2，那么他们中间一定间隔了至少2个点，而这两个点中有一个是一定可选的，如果不可选，那么这个点离 $S$ 中最近的点一定不是 $t$, 而是另外一个距离为2的点。</p>
+<p>事实上，我们祟随便列举一些数据就可以知道，由于我们在选择一个点之后只标记这个点距离为1的说有点不可选，所以现在不仅满足条件2，而且条件2中的距离最大只可能是1.</p>
+<p>但是，步骤1执行完成之后很可能不满足条件1，只要存在点 $s$ 和 $t$ 满足编号 $s&gt;t$, 而且有一条边从 $s$ 到 $t$.</p>
+<p>这时可以发现，如果去掉了 $t$， 仍然是满足条件2的，这时的最大距离可能恰巧就为2了，但是仍然满足。而且去掉了所有不满足条件1的矛盾。</p>
+<p>如果去掉 $s$ 会怎么样？这样有可能 $s$ 入度为0，不可能从任何一个 $S$ 中的点出发到达 $s$.</p>
+<p>代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXPOINTS 1000005</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; G[MAXPOINTS], arr;</span><br><span class="line"><span class="keyword">bool</span> vis[MAXPOINTS], book[MAXPOINTS];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> totNode, totEdge, a, b;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; totNode &gt;&gt; totEdge;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; totEdge; i++) &#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;a, &amp;b);</span><br><span class="line">		G[--a].push_back(--b);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">memset</span>(vis, <span class="literal">false</span>, <span class="keyword">sizeof</span>(vis)); <span class="built_in">memset</span>(book, <span class="literal">false</span>, <span class="keyword">sizeof</span>(book));</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; totNode; i++)</span><br><span class="line">		<span class="keyword">if</span> (!vis[i]) &#123;</span><br><span class="line">			vis[i] = book[i] = <span class="literal">true</span>;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;it : G[i])</span><br><span class="line">				vis[it] = <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = totNode - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) </span><br><span class="line">		<span class="keyword">if</span> (book[i]) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;it : G[i])</span><br><span class="line">				book[it] = <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; totNode; i++)</span><br><span class="line">		<span class="keyword">if</span> (book[i])arr.push_back(i + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; arr.size() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;it : arr)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d "</span>, it);</span><br><span class="line">	<span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//system("pause");</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+  
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2018/08/15/CF940E/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -4218,7 +4430,7 @@ find-&gt;front = add;
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">279</span>
+                  <span class="site-state-item-count">280</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -4390,7 +4602,7 @@ find-&gt;front = add;
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">210.7k</span>
+    <span title="Site words total count">211.7k</span>
   
 </div>
 
