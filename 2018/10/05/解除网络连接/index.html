@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-Mickey_snow.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-Mickey_snow.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="Untagged," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这里我们将讨论如何解除一个设备的互联网无线连接。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解除网络连接">
+<meta property="og:url" content="https://mickey-snow.github.io/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/index.html">
+<meta property="og:site_name" content="Mickey-snow&#39;s Blog">
+<meta property="og:description" content="这里我们将讨论如何解除一个设备的互联网无线连接。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://mickey-snow.github.io/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46538938-d61c9c80-c8e7-11e8-8ba4-f091467567eb%5B1%5D.png">
+<meta property="og:image" content="https://mickey-snow.github.io/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46537841-e121fd80-c8e4-11e8-8eda-b6a2e35dba91%5B1%5D.png">
+<meta property="og:image" content="https://mickey-snow.github.io/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46538645-1596b900-c8e7-11e8-8942-e5f43f5c42c4%5B1%5D.png">
+<meta property="og:image" content="https://mickey-snow.github.io/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46539198-7246a380-c8e8-11e8-90ff-800b31f4c296%5B1%5D.png">
+<meta property="og:image" content="https://mickey-snow.github.io/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46539329-cbaed280-c8e8-11e8-965b-5d131f075bbd%5B1%5D.png">
+<meta property="og:image" content="https://mickey-snow.github.io/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46547720-58fd2180-c8ff-11e8-830c-5bf890921d99%5B1%5D.png">
+<meta property="og:image" content="https://mickey-snow.github.io/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46538938-d61c9c80-c8e7-11e8-8ba4-f091467567eb%5B1%5D.png">
+<meta property="og:image" content="https://mickey-snow.github.io/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46540341-9e175880-c8eb-11e8-8ce5-74f9f06a9bd2%5B1%5D.png">
+<meta property="og:image" content="https://mickey-snow.github.io/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46540529-36add880-c8ec-11e8-8bb0-65114de34f23%5B1%5D.png">
+<meta property="og:image" content="https://mickey-snow.github.io/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46547958-33244c80-c900-11e8-8ced-d679774171aa%5B1%5D.png">
+<meta property="og:image" content="https://mickey-snow.github.io/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46548308-4b489b80-c901-11e8-8937-30118ac3091f%5B1%5D.png">
+<meta property="og:image" content="https://mickey-snow.github.io/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46548695-5cde7300-c902-11e8-8b5b-2bf01c87b741%5B1%5D.png">
+<meta property="og:image" content="https://mickey-snow.github.io/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46548815-b8a8fc00-c902-11e8-8e0b-c2fbb676aae7%5B1%5D.png">
+<meta property="og:image" content="https://mickey-snow.github.io/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46549000-379e3480-c903-11e8-9571-e67719fe2514%5B1%5D.png">
+<meta property="article:published_time" content="2018-10-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-23T05:26:16.764Z">
+<meta property="article:author" content="Mickey-snow">
+<meta property="article:tag" content="Untagged">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mickey-snow.github.io/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46538938-d61c9c80-c8e7-11e8-8ba4-f091467567eb%5B1%5D.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://mickey-snow.github.io/2018/10/05/解除网络连接/"/>
+
+
+
+
+
+  <title>解除网络连接 | Mickey-snow's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mickey-snow's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mickey-snow">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mickey-snow's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">解除网络连接</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-05T00:00:00+08:00">
+                2018-10-05
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2021-06-23T13:26:16+08:00">
+                2021-06-23
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9D%82%E9%A1%B9/" itemprop="url" rel="index">
+                    <span itemprop="name">杂项</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2.8k character(s)
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  9 minute(s)
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这里我们将讨论如何解除一个设备的互联网无线连接。</p>
+<a id="more"></a>
+<hr>
+<h1 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h1><p>为了达到这个目的，我们需要事先准备好一些东西。</p>
+<h2 id="电脑"><a href="#电脑" class="headerlink" title="电脑"></a>电脑</h2><p>配置不用太高，笔记本式和桌面式的都可以。但是为了流畅的运行起码要有 2G 内存，15G 可用的磁盘容量，而且有至少一个可以使用的 USB 接口。</p>
+<h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><p>操作系统上，推荐使用 <a href="https://zh.wikipedia.org/wiki/Kali_Linux" target="_blank" rel="noopener">Kali Linux</a>.</p>
+<p>如果你的主操作系统不是它，只用开启任何一款主流的虚拟机软件，<a href="https://www.offensive-security.com/kali-linux-vm-vmware-virtualbox-image-download/" target="_blank" rel="noopener">下载</a>并安装上即可。记得在配置时，打开虚拟机的 USB 接口连接，至少给虚拟机分配 1G 内存，10G 磁盘容量。</p>
+<p>在下面的讨论中，我将使用 Windows10 作为主系统，在虚拟机中运行 Kali.</p>
+<h2 id="网卡"><a href="#网卡" class="headerlink" title="网卡"></a>网卡</h2><p>为了发送和接收数据包，必须要有一个网卡，大多数笔记本电脑都配备了内置的网卡，但是它们大多数都不太好用。市面上有非常多的品牌和型号，判断它们是否好用的重要途径是看里面的芯片，推荐使用 RTL8812AU 这款芯片的网卡，它不仅能够完美地执行我们接下来的所有操作，而且兼容 2.4千兆赫 和 5 千兆赫两种不同频率的信号。</p>
+<p>想要查看自己的网卡是否能够正常工作，只需要将它插入 USB 接口，在 Kali 中输入如下指令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iwconfig</span><br></pre></td></tr></table></figure>
+<img src="/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46538938-d61c9c80-c8e7-11e8-8ba4-f091467567eb%5B1%5D.png" class="">
+<p>可以清楚地看到，中间的那个就是我的网卡，不仅如此，我们还知道了它的名字：wlan0. 对于你而言可能是什么别的，但是这个名字不重要，记得在以后使用时用它的名字就可以了。</p>
+<p>注意即使你有一款好网卡，虚拟机配置无误，Kali 也可以检测到它的存在，运行了上述指令也可能得不到期待的结果，这很有可能是由于某些网卡在 Kali 上运行并不免驱，下载相应的驱动应该可以解决问题。</p>
+<h2 id="Terminator"><a href="#Terminator" class="headerlink" title="Terminator"></a>Terminator</h2><p>这是一款可选的软件，并不必须，但是有了它操作将会方便许多，如果你经常使用 Kali ,这也是非常有用的软件之一。其实 Terminator 与系统自带的 Terminal 本质上一样，都是给我们执行指令用的，唯一的区别就是 Terminator 可以方便地创建多个窗口，便于我们同一时刻执行不同的指令。</p>
+<img src="/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46537841-e121fd80-c8e4-11e8-8eda-b6a2e35dba91%5B1%5D.png" class="" title="Terminator">
+<p>要安装它，在系统自带的 Terminal 上执行以下指令即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install terminator</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>所有的工具准备完成之后，就可以开始操作了。</p>
+<p>目前的无线网络，大多数都使用相似的原理，接入点将数据包发布到空中，终端将它们捕获，这样，就实现了互相的通信。我们经常可以看到，有的时候有多台设备同时连接同样的网络，甚至在一个房间里有很多接入点和很多终端，它们同时接发数据包，却没有互相产生影响。这背后的道理是，每一个数据包在发送时都会有一个发送和接收的“地址”，就像我们发邮件一样，有发件人和收件人，而这个地址则被称为<a href="https://zh.wikipedia.org/wiki/MAC地址" target="_blank" rel="noopener"> MAC 地址</a>，由于设备与设备之间的 MAC 地址不一样，它们发出或者接收数据包也不会互相干扰。</p>
+<p>如果你正在使用一款 Windows 系列的操作系统，可以 Win+R 输入 cmd 调出命令提示符，输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipconfig /all</span><br></pre></td></tr></table></figure>
+<p>找到 物理地址 这一栏，查看自己的 MAC 地址。</p>
+<img src="/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46538645-1596b900-c8e7-11e8-8942-e5f43f5c42c4%5B1%5D.png" class="">
+<p>如果将外部网卡接入了 Kali，可以用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig wlan0</span><br></pre></td></tr></table></figure>
+<p>查看，这里 ifconfig 是指令名字，wlan0 是我的网卡名字，之前说过，你的可能是什么别的，改成对应的名字即可。</p>
+<img src="/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46539198-7246a380-c8e8-11e8-90ff-800b31f4c296%5B1%5D.png" class="">
+<p>一般来讲，每一个网卡在出厂的时候就会被赋予一个特定的 MAC 地址，我们可以将自己的网卡拆下来看看，这个 MAC 地址一般是不会变动的，但是，如果你有一款好用的网卡，它是可以改动的。连接上自己的网卡，在 Kali 中使用 macchanger 这个工具即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ifconfig wlan0 down</span><br><span class="line">macchanger -r wlan0</span><br><span class="line">ifconfig wlan0 up</span><br></pre></td></tr></table></figure>
+<img src="/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46539329-cbaed280-c8e8-11e8-965b-5d131f075bbd%5B1%5D.png" class="">
+<p>这里分三步，首先让自己的网卡断开，然后改 MAC 地址，再激活。可以看见，我们的 MAC 地址由 32:D2:35:9E:D6:8B 变成了 D2:2D:9D:88:B1:1F. 这里</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">macchanger -r</span><br><span class="line">macchanger --random</span><br></pre></td></tr></table></figure>
+<p>即为随机 MAC 地址，当然，macchanger 还有其他的用法，可以使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">macchanger --<span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+<p>查看。当然，这种获取帮助的方法不仅限于 macchanger 这个指令，任何指令我们都可以在后面加上 —help 来看看它的使用方法。</p>
+<p>目前，我们已经知道了一些有关网络运作的知识，而且会改 MAC 地址了。前面提到过，MAC 地址可以让不同的设备同时工作而不互相干扰，同理，我们可以通过更改自己的 MAC 地址来制造一些干扰。</p>
+<p>具体说，我们首先捕获空中的数据包，从而发现附近的接入点和终端，进一步地，确定目标的 MAC 地址和为它工作的接入点的 MAC 地址，它们现在正在正常通信。然后将自己机器的 MAC 地址改成跟目标一样，用这个 MAC 地址向接入点发送取消连接的信息，接入点会认为目标想要取消连接，然后再将自己的 MAC 地址改得跟接入点一样，告诉目标你已经丢掉了连接。这个时候，目标会认为自己已经丢失了网络连接，所以原本打算发送的数据会停止发送，由于目标并不是真心想要断开连接，所以大部分操作系统都会自动地尝试重新连接，然后再发送数据包。这个时候我们只需要重复上述的步骤，就可以让目标虽然处在信号范围之内，但是无论如何也无法正常与接入点通信。</p>
+<hr>
+<h1 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h1><p>首先，这里我打开了另外一台电脑，它现在可以正常地工作，并且连上了互联网。</p>
+<img src="/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46547720-58fd2180-c8ff-11e8-830c-5bf890921d99%5B1%5D.png" class="">
+<p>我们的目标是，在不干预目标机器的情况下，断开它与网络的连接。</p>
+<p>要做到这一点，首先先打开 Kali Linux, 接上网卡，跟以前一样，用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iwconfig</span><br></pre></td></tr></table></figure>
+<p>看看是否能够正常工作。</p>
+<img src="/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46538938-d61c9c80-c8e7-11e8-8ba4-f091467567eb%5B1%5D.png" class="">
+<p>之前提到过，网卡有一个 MAC 地址，它只会接收发送到这个 MAC 地址的数据，其它的它不会去管它们，事实上，我们的网卡也是这么想的，可以看到上面模式那一栏写着 Managed.</p>
+<img src="/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46540341-9e175880-c8eb-11e8-8ce5-74f9f06a9bd2%5B1%5D.png" class="">
+<p>这样，我们是无从得知接入点和目标的 MAC 地址的，首先要将网卡调成与之对应的 Monitor 模式，方法与我们之前修改 MAC 地址非常相似。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ifconfig wlan0 down</span><br><span class="line">iwconfig wlan0 mode monitor</span><br><span class="line">ifconfig wlan0 up</span><br></pre></td></tr></table></figure>
+<img src="/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46540529-36add880-c8ec-11e8-8bb0-65114de34f23%5B1%5D.png" class="">
+<p>输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iwconfig wlan0</span><br></pre></td></tr></table></figure>
+<p>可以看到，此时模式已经变成了 Monitor. 这种模式下，网卡开始对所有的数据包感兴趣，无论它是从哪个 MAC 发送到哪里。</p>
+<hr>
+<p>下一步，也是非常重要的一步，我们要使用一个叫做 airodump-ng 的工具捕捉附近所有的数据包，锁定目标。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">airodump-ng wlan0</span><br></pre></td></tr></table></figure>
+<p>这里 airodump-ng 是一个指令，wlan0 是我的网卡名字。按下回车。</p>
+<img src="/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46547958-33244c80-c900-11e8-8ced-d679774171aa%5B1%5D.png" class="">
+<p>找到一个目标网络之后，Ctrl+C 终止操作。这里以我自家网络 Mickey-snow 为例。终止操作的原因是因为我们现在正在获取所有的数据包，它们来自各个不同的接入点，现在我们的目标是 Mickey-snow, 所以可以只关注 Mickey-snow 的数据包。可以看到，我们现在获取了不少信息，简单解释一下，这里 BSSID 就是接入点的 MAC 地址，#Data 是我们获得的有用的数据包的个数，CH 是接入点所在的频道，ENC 是网络加密模式，一般分为 WEP 和 WPA/WPA2.</p>
+<p>要想让网卡专注于特定的网络，只需要告诉它两个信息：BSSID 和 Channel.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">airodump-ng --channel 11 --bssid 0C:4B:54:2A:90:B3 wlan0</span><br></pre></td></tr></table></figure>
+<p>airodump-ng 是指令名字，—channel 描述频道，—bssid 描述 MAC，最后在附上网卡名字，按下回车。</p>
+<p>在你那里由于你的目标跟我的不同，所以可能会使用不同的频道，不同的 BSSID, 不同的加密方式，但是这些都不重要，它们对我们接下来做的事情不会产生影响，只用在执行指令时按照自己获得的信息进行相应的替换即可。</p>
+<img src="/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46548308-4b489b80-c901-11e8-8937-30118ac3091f%5B1%5D.png" class="">
+<p>获得的信息分为两栏，上面跟之前一样，是接入点的信息，重点是下面这一栏，可以看到，我们已经发现了一个目标，他的 MAC 地址写在了 STATION 那一栏，是 7C:11:BE:A9:BD:87. 现在我们就可以开始发起攻击了，这时我们需要使用另外一个工具 aireplay-ng</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aireplay-ng --deauth 100000 -a 0C:4B:54:2A:90:B3 -c 7C:11:BE:A9:BD:87 wlan0</span><br></pre></td></tr></table></figure>
+<p>还是一样，aireplay-ng 是指令名字，—deauth 是数据包数量，这里设成很大一个值，Access Point(-a) 是接入点地址，Client(-c) 是目标地址，wlan0 是网卡名字。按下回车。</p>
+<p>顺便一提，如果这时不想中断 airodump-ng. 可以在之前提到的 Terminator 中右键，选择 Split 分割一下窗口，就可以一边运行其它指令，同时观察结果了。</p>
+<img src="/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46548695-5cde7300-c902-11e8-8b5b-2bf01c87b741%5B1%5D.png" class="">
+<p>如果出现了类似下面的情况，说明已经发动了攻击，不过有的时候它可能会失败，这时有发生，多试几次即可。</p>
+<img src="/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46548815-b8a8fc00-c902-11e8-8e0b-c2fbb676aae7%5B1%5D.png" class="">
+<p>回到目标电脑，发现断掉了网络连接，虽然还在信号范围之内，但是已经无法访问互联网。</p>
+<img src="/2018/10/05/%E8%A7%A3%E9%99%A4%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/46549000-379e3480-c903-11e8-9571-e67719fe2514%5B1%5D.png" class="">
+<p>这样，我们成功地解除掉了目标设备与互联网的连接，而且整个过程不用联网。</p>
+<p>顺便一提，再回到之前的指令部分：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aireplay-ng --deauth 100000 -a 0C:4B:54:2A:90:B3 -c 7C:11:BE:A9:BD:87 wlan0</span><br></pre></td></tr></table></figure>
+<p>如果这个时候我们不给出目标的 BSSID</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aireplay-ng --deauth 100000 -a 0C:4B:54:2A:90:B3 wlan0</span><br></pre></td></tr></table></figure>
+<p>可以断掉所有接入目标接入点的设备与互联网的连接，类似地，也可以不写接入点 BSSID, 针对目标终端进行攻击。</p>
+<hr>
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>为了保证以上步骤顺利进行，确保你有一个好用的网卡。判断网卡好坏最重要的不是品牌，而是芯片，即便是很好的牌子，它的某些型号的芯片也并不好用。</p>
+<p>不要用这种方法给他人制造麻烦。</p>
+
+      
+    </div>
+    
+    
+    
+  
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Untagged/" rel="tag"># Untagged</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/04/CF1051D-Bicolorings/" rel="next" title="【题解】 CF1051D Bicolorings">
+                <i class="fa fa-chevron-left"></i> 【题解】 CF1051D Bicolorings
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/05/CF1060C-Maximum-Subrectangle/" rel="prev" title="【题解】 CF1060C Maximum Subrectangle">
+                【题解】 CF1060C Maximum Subrectangle <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTQzNy8xNTk2NA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Mickey-snow" />
+            
+              <p class="site-author-name" itemprop="name">Mickey-snow</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/index.html%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">280</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">104</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Mickey-snow" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:Mickeysnow1031@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/Mickeysnow11" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/Thunremmoni" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/11585730/mickey-snow" target="_blank" title="S-Of">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>S-Of</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.youtube.com/channel/UCsE6Rn6Nb7BI1MO6jKTET8g?view_as=subscriber" target="_blank" title="YouTube">
+                      
+                        <i class="fa fa-fw fa-youtube"></i>YouTube</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/thunremmoni" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="skype:live:kevin77478?call|chat" target="_blank" title="Skype">
+                      
+                        <i class="fa fa-fw fa-skype"></i>Skype</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#工具"><span class="nav-number">1.</span> <span class="nav-text">工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#电脑"><span class="nav-number">1.1.</span> <span class="nav-text">电脑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统"><span class="nav-number">1.2.</span> <span class="nav-text">操作系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网卡"><span class="nav-number">1.3.</span> <span class="nav-text">网卡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Terminator"><span class="nav-number">1.4.</span> <span class="nav-text">Terminator</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原理"><span class="nav-number">2.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#操作"><span class="nav-number">3.</span> <span class="nav-text">操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意事项"><span class="nav-number">4.</span> <span class="nav-text">注意事项</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mickey-snow</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">211.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('5');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 13701,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

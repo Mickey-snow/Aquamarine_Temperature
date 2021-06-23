@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-Mickey_snow.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-Mickey_snow.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="NTT," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="快速数论变换(Number-Theoretic Transform) 可以用来像 FFT 那样计算多项式卷积，与 FFT 不同的是，NTT 全部过程都在一个模 $p$ 的意义下进行，不涉及浮点数计算，可以解决只有整数参与时的精度误差问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="快速数论变换">
+<meta property="og:url" content="https://mickey-snow.github.io/2019/07/31/NTT/index.html">
+<meta property="og:site_name" content="Mickey-snow&#39;s Blog">
+<meta property="og:description" content="快速数论变换(Number-Theoretic Transform) 可以用来像 FFT 那样计算多项式卷积，与 FFT 不同的是，NTT 全部过程都在一个模 $p$ 的意义下进行，不涉及浮点数计算，可以解决只有整数参与时的精度误差问题。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-07-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-23T05:26:16.761Z">
+<meta property="article:author" content="Mickey-snow">
+<meta property="article:tag" content="NTT">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://mickey-snow.github.io/2019/07/31/NTT/"/>
+
+
+
+
+
+  <title>快速数论变换 | Mickey-snow's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mickey-snow's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2019/07/31/NTT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mickey-snow">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mickey-snow's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">快速数论变换</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-31T00:00:00+08:00">
+                2019-07-31
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2021-06-23T13:26:16+08:00">
+                2021-06-23
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.8k character(s)
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  9 minute(s)
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>快速数论变换(Number-Theoretic Transform) 可以用来像 FFT 那样计算多项式卷积，与 FFT 不同的是，NTT 全部过程都在一个模 $p$ 的意义下进行，不涉及浮点数计算，可以解决只有整数参与时的精度误差问题。</p>
+<a id="more"></a>
+<h1 id="FFT"><a href="#FFT" class="headerlink" title="FFT"></a>FFT</h1><p>在 FFT 中，我们选择了一组向量 $(\omega_n^0,\ \omega_n^1,\ \omega_n^2,\cdots,\ \omega_n^{n-1})$ 带入，$O(N\log N)$ 求得点值表达式，然后 $O(N)$ 计算乘积，最终 $O(N\log N)$ 差值重新转换为多项式表示。能够完成这个过程是因为选择的 $\omega_n=e^{\frac{2\pi i}n}$ 具有一些性质。</p>
+<h2 id="性质一"><a href="#性质一" class="headerlink" title="性质一"></a>性质一</h2><p>$\omega_n^k\;(0\leq k\leq n-1)$ 互不相同，点值表示能够保存所有信息。</p>
+<h2 id="性质二"><a href="#性质二" class="headerlink" title="性质二"></a>性质二</h2><p>消去定理 $\omega_{2n}^{2k}=\omega_n^k$ 用于分治。</p>
+<h2 id="性质三"><a href="#性质三" class="headerlink" title="性质三"></a>性质三</h2><p>折半定理 $\omega_n^{k+\frac n2}=-\omega_n^k$, 用于分治。</p>
+<h2 id="性质四"><a href="#性质四" class="headerlink" title="性质四"></a>性质四</h2><p>当 $k\not=0$ 时，$\sum_{i=0}^{n-1}\left(\omega_n^k\right)^i=0$, 用于插值。</p>
+<h1 id="NTT"><a href="#NTT" class="headerlink" title="NTT"></a>NTT</h1><p>在 NTT 中，我们需要找到另外一组向量用于替代原先的单位复根，也就是一个 <strong>原根</strong> 满足单位复根所有的性质，而且要在整数域上。</p>
+<h2 id="原根"><a href="#原根" class="headerlink" title="原根"></a>原根</h2><p>记原根为 $g$.</p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>对于一个正整数 $p$, 模 $p$ 的原根 $g$ 定义为满足 $\gcd(p,g)=1$ 且 $\delta_p(g)=\varphi(p)$ 的数，其中 $\delta_p(g)$ 为使 $g^d\equiv 1(\mbox{mod }p)$ 的最小整数 $d$.</p>
+<p>由欧拉定理，$\delta_p(g)\leq\varphi(p)$.</p>
+<h3 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h3><p>计算原根时，可以用到它的一些特性</p>
+<blockquote>
+<p>对于一个数 $g$, 最小的满足 $g^k\equiv1\;(\mbox{mod }p)$ 的正整数 $k$ 一定是 $p-1$ 的约数。</p>
+</blockquote>
+<p>假设最小的 $k$ 不是 $p-1$, 那么可以找到一个 $x$ 使得 $xk&gt;p-1&gt;(x-1)k$, 由费马小定理</p>
+<script type="math/tex; mode=display">
+g^{xk}\equiv g^{p-1}\equiv1\equiv g^{xk-(p-1)}\mod p</script><p>那么就存在一个更小的 $k^\prime=xk-(p-1)$, 矛盾。</p>
+<div><div class="fold_hider"><div class="close hider_title">代码如下</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> T <span class="title">Root</span><span class="params">(<span class="keyword">const</span> T&amp; p)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(T i=<span class="number">2</span>;i&lt;=p;i++)&#123;</span><br><span class="line">		T phi = p<span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">bool</span> flag = <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">for</span>(T k=<span class="number">2</span>;k*k&lt;p;++k)</span><br><span class="line">			<span class="keyword">if</span>(phi % k == <span class="number">0</span>)&#123;</span><br><span class="line">				<span class="keyword">if</span>(Pow(i,(p<span class="number">-1</span>)/k,p) == <span class="number">1</span>)&#123; flag = <span class="literal">false</span>; <span class="keyword">break</span>; &#125;</span><br><span class="line">				<span class="keyword">while</span>(phi % k == <span class="number">0</span>) phi /= k;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(flag &amp;&amp; (phi==<span class="number">1</span> || Pow(i,(p<span class="number">-1</span>)/phi,p)!=<span class="number">1</span>)) <span class="keyword">return</span> i;</span><br><span class="line">	&#125; <span class="keyword">throw</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div></div>
+<h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><p>为了确保计算的正确，我们验证原根的性质。</p>
+<p>假定这个素数 $p=qn+1$, 其中 $n$ 为 2 的正整数次幂。需要取的一组新的向量中 $\omega_n=g^q$. </p>
+<p>$g$ 可以使得 $g^i(0\leq i\leq n-1)$ 互不相同。证明：</p>
+<p>假定存在 $n&gt;p&gt;q$ 使得</p>
+<script type="math/tex; mode=display">
+g^p\equiv g^q\not\equiv1\mod p</script><p>那么 $p|g^{p-q}$</p>
+<script type="math/tex; mode=display">
+g^{p-q-1}\equiv1\mod p</script><p>而这里明显 $p-q-1\not=0$ 因为如果这样 $g=p$, 同时 $g$ 在定义时只满足 $g^{p-1}\equiv1\;(\mbox{mod }p)$, 矛盾。</p>
+<h4 id="性质一-1"><a href="#性质一-1" class="headerlink" title="性质一"></a>性质一</h4><p>$\omega_n=g^q$. 显然。</p>
+<h4 id="性质二-1"><a href="#性质二-1" class="headerlink" title="性质二"></a>性质二</h4><script type="math/tex; mode=display">
+\omega_{2n}^{2k}=\left(g^\frac q2\right)^{2k}=g^{qk}=\omega_n^k</script><h4 id="性质三-1"><a href="#性质三-1" class="headerlink" title="性质三"></a>性质三</h4><script type="math/tex; mode=display">
+\omega_n^n\equiv g^{nq}\equiv 1\mod n</script><p>因为 $\left(\omega_n^\frac n2\right)^2=\omega_n^n$ 所以 $\omega_n^\frac n2=\pm1\;(\mbox{mod }p)$. 而根据性质一，他们两两不等，所以 $\omega_n^\frac n2=-1$.</p>
+<script type="math/tex; mode=display">
+\omega_n^{k+\frac n2}=\omega_n^k\cdot\omega_n^\frac n2=-\omega_n^k</script><h4 id="性质四-1"><a href="#性质四-1" class="headerlink" title="性质四"></a>性质四</h4><script type="math/tex; mode=display">
+\begin{align}
+S(\omega_n^k)&=1+\omega_n^k+(\omega_n^k)^2+\cdots+(\omega_n^k)^{n-1}\\
+\omega_n^kS(\omega_n^k)&=\omega_n^k+(\omega_n^k)^2+(\omega_n^k)^3+\cdots+(\omega_n^k)^p\\
+(\omega_n^k-1)S(\omega_n^k)&=(\omega_n^k)^p-1\\
+S(\omega_n^k)&=\frac{(\omega_n^k)^n-1}{\omega_n^k-1}
+\end{align}</script><p>由于 $\omega_n^n\equiv1\;(\mbox{mod }p)$, 且 $k\not=p-1$. 所以</p>
+<script type="math/tex; mode=display">
+\begin{align}
+(\omega_n^k)^n-1\equiv0&\mod p\\
+\omega_n^k\not\equiv1&\mod p
+\end{align}</script><script type="math/tex; mode=display">
+S(\omega_n^k)=0</script><p>可见，有了这些性质，原根可以代替单位复根参与运算。</p>
+<h1 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h1><p>具体实现的过程中，需要将原先的除法改为乘上模 $p$ 意义下的逆元。</p>
+<p><a href="http://uoj.ac/problem/34" target="_blank" rel="noopener">模板题目链接</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">auto</span> MOD = <span class="number">1004535809L</span>L;</span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">auto</span> MAXN = <span class="number">1</span>&lt;&lt;<span class="number">22</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> ansType,<span class="keyword">typename</span> powsType&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ansType <span class="title">Pow</span><span class="params">(ansType a,powsType b,<span class="keyword">const</span> ansType&amp; MOD)</span></span>&#123;</span><br><span class="line">	ansType ans = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(;b;b&gt;&gt;=<span class="number">1</span>,(a*=a)%=MOD)</span><br><span class="line">		<span class="keyword">if</span>(b &amp; <span class="number">1</span>) (ans *= a) %= MOD;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line">														   </span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> T <span class="title">Root</span><span class="params">(<span class="keyword">const</span> T&amp; p)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(T i=<span class="number">2</span>;i&lt;=p;i++)&#123;</span><br><span class="line">		T phi = p<span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">bool</span> flag = <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">for</span>(T k=<span class="number">2</span>;k*k&lt;p;++k)</span><br><span class="line">			<span class="keyword">if</span>(phi % k == <span class="number">0</span>)&#123;</span><br><span class="line">				<span class="keyword">if</span>(Pow(i,(p<span class="number">-1</span>)/k,p) == <span class="number">1</span>)&#123; flag = <span class="literal">false</span>; <span class="keyword">break</span>; &#125;</span><br><span class="line">				<span class="keyword">while</span>(phi % k == <span class="number">0</span>) phi /= k;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(flag &amp;&amp; (phi==<span class="number">1</span> || Pow(i,(p<span class="number">-1</span>)/phi,p)!=<span class="number">1</span>)) <span class="keyword">return</span> i;</span><br><span class="line">	&#125; <span class="keyword">throw</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> Omega[MAXN],OmegaInverse[MAXN],root;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> A[MAXN],B[MAXN];</span><br><span class="line"><span class="keyword">int</span> r[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">NTT</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span>* A,<span class="keyword">const</span> <span class="keyword">int</span>&amp; totLevel,<span class="keyword">long</span> <span class="keyword">long</span>* Omega)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> totNums = <span class="number">1</span>&lt;&lt;totLevel;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;totNums;i++)</span><br><span class="line">		<span class="keyword">if</span>(i &lt; r[i]) <span class="built_in">std</span>::swap(A[i],A[r[i]]);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> temp;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> nowLevel=<span class="number">0</span>;nowLevel&lt;totLevel;nowLevel++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> nowBlk=<span class="number">0</span>;nowBlk&lt;totNums;nowBlk+=<span class="number">1</span>&lt;&lt;nowLevel+<span class="number">1</span>)</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;(<span class="number">1</span>&lt;&lt;nowLevel);i++)&#123;</span><br><span class="line">				temp = A[nowBlk+i+(<span class="number">1</span>&lt;&lt;nowLevel)] * Omega[i*(totNums/(<span class="number">1</span>&lt;&lt;nowLevel+<span class="number">1</span>))] % MOD;</span><br><span class="line">				A[nowBlk+i+(<span class="number">1</span>&lt;&lt;nowLevel)] = (A[nowBlk+i] - temp + MOD) % MOD;</span><br><span class="line">				(A[nowBlk+i] += temp) %= MOD;</span><br><span class="line">			&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> totA,totB,tot,totLevel; <span class="keyword">long</span> <span class="keyword">long</span> temp;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;totA,&amp;totB);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=totA;i++) <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, A+i);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=totB;i++) <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, B+i);</span><br><span class="line"></span><br><span class="line">	tot = <span class="number">1</span>; totLevel = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(tot &lt;= (totA+totB))&#123; tot&lt;&lt;=<span class="number">1</span>; ++totLevel; &#125;</span><br><span class="line">    assert((<span class="number">1</span>&lt;&lt;totLevel)==tot);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;tot;i++) r[i] = (r[i&gt;&gt;<span class="number">1</span>]&gt;&gt;<span class="number">1</span>)|((i&amp;<span class="number">1</span>)&lt;&lt;totLevel<span class="number">-1</span>);</span><br><span class="line">	*Omega = <span class="number">1</span>; root = Root(MOD); temp = Pow(root,(MOD<span class="number">-1</span>)/tot,MOD);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;tot;i++) Omega[i] = Omega[i<span class="number">-1</span>] * temp % MOD;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;tot;i++) OmegaInverse[i] = Pow(Omega[i],MOD<span class="number">-2</span>,MOD);</span><br><span class="line"></span><br><span class="line">	NTT(A,totLevel,Omega);NTT(B,totLevel,Omega);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;tot;i++) (A[i] *= B[i]) %= MOD;</span><br><span class="line">	NTT(A,totLevel,OmegaInverse);</span><br><span class="line"></span><br><span class="line">	temp = Pow((<span class="keyword">long</span> <span class="keyword">long</span>)tot,MOD<span class="number">-2</span>,MOD);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=totA+totB;i++) <span class="built_in">printf</span>(<span class="string">"%lld "</span>,(A[i]*temp%MOD+MOD)%MOD);</span><br><span class="line">	<span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="封装模板"><a href="#封装模板" class="headerlink" title="封装模板"></a>封装模板</h1><h2 id="NTT-1"><a href="#NTT-1" class="headerlink" title="NTT"></a>NTT</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">constexpr</span> <span class="keyword">auto</span> MOD = <span class="number">998244353L</span>L;</span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">auto</span> g = <span class="number">3L</span>L;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> ansType,<span class="keyword">typename</span> powsType&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ansType <span class="title">Pow</span><span class="params">(ansType a,powsType b,<span class="keyword">const</span> ansType&amp; MOD = MOD)</span></span>&#123;</span><br><span class="line">	ansType ans = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(;b;b&gt;&gt;=<span class="number">1</span>,(a*=a)%=MOD)</span><br><span class="line">		<span class="keyword">if</span>(b &amp; <span class="number">1</span>) (ans *= a) %= MOD;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> T <span class="title">Module</span><span class="params">(T a,<span class="keyword">const</span> T&amp; b)</span></span>&#123;</span><br><span class="line">    a += b;</span><br><span class="line">    <span class="keyword">if</span>(a &gt;= MOD) a -= MOD;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> *r;</span><br><span class="line"><span class="comment">//for(int i=1;i&lt;tot;i++) r[i] = (r[i&gt;&gt;1]&gt;&gt;1)|((i&amp;1)&lt;&lt;totLevel-1);</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">NTT</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span>* A,<span class="keyword">const</span> <span class="keyword">int</span>&amp; totLevel, <span class="keyword">const</span> <span class="keyword">short</span> &amp;type)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> totNums = <span class="number">1</span>&lt;&lt;totLevel;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;totNums;i++)</span><br><span class="line">        <span class="keyword">if</span>(i &lt; r[i]) <span class="built_in">std</span>::swap(A[i], A[r[i]]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> temp,gn,omega;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> nowLevel=<span class="number">0</span>;nowLevel&lt;totLevel;nowLevel++)&#123;</span><br><span class="line">        gn = Pow(g, (MOD<span class="number">-1</span>)/(<span class="number">1</span>&lt;&lt;nowLevel+<span class="number">1</span>));</span><br><span class="line">        <span class="keyword">if</span>(type == <span class="number">-1</span>) gn = Pow(gn, MOD<span class="number">-2</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> nowBlk=<span class="number">0</span>;nowBlk&lt;totNums;nowBlk+=<span class="number">1</span>&lt;&lt;nowLevel+<span class="number">1</span>)&#123;</span><br><span class="line">            omega = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;(<span class="number">1</span>&lt;&lt;nowLevel);i++)&#123;</span><br><span class="line">                temp = omega*A[nowBlk+i+(<span class="number">1</span>&lt;&lt;nowLevel)] % MOD;</span><br><span class="line">                A[nowBlk+i+(<span class="number">1</span>&lt;&lt;nowLevel)] = Module(A[nowBlk+i], MOD-temp);</span><br><span class="line">                A[nowBlk+i] = Module(A[nowBlk+i], temp);</span><br><span class="line">                (omega *= gn) %= MOD;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(type == <span class="number">-1</span>)&#123;</span><br><span class="line">        temp = Pow((<span class="keyword">long</span> <span class="keyword">long</span>)totNums,MOD<span class="number">-2</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;totNums;i++) (A[i] *= temp) %= MOD;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="多项式柯西乘法"><a href="#多项式柯西乘法" class="headerlink" title="多项式柯西乘法"></a>多项式柯西乘法</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Mult</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span>* X,<span class="keyword">long</span> <span class="keyword">long</span>* Y,<span class="keyword">const</span> <span class="keyword">int</span>&amp; totLevel)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> totNums = <span class="number">1</span>&lt;&lt;totLevel;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> *cX = <span class="keyword">new</span> <span class="keyword">long</span> <span class="keyword">long</span>[totNums], *cY = <span class="keyword">new</span> <span class="keyword">long</span> <span class="keyword">long</span>[totNums];</span><br><span class="line">    <span class="built_in">memset</span>(cX,<span class="number">0</span>,<span class="keyword">sizeof</span>(cX)); <span class="built_in">memset</span>(cY,<span class="number">0</span>,<span class="keyword">sizeof</span>(cY));</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=totNums;i++)&#123; cX[i] = X[i]; cY[i] = Y[i]; &#125;</span><br><span class="line">    NTT(cX, totLevel, <span class="number">1</span>); NTT(cY, totLevel, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;totNums;i++) (cX[i] *= cY[i]) %= MOD;</span><br><span class="line">    NTT(cX, totLevel, <span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;totNums;i++) X[i] = cX[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+  
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NTT/" rel="tag"># NTT</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/31/Problem_b/" rel="next" title="HAOI2011 Problem b">
+                <i class="fa fa-chevron-left"></i> HAOI2011 Problem b
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/03/FWT/" rel="prev" title="快速沃尔什变换">
+                快速沃尔什变换 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTQzNy8xNTk2NA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Mickey-snow" />
+            
+              <p class="site-author-name" itemprop="name">Mickey-snow</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/index.html%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">280</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">104</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Mickey-snow" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:Mickeysnow1031@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/Mickeysnow11" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/Thunremmoni" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/11585730/mickey-snow" target="_blank" title="S-Of">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>S-Of</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.youtube.com/channel/UCsE6Rn6Nb7BI1MO6jKTET8g?view_as=subscriber" target="_blank" title="YouTube">
+                      
+                        <i class="fa fa-fw fa-youtube"></i>YouTube</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/thunremmoni" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="skype:live:kevin77478?call|chat" target="_blank" title="Skype">
+                      
+                        <i class="fa fa-fw fa-skype"></i>Skype</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#FFT"><span class="nav-number">1.</span> <span class="nav-text">FFT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#性质一"><span class="nav-number">1.1.</span> <span class="nav-text">性质一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性质二"><span class="nav-number">1.2.</span> <span class="nav-text">性质二</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性质三"><span class="nav-number">1.3.</span> <span class="nav-text">性质三</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性质四"><span class="nav-number">1.4.</span> <span class="nav-text">性质四</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NTT"><span class="nav-number">2.</span> <span class="nav-text">NTT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原根"><span class="nav-number">2.1.</span> <span class="nav-text">原根</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">2.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算"><span class="nav-number">2.1.2.</span> <span class="nav-text">计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性质"><span class="nav-number">2.1.3.</span> <span class="nav-text">性质</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#性质一-1"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">性质一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性质二-1"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">性质二</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性质三-1"><span class="nav-number">2.1.3.3.</span> <span class="nav-text">性质三</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性质四-1"><span class="nav-number">2.1.3.4.</span> <span class="nav-text">性质四</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实践"><span class="nav-number">3.</span> <span class="nav-text">实践</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#封装模板"><span class="nav-number">4.</span> <span class="nav-text">封装模板</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#NTT-1"><span class="nav-number">4.1.</span> <span class="nav-text">NTT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多项式柯西乘法"><span class="nav-number">4.2.</span> <span class="nav-text">多项式柯西乘法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mickey-snow</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">211.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('5');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 13701,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>

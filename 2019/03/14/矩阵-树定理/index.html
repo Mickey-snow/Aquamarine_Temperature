@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-Mickey_snow.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-Mickey_snow.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="组合数学,矩阵," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="矩阵-树定理在图和矩阵之间建立联系，其中矩阵代表一个无向图的 Kirchhoff矩阵，树则是生成树。矩阵-树定理可以用来求解一个无向图 $G&#x3D;\{V,E\}$ 的不同生成树的个数。 概念首先，我们将图 $G$ 转换成为几个矩阵：$D_G$ 是 $G$ 的度数矩阵，其中 $D_{ii}$ 代表一个结点 $i\in V$ 的度数，$\forall i\not&#x3D;j,\ D_{ij}&#x3D;0$. $A_G$">
+<meta property="og:type" content="article">
+<meta property="og:title" content="矩阵-树定理">
+<meta property="og:url" content="https://mickey-snow.github.io/2019/03/14/%E7%9F%A9%E9%98%B5-%E6%A0%91%E5%AE%9A%E7%90%86/index.html">
+<meta property="og:site_name" content="Mickey-snow&#39;s Blog">
+<meta property="og:description" content="矩阵-树定理在图和矩阵之间建立联系，其中矩阵代表一个无向图的 Kirchhoff矩阵，树则是生成树。矩阵-树定理可以用来求解一个无向图 $G&#x3D;\{V,E\}$ 的不同生成树的个数。 概念首先，我们将图 $G$ 转换成为几个矩阵：$D_G$ 是 $G$ 的度数矩阵，其中 $D_{ii}$ 代表一个结点 $i\in V$ 的度数，$\forall i\not&#x3D;j,\ D_{ij}&#x3D;0$. $A_G$">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-03-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-06-23T05:26:16.761Z">
+<meta property="article:author" content="Mickey-snow">
+<meta property="article:tag" content="组合数学">
+<meta property="article:tag" content="矩阵">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://mickey-snow.github.io/2019/03/14/矩阵-树定理/"/>
+
+
+
+
+
+  <title>矩阵-树定理 | Mickey-snow's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mickey-snow's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/index.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2019/03/14/%E7%9F%A9%E9%98%B5-%E6%A0%91%E5%AE%9A%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mickey-snow">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mickey-snow's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">矩阵-树定理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-14T00:00:00+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2021-06-23T13:26:16+08:00">
+                2021-06-23
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2.2k character(s)
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  8 minute(s)
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>矩阵-树定理</strong>在图和矩阵之间建立联系，其中矩阵代表一个无向图的 Kirchhoff矩阵，树则是生成树。矩阵-树定理可以用来求解一个无向图 $G=\{V,E\}$ 的不同生成树的个数。</p>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>首先，我们将图 $G$ 转换成为几个矩阵：$D_G$ 是 $G$ 的<strong>度数矩阵</strong>，其中 $D_{ii}$ 代表一个结点 $i\in V$ 的度数，$\forall i\not=j,\ D_{ij}=0$. $A_G$ 是 $G$ 的邻接矩阵，$A_{ij}$ 代表 $G$ 中两个结点 $i,\ j$ 之间有多少条无向边相连。</p>
+<p>然后定义 $G$ 的<strong>Kirchhoff矩阵</strong> $C_G=D_G-A_G$. 它的一个 $n-1$ 阶主子式就是对于 $1\leq r\leq n$, 将 $C_G$ 的第 $r$ 行和第 $r$ 列同时去掉之后得到的矩阵，记为 $C_{_rG}$.</p>
+<p>矩阵-树定理可以描述为 $G$ 的Kirchhoff矩阵的任何一个 $n-1$ 阶主子式 $C_{_rG}$ 的绝对值等于其不同生成树的个数。</p>
+<p>接下来我们可以看看这个 Kirchhoff矩阵都有些什么性质，并尝试从这些性质出发找到矩阵-树定理成立的原因。</p>
+<a id="more"></a>
+<ul>
+<li>$\forall G$, 它的Kirchhoff矩阵的行列式总是 0.</li>
+</ul>
+<p>可以发现，任意一个图的Kirchhoff矩阵每行所有元素的总和总是 0，因此它的行列式 $\det(C)=0$.</p>
+<ul>
+<li>如果 $G$ 不联通，那么 $\det(C)=0$.</li>
+</ul>
+<p>假定 $G$ 有 $k$ 个连通分量，分别为 $G_1,G_2,\cdots,G_k$, 那么我们通过交换行列式中的行和列，使得每一个连通分量中的元素都在矩阵中紧密相连：</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+G_1&0&\cdots&0\\
+0&G_2&\cdots&0\\
+\vdots&\vdots&\ddots&\vdots\\
+0&0&\cdots&G_k
+\end{bmatrix}</script><p>这里的 $G_i$ 就是第 $i$ 个连通分量构成的Kirchhoff矩阵，而不同的联通块中的节点之间没有连边，所以矩阵中其他位置的所有元素都是 0.</p>
+<script type="math/tex; mode=display">
+\det(G)=\prod_{i=0}^k\det(G_i)=0</script><ul>
+<li>如果 $G$ 是一颗树，那么 $C$ 的任意一个 $n-1$ 阶主子式都是 0.</li>
+</ul>
+<p>像之前一样，为了求出 $\det(C_r)$, 我们通过不停地变换矩阵，使其成为一个上三角矩阵。首先任意钦定一个根结点 $r$，然后将根结点在矩阵中对应的行列变换到矩阵的第一行第一列，随后对于其他节点，按照与根结点的距离，变换到后面的行列，这样一来，靠上的行可靠前的列对应的节点在树中的深度也就越浅。由于归位一个结点需要进行两次对换，因此最终的对换中次数是 2 的倍数，行列式不变号。接下来，按照得到的深度顺序逆序处理，对于当前的一个结点 $i$, 如果它的父亲不是根结点，那么将 $i$ 所在的列加到它父亲所在的列上。</p>
+<p>这么做最终得到的行列式就是一个主对角线元素全部是 1 的上三角矩阵。可以用数学归纳法证明。首先最后一列肯定符合要求，对于第 $i\;(i&gt;1)$ 列，假定 $i+1$ 列一直到第 $k$ 列都符合要求，考虑第 $i$ 列的第 $i+1$ 行至第 $k$ 行，如果某一个元素在原先的矩阵中是 -1，那么代表 $i$ 与它某一个儿子有一条连边，我们在考虑这个儿子的时候就将其加到了这一列，因此这里现在是 0，而对于第 $i$ 行，它所有的儿子都对这个元素造成了 -1 的贡献，而最终与其相连而没有造成贡献的就只有 $i$ 的父亲了，因此第 $i$ 行第 $i$ 列的元素为 1. 最后直接删掉根结点所在的行和列，得到的就是符合要求的矩阵 $C_r$.</p>
+<script type="math/tex; mode=display">
+\det(C_r)=0</script><p>接下来证明矩阵-树定理。</p>
+<p>证明矩阵-树定理需要使用到无向图 $G$ 的关联矩阵 $B$. $B$ 是一个 $n$ 行 $m$ 列的矩阵，其中每一行代表一个结点，每一列描述一条无限边，如果第 $i$ 条边连接了结点 $v_i$ 和 $s_i$, 那么 $B$ 中第 $i$ 列的 $v_i$ 行和 $s_i$ 行这两个元素有一个是 1，另一个是 -1. 这里正负号并不重要。$B$ 中其它的元素都是 0.</p>
+<p>那么我们可以发现</p>
+<script type="math/tex; mode=display">
+C=BB^T</script><p>这样，我们将 $C$ 转换到 $BB^T$ 上。如果 $A$ 是一个矩阵，$r$ 是一个数或者集合，定义记号 $A_r$ 代表将 $A$ 中第 $r$ 行（属于 $r$ 的集合）去掉得到的矩阵，定义 $A^r$ 代表将 $A$ 中属于 $r$ 的列提取得到的矩阵。利用 Binet-Cauchy 公式，得到</p>
+<script type="math/tex; mode=display">
+\det(C_r)=\det(B_rB_r^T)=\sum_{x\subset E\\|x|=n-1}\det(B_r^x)\det({B_r^x}^T)=\sum_{x\subset E\\|x|=n-1}\det(B_r^x{B_r^x}^T)=\sum_{x\subset E\\|x|=n-1}(\det(B_r^x))^2</script><p>考虑</p>
+<script type="math/tex; mode=display">
+\sum_{x\subset E\\|x|=n-1}\det(B_r^x{B_r^x}^T)</script><p>这里 $x$ 是一个由边组成的集合，集合中所有元素的数量为 $n-1$. 可以断言，如果这 $n-1$ 条边将 $n$ 个结点连城了一棵树，那么 $\det(B_r^x{B_r^x}^T)=1$, 否则必定有至少一个环出现，$\det(B_r^x{B_r^x}^T)=0$.</p>
+<p>首先假定 $x$ 中的边构成了一棵树，那么原式相当于只看 $x$ 中的边构成的Kirchhoff矩阵的一个 $n-1$ 阶主子式，之前已经证明过它的行列式等于 1.</p>
+<p>接下来考虑构成环的情况，我们将行列式进行行和列的对换，使得这个环中的元素集中到行列式的左上角。例如有一个大小为 3 的环，重排矩阵后</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}\begin{matrix}
+1&0&1\\-1&1&0\\0&-1&-1
+\end{matrix}&A^\prime\\0&B^\prime
+\end{bmatrix}</script><p>可以发现，右上角的子矩阵</p>
+<script type="math/tex; mode=display">
+S^\prime=\begin{bmatrix}
+1&0&1\\-1&1&0\\0&-1&-1
+\end{bmatrix}</script><script type="math/tex; mode=display">
+\det(S^\prime)=0</script><p>从而</p>
+<script type="math/tex; mode=display">
+\det(B_r^x)=\det(S^\prime)\det(B^\prime)=0</script><p>这样，我们等同于是枚举了选择的边的集合，每次选定一个集合，就判断一下它时候构成的是一棵树，如果是就加上一点贡献。而选择的集合不重复不遗漏，我们就证明了矩阵-树定理。</p>
+<hr>
+<p>上面的证明过程还存在一点缺陷，补证</p>
+<script type="math/tex; mode=display">
+A=\begin{bmatrix}
+A_{11}&A_{12}\\0&A_{22}
+\end{bmatrix}</script><p>那么</p>
+<script type="math/tex; mode=display">
+\det(A)=\det(A_{11})\det(A_{22})</script><p>设</p>
+<script type="math/tex; mode=display">
+A_{11}=\begin{bmatrix}
+a_{11}&a_{12}&\cdots&a_{1n}\\
+a_{21}&a_{22}&\cdots&a_{2n}\\
+\vdots&\vdots&\ddots&\vdots\\
+a_{n1}&a_{n2}&\cdots&a_{nn}
+\end{bmatrix}\\</script><script type="math/tex; mode=display">
+A_{22}=\begin{bmatrix}
+b_{11}&b_{12}&\cdots&b_{1m}\\
+b_{21}&b_{22}&\cdots&b_{2m}\\
+\vdots&\vdots&\ddots&\vdots\\
+b_{m1}&b_{m2}&\cdots&b_{mm}
+\end{bmatrix}\\</script><p>我们将 $A_{11}$ 和 $A_{22}$ 进行变换得到两个上三角矩阵，其中对于 $A_{11}$, 每一次将最右边的一列乘上一个数加到前面的一列，以使得最后一行除了最后一个数其它数全部为 0. 然后去掉最后一行和最后一列不看，继续这样处理。对于 $A_{22}$, 每一次将第一排乘上一个数加到后面的一排，以使得第一列除了最后一个数其它数全部为 0. 这样处理之后，</p>
+<script type="math/tex; mode=display">
+A_{11}=\begin{bmatrix}
+p_{11}&p_{12}&\cdots&p_{1n}\\
+0&p_{22}&\cdots&p_{2n}\\
+\vdots&\vdots&\ddots&\vdots\\
+0&0&\cdots&p_{nn}
+\end{bmatrix}\\</script><script type="math/tex; mode=display">
+A_{22}=\begin{bmatrix}
+q_{11}&q_{12}&\cdots&q_{1m}\\
+0&q_{22}&\cdots&q_{2m}\\
+\vdots&\vdots&\ddots&\vdots\\
+0&0&\cdots&q_{mm}
+\end{bmatrix}\\</script><script type="math/tex; mode=display">
+\det(A_{11})=\prod_{i=0}^np_{ii}</script><script type="math/tex; mode=display">
+det(A_{22})=\prod_{i=0}^mq_{ii}</script><p>将这两个矩阵放到原来的 $A$ 中可以发现，我们在按照上述规则进行变换完成后 $A$ 是一个上三角矩阵，那么</p>
+<script type="math/tex; mode=display">
+\det(A)=\prod_{i=0}^np_{ii}\prod_{i=0}^mq_{i+n\ i+n}=\det(A_{11})\det(A_{22})</script><p>证毕。</p>
+<h1 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h1><p>为了求出给定Kirchhoff矩阵的一个 $n-1$ 阶主子式 $C_r$，我们通过不断变换使得它成为一个上三角矩阵。准确地说，从上往下处理主对角线上的每一个元素，如果这个元素 $(C_r)_{ii}$ 下面的所有元素都为 0，那么我们就处理完成了一行一列，下面移动到主对角线上的下一个元素 $(C_r)_{i+1\ i+1}$.</p>
+<p>假定我们正在处理第 $i$ 行，现在要使得 $(C_r)_{ji}=0$. 如果 $(C_r)_{ii}&gt;(C_r)_{ji}$, 那么将第 $i$ 行减去第 $j$ 行，否则对换两行。这一个过程与欧几里得算法非常相似，可以利用其思想计算出 $t=\left\lfloor\frac{(C_r)_{ii}}{(C_r)_{ji}}\right\rfloor$, 然后一次减去多次来加速运算。每一次归位一行则将答案乘上这一行主对角线上的元素，每一次对换两行将答案变成其相反数。总时间复杂度为 $O(N^3)$.</p>
+
+      
+    </div>
+    
+    
+    
+  
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/" rel="tag"># 组合数学</a>
+          
+            <a href="/tags/%E7%9F%A9%E9%98%B5/" rel="tag"># 矩阵</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+          <div class="wp_rating">
+            <div id="wpac-rating"></div>
+          </div>
+        
+
+        
+
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/09/HEOI2015-%E5%B0%8FZ%E7%9A%84%E6%88%BF%E9%97%B4/" rel="next" title="【题解】HEOI2015 小Z的房间">
+                <i class="fa fa-chevron-left"></i> 【题解】HEOI2015 小Z的房间
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/17/SHOI2016-%E9%BB%91%E6%9A%97%E5%89%8D%E7%9A%84%E5%B9%BB%E6%83%B3%E4%B9%A1/" rel="prev" title="【题解】SHOI2016 黑暗前的幻想乡">
+                【题解】SHOI2016 黑暗前的幻想乡 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTQzNy8xNTk2NA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Mickey-snow" />
+            
+              <p class="site-author-name" itemprop="name">Mickey-snow</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/index.html%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">280</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">104</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Mickey-snow" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:Mickeysnow1031@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/Mickeysnow11" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/Thunremmoni" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://stackoverflow.com/users/11585730/mickey-snow" target="_blank" title="S-Of">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>S-Of</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.youtube.com/channel/UCsE6Rn6Nb7BI1MO6jKTET8g?view_as=subscriber" target="_blank" title="YouTube">
+                      
+                        <i class="fa fa-fw fa-youtube"></i>YouTube</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/thunremmoni" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="skype:live:kevin77478?call|chat" target="_blank" title="Skype">
+                      
+                        <i class="fa fa-fw fa-skype"></i>Skype</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实践"><span class="nav-number">2.</span> <span class="nav-text">实践</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mickey-snow</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">211.7k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('5');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  <script type="text/javascript">
+  wpac_init = window.wpac_init || [];
+  wpac_init.push({widget: 'Rating', id: 13701,
+    el: 'wpac-rating',
+    color: 'fc6423'
+  });
+  (function() {
+    if ('WIDGETPACK_LOADED' in window) return;
+    WIDGETPACK_LOADED = true;
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = '//embed.widgetpack.com/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+  })();
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
