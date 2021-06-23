@@ -18,15 +18,15 @@
   
     
     
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+  <script src="/mickey-snow.github.io/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/mickey-snow.github.io/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
 
 
 
 
   
   
-  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+  <link rel="stylesheet" media="all" href="/mickey-snow.github.io/lib/Han/dist/han.min.css?v=3.3">
 
 
 
@@ -55,16 +55,16 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/mickey-snow.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-Mickey_snow.png?v=5.1.4">
+<link href="/mickey-snow.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-Mickey_snow.png?v=5.1.4">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/mickey-snow.github.io/images/favicon-32x32-Mickey_snow.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/mickey-snow.github.io/images/favicon-16x16-Mickey_snow.png?v=5.1.4">
 
 
 
@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="Mickey-snow&#39;s Blog">
 <meta property="og:description" content="题目大致意思是有一个连通的无向图由 $n$ 个结点和 $n-1$ 条边构成，如果任取一点为根，就可以转换为一个有根树，我们称根为源点，所有叶子节点为汇点，源点会源源不断地流出水来，这些水将流向汇点。所有的边都有一个流量值，单位时间流过这条边的水量不能超过这个值，而且中间的结点不能囤积水量，如果源点任取，那么最终有多少单位的水可以流向汇点。 我们假设以 $i$ 为源点，以 0 号结点为根，总共可以流">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://mickey-snow.github.io/2018/09/20/POJ3585-Accumulation-Degree/pic.png">
+<meta property="og:image" content="https://mickey-snow.github.io/mickey-snow.github.io/2018/09/20/POJ3585-Accumulation-Degree/pic.png">
 <meta property="article:published_time" content="2018-09-19T16:00:00.000Z">
 <meta property="article:modified_time" content="2020-04-07T04:00:03.000Z">
 <meta property="article:author" content="Mickey-snow">
@@ -97,14 +97,14 @@
 <meta property="article:tag" content="树上动态规划">
 <meta property="article:tag" content="记忆化搜索">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://mickey-snow.github.io/2018/09/20/POJ3585-Accumulation-Degree/pic.png">
+<meta name="twitter:image" content="https://mickey-snow.github.io/mickey-snow.github.io/2018/09/20/POJ3585-Accumulation-Degree/pic.png">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '/mickey-snow.github.io/',
     scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
@@ -161,7 +161,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/mickey-snow.github.io/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Mickey-snow's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -189,7 +189,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/mickey-snow.github.io/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -199,7 +199,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/mickey-snow.github.io/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -209,7 +209,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/index.html" rel="section">
+          <a href="/mickey-snow.github.io/tags/index.html" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -219,7 +219,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/index.html" rel="section">
+          <a href="/mickey-snow.github.io/categories/index.html" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -229,7 +229,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/index.html" rel="section">
+          <a href="/mickey-snow.github.io/archives/index.html" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -304,12 +304,12 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/2018/09/20/POJ3585-Accumulation-Degree/">
+    <link itemprop="mainEntityOfPage" href="https://mickey-snow.github.io/mickey-snow.github.io/2018/09/20/POJ3585-Accumulation-Degree/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mickey-snow">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="image" content="/mickey-snow.github.io/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -368,7 +368,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index">
+                  <a href="/mickey-snow.github.io/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index">
                     <span itemprop="name">题解</span>
                   </a>
                 </span>
@@ -438,7 +438,7 @@
       
         <p>题目大致意思是有一个连通的无向图由 $n$ 个结点和 $n-1$ 条边构成，如果任取一点为根，就可以转换为一个有根树，我们称根为源点，所有叶子节点为汇点，源点会源源不断地流出水来，这些水将流向汇点。所有的边都有一个流量值，单位时间流过这条边的水量不能超过这个值，而且中间的结点不能囤积水量，如果源点任取，那么最终有多少单位的水可以流向汇点。</p>
 <p>我们假设以 $i$ 为源点，以 0 号结点为根，总共可以流 $f_i$ 单位的水到汇点。那么这 $f_i$ 单位的水量就是流向了 $i$ 的儿子和经由它的祖先流向别处，如图。</p>
- <img src="/2018/09/20/POJ3585-Accumulation-Degree/pic.png" class="">
+ <img src="/mickey-snow.github.io/2018/09/20/POJ3585-Accumulation-Degree/pic.png" class="">
 <p>假定我们已经到达了一个结点 $v$ ，如何更新它的一个儿子 $t$ 的 $f_t$ ?由于 $v$ 很可能有多个儿子，而 $f_t$ 又依赖于其它儿子的 $f$ 值，而其他儿子的 $f$ 值又依赖于 $f_t$. 很显然这样不可行。</p>
 <p>这个时候，我们需要两次 dfs 来求出所有点的 $f$ 值。虽然 $f$ 很不好求，但是我们可以间接地求得，具体地说，定义 $d_i$ 为以 $i$ 为根的子树以 $i$ 为源点能够流入汇点的总水量。可见</p>
 <script type="math/tex; mode=display">
@@ -465,11 +465,11 @@ f_t = d_t+\min(val_{i\leftrightarrow t},\space f_i-\min (d_t,\space val_{i\leftr
       
         <div class="post-tags">
           
-            <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"># 动态规划</a>
+            <a href="/mickey-snow.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"># 动态规划</a>
           
-            <a href="/tags/%E6%A0%91%E4%B8%8A%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"># 树上动态规划</a>
+            <a href="/mickey-snow.github.io/tags/%E6%A0%91%E4%B8%8A%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"># 树上动态规划</a>
           
-            <a href="/tags/%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2/" rel="tag"># 记忆化搜索</a>
+            <a href="/mickey-snow.github.io/tags/%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2/" rel="tag"># 记忆化搜索</a>
           
         </div>
       
@@ -494,7 +494,7 @@ f_t = d_t+\min(val_{i\leftrightarrow t},\space f_i-\min (d_t,\space val_{i\leftr
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/19/%E6%95%B0%E5%AD%97%E8%BD%AC%E6%8D%A2/" rel="next" title="【题解】数字转换">
+              <a href="/mickey-snow.github.io/2018/09/19/%E6%95%B0%E5%AD%97%E8%BD%AC%E6%8D%A2/" rel="next" title="【题解】数字转换">
                 <i class="fa fa-chevron-left"></i> 【题解】数字转换
               </a>
             
@@ -504,7 +504,7 @@ f_t = d_t+\min(val_{i\leftrightarrow t},\space f_i-\min (d_t,\space val_{i\leftr
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/22/%E7%B4%A0%E6%95%B0%E7%9A%84%E7%BA%BF%E6%80%A7%E7%AD%9B%E6%B3%95-%E6%A8%A1%E6%9D%BF/" rel="prev" title="素数的线性筛法 模板">
+              <a href="/mickey-snow.github.io/2018/09/22/%E7%B4%A0%E6%95%B0%E7%9A%84%E7%BA%BF%E6%80%A7%E7%AD%9B%E6%B3%95-%E6%A8%A1%E6%9D%BF/" rel="prev" title="素数的线性筛法 模板">
                 素数的线性筛法 模板 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -569,7 +569,7 @@ f_t = d_t+\min(val_{i\leftrightarrow t},\space f_i-\min (d_t,\space val_{i\leftr
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
+                src="/mickey-snow.github.io/images/avatar.jpg"
                 alt="Mickey-snow" />
             
               <p class="site-author-name" itemprop="name">Mickey-snow</p>
@@ -581,7 +581,7 @@ f_t = d_t+\min(val_{i\leftrightarrow t},\space f_i-\min (d_t,\space val_{i\leftr
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/index.html%7C%7C%20archive">
+                <a href="/mickey-snow.github.io/archives/index.html%7C%7C%20archive">
               
                   <span class="site-state-item-count">280</span>
                   <span class="site-state-item-name">posts</span>
@@ -593,7 +593,7 @@ f_t = d_t+\min(val_{i\leftrightarrow t},\space f_i-\min (d_t,\space val_{i\leftr
               
               
               <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
+                <a href="/mickey-snow.github.io/categories/index.html">
                   <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
@@ -604,7 +604,7 @@ f_t = d_t+\min(val_{i\leftrightarrow t},\space f_i-\min (d_t,\space val_{i\leftr
               
               
               <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
+                <a href="/mickey-snow.github.io/tags/index.html">
                   <span class="site-state-item-count">104</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
@@ -778,64 +778,64 @@ f_t = d_t+\min(val_{i\leftrightarrow t},\space f_i-\min (d_t,\space val_{i\leftr
 
   
   
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+    <script type="text/javascript" src="/mickey-snow.github.io/lib/jquery/index.js?v=2.1.3"></script>
   
 
   
   
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+    <script type="text/javascript" src="/mickey-snow.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
   
 
   
   
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+    <script type="text/javascript" src="/mickey-snow.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
   
 
   
   
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+    <script type="text/javascript" src="/mickey-snow.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
   
   
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+    <script type="text/javascript" src="/mickey-snow.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
   
   
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+    <script type="text/javascript" src="/mickey-snow.github.io/lib/canvas-nest/canvas-nest.min.js"></script>
   
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/mickey-snow.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/mickey-snow.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/mickey-snow.github.io/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/mickey-snow.github.io/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/mickey-snow.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/mickey-snow.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/mickey-snow.github.io/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -896,7 +896,7 @@ f_t = d_t+\min(val_{i\leftrightarrow t},\space f_i-\min (d_t,\space val_{i\leftr
     } else if (/json$/i.test(search_path)) {
       isXml = false;
     }
-    var path = "/" + search_path;
+    var path = "/mickey-snow.github.io/" + search_path;
     // monitor main search box;
 
     var onPopupClose = function (e) {
